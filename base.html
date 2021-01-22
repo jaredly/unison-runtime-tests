@@ -1,0 +1,1125 @@
+<!doctype html>
+<head>
+    <meta charset=utf8>
+    <title>base</title>
+    <style>
+ body {
+     max-width: 800px;
+     margin: 0 auto;
+     font-size: 16px;
+     font-family: 'Inter', sans-serif;
+ }
+
+ p {
+   font-weight: 200;
+ }
+
+ h1 {
+   font-size: 3em;
+   line-height: 1;
+   margin-bottom: 8px;
+ }
+
+ h1.identifier, h2.identifier {
+   font-weight: 500;
+ }
+
+.un-site-nav__logo {
+  display: inline-block;
+  width: 100px;
+  height: 100%;
+  fill: currentColor;
+}
+
+ h1 a, h2 a {
+   color: #520066;
+   color: #8f228f;
+   text-decoration: none;
+ }
+
+ code, .code, .identifier, .sub-name {
+    font-family: 'Fira Code', monospace;
+ }
+
+ .breadcrumb {
+     font-size: 80%;
+     padding-left: 4px;
+     margin-bottom: 2em;
+ }
+
+ .breadcrumb .item {
+ }
+
+ .docs {
+     line-height: 1.5;
+ }
+  
+ pre {
+     padding: 10px 20px;
+     box-shadow: 0 0 2px;
+     border-radius: 3px;
+ }
+
+ p > code {
+    background-color: #fafafa;
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 0 0 2px inset #aaa;
+}
+  
+ .sub-name {
+     display: inline-block;
+     padding: 4px 8px;
+     margin-right: 8px;
+     margin-bottom: 8px;
+     border-radius: 5px;
+     background-color: #ddd;
+     font-size: 80%;
+     font-weight: 200;
+ }
+ a.sub-name {
+     text-decoration: none;
+     color: black;
+ }
+ .children {
+   display: flex; flex-direction: row; flex-wrap: wrap;
+ }
+  
+ .Constructor {
+     color: #ce8500
+ }
+ .DataTypeKeyword {
+     font-weight: bold;
+ }
+ .Var {
+     color: #00a;
+ }
+ .NumericLiteral, .TextLiteral, .CharLiteral, .BooleanLiteral {
+     color: green;
+ }
+  
+   .ControlKeyword      { font-weight: bold }
+   .AbilityBraces       ,
+   .LinkKeyword         ,
+   .TypeOperator        ,
+   .UseKeyword          ,
+   .UsePrefix           ,
+   .UseSuffix           ,
+   .HashQualifier      { color: #777 }
+   .DelayForceChar      { color: #adad00; }
+   .TypeAscriptionColon { color: blue }
+   .DocDelimiter        { color: green }
+   .DocKeyword          { font-weight: bold }
+</style>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    
+    <div style='display:flex;justify-content: space-between;padding: 16px;align-items:center'>
+      <a href="index.html">Home</a>
+      <a href="https://www.unisonweb.org/" style="display:block" target="_blank" nofollow noreferrer>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2989.27 1031.5" class="un-site-nav__logo"><title>logo-unison</title><path d="M1240.54 397.11c0-17.07 14.53-31.61 32.24-31.61 18.33 0 32.87 14.54 32.87 31.61v134c0 20.86 2.53 34.77 9.48 47.41 10.11 18.33 30.34 31 62.58 31s52.47-12.65 62.59-31c7-12.64 10.11-26.55 10.11-47.41v-134a32.24 32.24 0 0164.48 0v139.07c0 36.66-7.59 62-22.76 82.81-22.76 30.34-62.58 46.15-114.42 46.15-51.2 0-91.66-15.81-113.78-46.15-15.81-20.86-23.39-46.15-23.39-82.81V397.11zm351.27 0c0-17.7 14.54-31.61 32.24-31.61 18.33 0 32.24 13.91 32.24 31.61v12.64c20.86-29.08 53.73-44.25 93.56-44.25 32.86 0 62.58 8.22 83.44 27.18 21.49 19 33.5 49.94 33.5 93.56v147.29c0 17.7-15.17 31.61-32.24 31.61-18.33 0-32.87-13.91-32.87-31.61V502c0-25.92-3.79-49.3-18.33-64.47-10.12-10.12-24.66-16.44-46.15-16.44-29.08 0-51.83 13.27-65.74 37.93-10.74 19.59-15.17 43.62-15.17 67v107.51c0 17.7-15.18 31.61-32.24 31.61-17.7 0-32.24-13.91-32.24-31.61V397.11zm386.75-31.61a31.84 31.84 0 0132.24 31.61v236.42c0 17.7-15.17 31.61-32.24 31.61-18.33 0-32.24-13.91-32.24-31.61V397.11a31.84 31.84 0 0132.24-31.61zm285.84 65.74c-20.22 0-38.56-12.64-68.27-12.64-27.18 0-44.88 8.22-44.88 27.18 0 16.44 12.64 25.29 29.71 32.87 19.59 8.22 44.25 15.18 63.85 24.66 37.29 18.33 51.83 40.46 51.83 73.32 0 52.47-43.62 88.51-112.52 88.51-41.72 0-107.46-9.49-107.46-48a25.37 25.37 0 0125.28-25.28c23.39 0 33.5 22.75 77.76 22.75 29.08 0 48.67-10.11 48.67-32.24 0-19-13.9-27.81-32.87-36.66-17.7-8.22-43.62-14.54-65.11-24.65-31-14.54-47.41-37.93-47.41-74 0-50.57 39.19-81.55 109.36-81.55 50.57 0 97.35 10.11 97.35 39.82 0 14.58-11.38 26-25.29 26zm122.6-24c27.81-25.92 66.38-41.72 109.36-41.72 42.36 0 81.55 15.8 109.36 41.72 27.82 26.55 44.25 63.85 44.25 108.1 0 44.88-15.8 82.81-44.25 108.73-27.18 25.91-67 41.09-109.36 41.09-43 0-82.18-15.18-109.36-41.09-28.45-25.92-44.88-63.85-44.88-108.73 0-44.25 17.1-81.55 44.88-108.1zM2431.25 583c15.8 17.07 38.56 27.81 65.11 27.81a87.15 87.15 0 0064.48-27.81c15.8-17.71 25.28-40.46 25.28-67.64s-9.48-49.94-25.28-67.64a87.16 87.16 0 00-64.48-27.82c-26.55 0-49.31 10.75-65.11 27.82-15.8 17.7-24.65 40.46-24.65 67.64s8.89 49.93 24.69 67.64zm283-185.85c0-17.7 14.54-31.61 32.24-31.61 18.34 0 32.24 13.91 32.24 31.61v12.64c20.86-29.08 53.74-44.25 93.56-44.25 32.87 0 62.58 8.22 83.45 27.18 21.48 19 33.5 49.94 33.5 93.56v147.25c0 17.7-15.17 31.61-32.24 31.61-18.33 0-32.87-13.91-32.87-31.61V502c0-25.92-3.79-49.3-18.34-64.47-10.11-10.12-24.65-16.44-46.14-16.44-29.08 0-51.84 13.27-65.75 37.93-10.74 19.59-15.17 43.62-15.17 67v107.51c0 17.7-15.17 31.61-32.24 31.61-17.7 0-32.24-13.91-32.24-31.61V397.11zm-715.2-183.37a31 31 0 100 43.8 31 31 0 00.03-43.84zM887.36 286.16a27.21 27.21 0 010 38.47 27.2 27.2 0 01-38.46 0 27.21 27.21 0 0138.47-38.49zM720.18 196.8a327.23 327.23 0 0161.24 18.58 27.22 27.22 0 0114.75 35.55 27.2 27.2 0 01-35.55 14.73h-.05a272.19 272.19 0 00-50.32-15.35c-.46-.08-.91-.17-1.37-.27a271.94 271.94 0 00-51-5.09h-1.4a108.86 108.86 0 01-94.26-54.41c-.12-.21-.25-.43-.36-.65a272.28 272.28 0 00-69.6-79.2c-119.22-91.48-290-69-381.52 50.23a27.21 27.21 0 11-43.21-33.12c.28-.36.57-.71.86-1.06a326.6 326.6 0 0195-82.94c156.13-90.16 355.79-36.67 446 119.46v.05l.23.39a54.39 54.39 0 0045.69 26.83h1.21a326.64 326.64 0 0163.7 6.27zM43.41 544.94c.23-.44.49-.88.75-1.31a54.41 54.41 0 00-.07-53.28c-.27-.45-.52-.9-.77-1.35a326.57 326.57 0 01-32.14-246.94 27.21 27.21 0 0152.57 14.09A272.1 272.1 0 0090.6 462q.45.75.87 1.53a108.87 108.87 0 01-.09 107.13c-.35.63-.71 1.26-1.11 1.87A272.29 272.29 0 0056.8 672c-19.61 149 85.26 285.63 234.26 305.25v.06a27.2 27.2 0 0123.42 30.52 27.21 27.21 0 01-30.48 23.43h.05a326.27 326.27 0 01-120.64-41C7.37 900.26-46.21 701 43.41 544.94zm44.8 30.43a26.51 26.51 0 002.06-2.8l.08-.13a27.79 27.79 0 01-2.14 2.93zm322.87 447.54a27.2 27.2 0 01-33.32-19.22A27.22 27.22 0 01397 970.35a27.21 27.21 0 0114.09 52.56zm245.4-179.34a54.43 54.43 0 00-46.75 26.56c-.12.23-.25.46-.38.68a326.23 326.23 0 01-37.28 52c4.52-5.16 4.53-5.13 0 0-.28.32-.56.63-.85.93a326.51 326.51 0 01-45.87 42.78 27.21 27.21 0 01-38.15-5 27.22 27.22 0 015-38.15 272.06 272.06 0 0038.93-36.47c-4.36 5-4.37 4.94 0 0 .34-.38.68-.75 1-1.1a272 272 0 0029.6-41.42c.16-.3.33-.59.5-.89a108.83 108.83 0 0194.2-54.32 272 272 0 00104.13-20.72c138.55-57.39 204.51-216 147.61-354.67-.12-.26-.24-.53-.35-.8a27.21 27.21 0 0150.26-20.86 326.57 326.57 0 0124.86 125c0 180.33-146.19 326.52-326.52 326.52zm-24-542.93q10.79-1.18 21.66-1.3a217.72 217.72 0 11-21.61 434.12A108.9 108.9 0 00526 794.94 217.73 217.73 0 11151.92 577.5a109 109 0 00-.83-122.11q-3.9-5.33-7.47-10.87a217.71 217.71 0 11382.43-205.34 108.91 108.91 0 00106.45 61.46zm-447.29 488.5a163.25 163.25 0 1059.75-223 163.27 163.27 0 00-59.75 223zm329.94-190.46a163.25 163.25 0 1059.76-223 163.27 163.27 0 00-59.76 223zM326.61 489.84a163.25 163.25 0 10-163.3-163.22 163.26 163.26 0 00163.3 163.22z"></path></svg>
+      </a>
+    </div>
+    
+    <h1 class='identifier'>base</h1>
+    <div class='breadcrumb'><a class="item" href="index.html">Home</a> : </div>
+    
+    
+            <div>
+                <h2 id="0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g" class="identifier">.</h2>
+                
+                <div><pre><code><span class="Parenthesis">(</span><span class="HashQualifier">base..</span><span class="Parenthesis">)</span><span class="TypeAscriptionColon"> :</span> (<span class="Var">b</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">c</span>) <span class="TypeOperator">-&gt;</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">b</span>) <span class="TypeOperator">-&gt;</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">c</span>
+<span class="Parenthesis">(</span><span class="HashQualifier">base..</span><span class="Parenthesis">)</span> <span class="Var">f</span> <span class="Var">g</span> <span class="Var">x</span><span class="BindingEquals"> =</span> <span class="Var">f</span> <span class="Parenthesis">(</span><span class="Var">g</span> <span class="Var">x</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="oujnf8a703ha04c80ktnmub0rqg53mrrrvoreaacpu2ar9af43qq6r59d3rgm0j3jfogcih1u0c6k8ddqkfbr6mkf5vkrgdviiv3628" class="identifier"><|</h2>
+                
+                <div><pre><code><span class="Parenthesis">(</span><span class="HashQualifier">base.&lt;|</span><span class="Parenthesis">)</span><span class="TypeAscriptionColon"> :</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">b</span>) <span class="TypeOperator">-&gt;</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">b</span>
+<span class="Var">f</span> <span class="HashQualifier">base.&lt;|</span> <span class="Var">a</span><span class="BindingEquals"> =</span> <span class="Var">f</span> <span class="Var">a</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="oup50kgmqvs4itq9c1r4of6jm27sakglkdggqcrvjl9atku2qilu66kh6a4n5ch770f5anv3fp5g03c5lhgao91ekj19vj4d4un0rl8" class="identifier"><a class="" href="oup50kgmqvs4itq9c1r4of6jm27sakglkdggqcrvjl9atku2qilu66kh6a4n5ch770f5anv3fp5g03c5lhgao91ekj19vj4d4un0rl8.html">Abort</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.Abort.tests.html">tests</a></div>
+<div><a class="sub-name" href="ebjo0s6k9sjsfvioncavlmm0r2kqbctht0t2pvpk6ps8sim0i9l1bc9hkj21u93oigsn5enf5r4kq6g91abmui0hjv7c2pnq9tnl5mg.html">toOptional</a></div></div>
+                <div><pre><code><span class="DataTypeKeyword">ability</span> <span class="HashQualifier">base.Abort</span><span class="ControlKeyword"> where</span> <span class="Constructor">abort</span><span class="TypeAscriptionColon"> :</span> <span class="AbilityBraces">{</span><a class="Reference" href="oup50kgmqvs4itq9c1r4of6jm27sakglkdggqcrvjl9atku2qilu66kh6a4n5ch770f5anv3fp5g03c5lhgao91ekj19vj4d4un0rl8.html">base.Abort</a><span class="AbilityBraces">}</span> <span class="Var">a</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="q4pjprlin9on74ge48c63e9qcr8bgufaa9r8i87lhook71rua5l947qkktoa4g20jii84b7j8k3s4e6ifavv6e2a42mv6ie783llfio" class="identifier"><a class="" href="q4pjprlin9on74ge48c63e9qcr8bgufaa9r8i87lhook71rua5l947qkktoa4g20jii84b7j8k3s4e6ifavv6e2a42mv6ie783llfio.html">Ask</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="g83j2r0h3je809hek0ubjveo32otravd1etirlevjin2975oscmhk4l65vunm58r6mmp0dv44pun6t3mghohkc6a5jh5o5085mfl790.html">provide</a></div>
+<div><a class="sub-name" href="base.Ask.tests.html">tests</a></div></div>
+                <div><pre><code><span class="DataTypeKeyword">ability</span> <span class="HashQualifier">base.Ask</span> <span class="DataTypeParams">a</span><span class="ControlKeyword"> where</span> <span class="Constructor">ask</span><span class="TypeAscriptionColon"> :</span> <span class="AbilityBraces">{</span><a class="Reference" href="q4pjprlin9on74ge48c63e9qcr8bgufaa9r8i87lhook71rua5l947qkktoa4g20jii84b7j8k3s4e6ifavv6e2a42mv6ie783llfio.html">base.Ask</a> <span class="Var">a</span><span class="AbilityBraces">}</span> <span class="Var">a</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="5hi1vvs5t1gmu6vn1kpqmgksou8ie872j31gc294lgqks71di6gm3d4ugnrr4mq8ov0ap1e20lq099d5g6jjf9c6cbp361m9r9n5g50" class="identifier"><a class="" href="5hi1vvs5t1gmu6vn1kpqmgksou8ie872j31gc294lgqks71di6gm3d4ugnrr4mq8ov0ap1e20lq099d5g6jjf9c6cbp361m9r9n5g50.html">Author</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="6gtattu4bq1ukj20j9tgs7cgtrhh2vlf9dj9hpg24qpm5g2evkfarovv5hd7cfvp3i8a5ilnt12gfvdhu9mul4lr8rjqr3a25fojlg0.html">guid</a></div>
+<div><a class="sub-name" href="4j0uc6jasl8rjea4elg1lb6vvavaqm5uhghp3pms2r88b0edslp5qfbki57g8fvfh4p7m5naj7pisog70ntgv3njq7uk8qeco8mbq4g.html">name</a></div>
+<div><a class="sub-name" href="5hi1vvs5t1gmu6vn1kpqmgksou8ie872j31gc294lgqks71di6gm3d4ugnrr4mq8ov0ap1e20lq099d5g6jjf9c6cbp361m9r9n5g50.html#hniabtg1qle8nvhlnejmfkd2eq0chu2r9tdndhf24t2trfg6hliftd65vh0ci9407elsjgsnahchlongr4ovubbm4hd0059pbj266s0">toCopyrightHolder</a></div></div>
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Author</span><span class="DelimiterChar"> = </span><span class="DelimiterChar">{ </span><span class="Constructor">guid</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.html#rc29vdqe019p56kupcgkg07fkib86r3oooatbmsgfbdsgpmjhsh00l307iuts3r973q5etb61vbjkes42b6adb3mkorusvmudiuorno">base.GUID</a><span class="DelimiterChar">,</span> <span class="Constructor">name</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="__builtin__Text.html">base.Text</a><span class="DelimiterChar"> }</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o" class="identifier"><a class="" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">Bag</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html#2pun3lahrm8aeq09k70qvebfprc59os1e88teq2tu0o1nhameoj3kk67imrqe36mfd1ssmqcoe402dhlfc88uu745iqd1sdn5492ms0">*</a></div>
+<div><a class="sub-name" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html#ua91u6uc67tr19of8r9dbsoad35upuaun6frq61g1ml9do9mqqhrm0baem20ei2g3vfjfsp3gvr229frcuqjmd8qnp497lgfiet21f8">+</a></div>
+<div><a class="sub-name" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html#27lpp0vtqm7igf3e8mt65h7omqbvp7glcqd0e5mile2n37dk5osccekat27s15n12a8t1i66sedk4edm37ug6pt3dnibubd70ipodpo">==</a></div>
+<div><a class="sub-name" href="pbmto3bqnc42nisa4jnj1or5jeee84osulk5cnbk0h62ipffpa7pfiu9q4c07vmjfbqa4ertt1dd4j4soihgn29db293qptdp545teg.html">add</a></div>
+<div><a class="sub-name" href="base.Bag.addAll.html">addAll</a></div>
+<div><a class="sub-name" href="jmt63g1tnkchop3jne9911nnvrlpjibe252jdfl9emjffoddmq3adhdohpcscbrlu10rpf96ie5m86jmuki753pv8i0vrpogm6ikuq0.html">addN</a></div>
+<div><a class="sub-name" href="5s0u8ng7kjn5rh3afnn992l21g43cres0rvq8bp13rl2e6rbtu6bosncdb6924d8j7k2c308mrmvrmp7kg24scnutfnsa96kg7pj43o.html">all</a></div>
+<div><a class="sub-name" href="566nnbpcj498slncqptnhstkuji0bgpn1qe3qv3tl3dfog9tummkna6b16sltvj63vmdlnfffj0ck6rgtl526d9ru2dh4eg7i2o37fg.html">any</a></div>
+<div><a class="sub-name" href="0dhgj39t6k5h34kgd4pj821ugu1goegkkd09sm3m3m5p3pintsi5a860lgg00g9d00qr70qnm0hnl5oqvk30bhujuplmfqlum44lobg.html">contains</a></div>
+<div><a class="sub-name" href="lpo19ssu4iqpp5q2cn795j9903iuurttpcs0h0rd8vlc8ua6kvl74etep1qil22bncm247s2iirgjeo17i5kbtvobj6hl557o7sv928.html">convolve</a></div>
+<div><a class="sub-name" href="ibks5e46p53ei4kda085469t8l4keo1ma2hvh5gln2d3r9mpdmbdnkjsr38vlhj8ko926hdjcbbe3r4d3naguisii44kk7tl7nba240.html">count</a></div>
+<div><a class="sub-name" href="3fosfs3598idpagvu3vm46hovual6km5snd867nqd86ma4nl3rrespkg1m3i35siine92cv6hha5oetifci80n88ia5bcva44nvs71g.html">counts</a></div>
+<div><a class="sub-name" href="ioup121p1kui1fh8l3kjkvcrbi8itkeqecfda4k50fqrk0ah1rvscsl5k2ce7qj87dfj07gnsfpf1gkjufv2uk4o36dsj6keb60u1vo.html">difference</a></div>
+<div><a class="sub-name" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html#c4mp0qgnv6910iojmjva72uj0isqett9u9uqlb68k7qj8o75uqqcbjee5ir8r87jlei79ccrlcar0f3a5soqte7nasiohu4luf2bsso">doc</a></div>
+<div><a class="sub-name" href="h93fpipok8nmjpjf1tttn9hrq3jm4csi5c80b9pn6j77dec92qk8ifvnsgd7r43l501hofi16246o39pvk4o35105gs6efggllfivp8.html">elementOf</a></div>
+<div><a class="sub-name" href="02dmpekb8sbv88u1le9srppll5n7v3gdhh96n9e9rigjirm0r66r3a8450cg52ipeismke837l5f5kir9jps3dfimu0aqml49i63qvo.html">empty</a></div>
+<div><a class="sub-name" href="base.Bag.equals.html">equals</a></div>
+<div><a class="sub-name" href="bvsm0mh6ctp6hl6243hmoul3s2jeaiq17d26k3ghhop1krnv4tabj63rkq4mumip017ib2of7v1lr93a3ctplpso2ga7bdobqfssup8.html">filter</a></div>
+<div><a class="sub-name" href="n89rbqoes7skmk4n2ipii0j2g2t5u52okuiri486dgm28m12onequccpocq9g4o6ii81tqiavhrvbrbk1lcbmnomdjaj41a8am4fig8.html">flatMap</a></div>
+<div><a class="sub-name" href="gelkv6r25137n6uf0bqbls0kimodoj8mlu3pdm206kc7oqd7usojlanb7gidhfcqmclbdsb8ab1ludrc1emfm2jelhcrnrb15724a2o.html">foldLeft</a></div>
+<div><a class="sub-name" href="cq53omca2ikf70glff05d9aveut9tlpbs7r199gi8lrhg6crqm3j7kgb58dibi4302uguf1i54u4ifdrg6sharn44eus6cbaggvsbd0.html">foldRight</a></div>
+<div><a class="sub-name" href="4me63vdg0t9a9t9gsvqf32dhbc9oneed9u3tkelj0mkpccnf44brdrk5128qntdsunlsd60bcpgeoj6k03iveksgeojkf5jleqb4t8o.html">from</a></div>
+<div><a class="sub-name" href="ig1828j5vrmrfl4qqlmbfgnmbih7l73flljs95ntrq9foal1ceh50savvi4sua3s0mumpoqeen5vsqdf1aclq3qrc5f753kstaqvhd8.html">fromList</a></div>
+<div><a class="sub-name" href="ko9da32qa66tjq43v71dr3ej48eoc73fv7m0un17lq4b79hddd0tkhc0bci74bbsvi5po5l1cvim30rairqboua412mn4e7ia9bnp18.html">fromMap</a></div>
+<div><a class="sub-name" href="03vm6sd9r2v4r6vht2ufai12mimn5o124md71oa4fkp5gd9svvghh5p2mcdauehlf1tuasvvntv3jfas1pg4ekov7evptcm42k2r9d0.html">fromOccurrenceList</a></div>
+<div><a class="sub-name" href="oh6m8mckk47j4rq99k9e2etmrtovgdv24tobq2ssvoogs5rpurjt4kpuh8tlsccl5grthvf4sfstmlkl41k3o5siu4d4eg6rdq93vr0.html">fromText</a></div>
+<div><a class="sub-name" href="base.Bag.internal.html">internal</a></div>
+<div><a class="sub-name" href="0e0b3jvml4ei3qc1j2ke4ju5ea5oi9ncounea2olknclbm7tcmfin0910a3e7ucdj6hb17v4a39kbu2ttmvsfeafuiadcq7bdo8ohu8.html">intersect</a></div>
+<div><a class="sub-name" href="p1c3ua96v1h26v2tmn0buh3pgpda38tg9qovhadembcb0ej08tsekino6hmjabv2q1a44ctkgl6n3omi29gsbg97b3icf2e3hqigu10.html">isEmpty</a></div>
+<div><a class="sub-name" href="12dloovnrmim2kddr38s7sv93uj79aqgvde0cv1gf36tkj1dd4vcgklkgkpe4qtu7k3forl5qn0h0m8jeckghjud18egenlt1usr75g.html">map</a></div>
+<div><a class="sub-name" href="c97c9a2t99gcmrcnqssnp9l4cko9pobnscgaoqq4ihbau6a04jkuuub07vv46qp5u513uv5buuh3ap6eqdnjn9dka01pm7g6avpa4ao.html">mapCounts</a></div>
+<div><a class="sub-name" href="t2ad0icn8rj3orcjimvm139335bncgn46fguqgd465lufpuus26ki0i8tc4mojm3vfvm145ulrce57tf2nolgd71b7us00ufp8g7mc0.html">modify</a></div>
+<div><a class="sub-name" href="06qvev1vnvs9f0q8m1482d9pto4celggtoc120m1bqtgnn1o9iqod26nvg827k0ma9d286p7v93n85lrvpvbtf2qeo79eoik24d0amg.html">none</a></div>
+<div><a class="sub-name" href="ort6oh2tfkj57pe1l2lkq47t4gc6gj6na30dnbpnp1fkkclgm8la5m0h1lljd2km9phle6i6uhh1ads3tuk3gqe9m7qiiftk3fptpbg.html">occurrenceList</a></div>
+<div><a class="sub-name" href="base.Bag.product.html">product</a></div>
+<div><a class="sub-name" href="m953sk5c8b28ctntrqcm77bso1tgshjh511jibtmsea0fel9adr0tv3uvmk95ju3nuleka2ko92ltcbgvl8fbh6mm1q2vlgmfuopcp8.html">remove</a></div>
+<div><a class="sub-name" href="42pi80vuqnn3ip5m5osv4b4n1phfdh0p512pl7s1ievcgd271l00304k7qrpbsrvv7e73ha2i4s4gkvoufv0iq83l12o1ctd0e8hjh8.html">removeAll</a></div>
+<div><a class="sub-name" href="qt440bcmjpg8m3boq0o4sqnit43crgfb65ulrk0qltdror640fmmqggp86rjevatfgs6kosrpnspog2hm7hvc9qp9e994c0nv9gd0po.html">removeN</a></div>
+<div><a class="sub-name" href="h3e4s682lp7bjmia64o1jkkf30htdo5adf75fnqs1e5op7vmroi9ri7vk7pas6bb8knb398e14uln8kq2en6is8h7dksovuregarjt0.html">removeWhere</a></div>
+<div><a class="sub-name" href="4lvprebeh2chuvcakj3riebgbujfmaomd37r8v3h670hrmct3tthh3jpglmuqgbfi4t535ectff8ef0sno9ekmva339nbu2reqdjg6o.html">scale</a></div>
+<div><a class="sub-name" href="0uurhb63d6es858f3l95cct4mm1phou2h11sa4hlf8jeghf4p0dt4t24kf6tdcqd199omigkjkm32ahmcluniufursid9l5c8d2hs3g.html">singleton</a></div>
+<div><a class="sub-name" href="2k78v1d67m48u7du3cksblf2ps0btb8uugql3vr6nrlc7d49alifci9sk6beidmrso114ss70v86hmi7dpl3t2b5bh967pgs70ff768.html">size</a></div>
+<div><a class="sub-name" href="3ohnljtn2on77gbjacgs6u8qgl7g7afdcf2h2mei6v2s80ak38vfgp6pv5rg21lg56icgpchgl76a3lqpla7j8idvb7qpmqdl5rv458.html">subbag</a></div>
+<div><a class="sub-name" href="be7jd39cemhbj9vpom05mbvonpcnijgle3qmb4vlkrnm0u0ugrgq6laov8m6vr4t94801lvpn2jq19m54490kc5pelbu7gmtrikkpj0.html">superbag</a></div>
+<div><a class="sub-name" href="base.Bag.tests.html">tests</a></div>
+<div><a class="sub-name" href="1d3fctj6io3o3dij5a721r4rueutfqqb8s4ojgg21tjj1pbhknn8kgoi3bubjctcugcepfe8g5iql3kebcsrqb85fn2kh33dbbioee8.html">toList</a></div>
+<div><a class="sub-name" href="qjaui0ik2up6ilvv1gpvsf74e0hvemgog1phns0vcj9ok28poj9jq5dpiue9qia2el0ca1lbef883toeeqjcms1r1nurduc92d853e0.html">toSet</a></div>
+<div><a class="sub-name" href="27oshlgju8ps560ighqpldohpbrd51vl2m0h0p49oqdbehro32crq198fm7pd7brp85dq7ijirni89uec9k3n4tbcbdh6nfpkrm90ng.html">toText</a></div>
+<div><a class="sub-name" href="tjuhh14k7n820gn3r8dd5jo687v7148vli4ot8k2c51onp5d8bek2h6oohnjs87e0g5s905k7jj41qrvg457669bkgr42srot8189ko.html">traverse</a></div>
+<div><a class="sub-name" href="r62jtr8bp4ld3cs3a70nj8g3rb8cpst6afk751ea986e74qk6lk5d5v00is75b2gs9qhq05ermu4uftlmkde9sgq6rtg6ao44r020uo.html">union</a></div></div>
+                <div><pre><code><span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Bag</span> <span class="DataTypeParams">a</span><span class="DelimiterChar"> = </span><span class="Constructor">internal.MkBag</span> (<a class="Reference" href="jk39javgi28eog9lmpblqeg6eb6dkv9f2eo1kauceki0h7g0t9tbg2oi3u4qioa5d0mioptr5548049odbuv9tg34s6foqs26hf1feg.html">base.Map</a> <span class="Var">a</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a>)</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="__builtin__Boolean" class="identifier"><a class="" href="__builtin__Boolean.html">Boolean</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="pr328h7voknh231ml54o99fp48hhn6vd1ovu7aiilsro977l1et46ouug92q8p6irs48pvlcjsiii0l4t8dac2oofv8dnsi2ohk9hgo.html">and</a></div>
+<div><a class="sub-name" href="90416d55i0m37hi8evhn2mpe0vs4k1ejicgocfesu3h1oh3ljsq6dhmu0bis682afennuqip69ku3knla5dp71j8qghfno8958shqtg.html">given</a></div>
+<div><a class="sub-name" href="o95751i8hdaif1m9i3j9g4d8qn6s6kbaora2m7jhf8e95488scntnis6jbd72pkq4v8pvq0ki4fjahpb8qso9hlva0val12bum4fksg.html">implies</a></div>
+<div><a class="sub-name" href="__builtin__Boolean.html#__builtin__Boolean.not">not</a></div>
+<div><a class="sub-name" href="drtpmc37vbpks2e5vdj5g0tg4l8ni0ifqfnol2gm3mo13lthuupjfhsvsd9dt8j5eu8spsekhkg5guidee5oobuiov7vmo4o38aql28.html">or</a></div>
+<div><a class="sub-name" href="eko8gk5fpv609mrrd8dtlggcrt2rc4e4ov4p11146ime0csmh9alpqoh18lqia2sr2buucsm74tdts03pfo8jeqnovc1u0lmv4q4gjo.html">xor</a></div></div>
+                <div><pre><code>&lt;builtin type&gt;</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="__builtin__Bytes" class="identifier"><a class="" href="__builtin__Bytes.html">Bytes</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="__builtin__Bytes.html#__builtin__Bytes.++">++</a></div>
+<div><a class="sub-name" href="__builtin__Bytes.html#__builtin__Bytes.at">at</a></div>
+<div><a class="sub-name" href="__builtin__Bytes.html#__builtin__Bytes.drop">drop</a></div>
+<div><a class="sub-name" href="__builtin__Bytes.html#__builtin__Bytes.empty">empty</a></div>
+<div><a class="sub-name" href="__builtin__Bytes.html#__builtin__Bytes.flatten">flatten</a></div>
+<div><a class="sub-name" href="__builtin__Bytes.html#__builtin__Bytes.fromList">fromList</a></div>
+<div><a class="sub-name" href="__builtin__Bytes.html#__builtin__Bytes.size">size</a></div>
+<div><a class="sub-name" href="__builtin__Bytes.html#__builtin__Bytes.take">take</a></div>
+<div><a class="sub-name" href="__builtin__Bytes.html#__builtin__Bytes.toList">toList</a></div></div>
+                <div><pre><code>&lt;builtin type&gt;</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="__builtin__Char" class="identifier"><a class="" href="__builtin__Char.html">Char</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.Char.ascii.html">ascii</a></div>
+<div><a class="sub-name" href="__builtin__Char.html#__builtin__Char.fromNat">fromNat</a></div>
+<div><a class="sub-name" href="9odod9h2tvl95mm0jp5sc1hc1nor3i5atmg8cd7bn0rlsno1ii1tjit43m8p1d5c4glhd389c2hr03lolqc3lclochang9ng1df2il0.html">inRange</a></div>
+<div><a class="sub-name" href="__builtin__Char.html#__builtin__Char.toNat">toNat</a></div></div>
+                <div><pre><code>&lt;builtin type&gt;</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="aohndsu9bl844vspujp142j5aijv86rifmnrbnjvpv3h3f3aekn45rj5s1uf1ucrrtm5urbc5d1ajtm7lqq1tr8lkgv5fathp6arqug" class="identifier"><a class="" href="aohndsu9bl844vspujp142j5aijv86rifmnrbnjvpv3h3f3aekn45rj5s1uf1ucrrtm5urbc5d1ajtm7lqq1tr8lkgv5fathp6arqug.html">CopyrightHolder</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="ems3alhp98dsglcukm1ao0b474id1j8fe91irqd2br22jnb42hsobh992fqrmrqtetcjf5r7pntn4mfot62lmk4k727tk5bit89filg.html">guid</a></div>
+<div><a class="sub-name" href="iu38kjm68knqk1quthhrd6dma6snf77vlttutvhmnra49skecif872n0d2l3n3e84re6ckt2d44564qp2p8410c94glrnq4usv49cbg.html">name</a></div></div>
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.CopyrightHolder</span><span class="DelimiterChar"> = </span><span class="DelimiterChar">{ </span><span class="Constructor">guid</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.html#rc29vdqe019p56kupcgkg07fkib86r3oooatbmsgfbdsgpmjhsh00l307iuts3r973q5etb61vbjkes42b6adb3mkorusvmudiuorno">base.GUID</a><span class="DelimiterChar">,</span> <span class="Constructor">name</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="__builtin__Text.html">base.Text</a><span class="DelimiterChar"> }</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.Debug.html">Debug</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.Debug.html#__builtin__Debug.watch">watch</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="v00j3buk6m0588orsna0oeuukfdh7g3sandn22qmld0m2fr2jvm7hjd6bpm5jh6db6hom5ag14hqmg4emhlm4urdj9ibom7s2m5417o" class="identifier"><a class="" href="v00j3buk6m0588orsna0oeuukfdh7g3sandn22qmld0m2fr2jvm7hjd6bpm5jh6db6hom5ag14hqmg4emhlm4urdj9ibom7s2m5417o.html">Doc</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="v00j3buk6m0588orsna0oeuukfdh7g3sandn22qmld0m2fr2jvm7hjd6bpm5jh6db6hom5ag14hqmg4emhlm4urdj9ibom7s2m5417o.html#hid0f7etdtvak92mno80hu7n1841l2titat727qv5eclf231es5apm2pi7mqlc08ilemp95oq6smqucj71iholiej3a3gn0s0d7hut0">++</a></div>
+<div><a class="sub-name" href="j6e4jn0cu4n2v5d7ov1rat4hovofbsp0cqgg3enufdp6cgqs7ne21gckn2147i30kf4rnnaklsugkvog37u81nv38scdf8n3ev3ropo.html">example</a></div></div>
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Doc</span><span class="DelimiterChar">
+  = </span><span class="Constructor">Link</span> <a class="Reference" href="quhghs26t7ovd6rv1bsgb5i1kjmtm5s49bk9u6rgg1teunrd6mk8dbn0ecmpb6mnjgg1hsb0ukd8ot7222kd3086h8re7ptshnb6o50.html">base.Link</a><span class="DelimiterChar">
+  | </span><span class="Constructor">Source</span> <a class="Reference" href="quhghs26t7ovd6rv1bsgb5i1kjmtm5s49bk9u6rgg1teunrd6mk8dbn0ecmpb6mnjgg1hsb0ukd8ot7222kd3086h8re7ptshnb6o50.html">base.Link</a><span class="DelimiterChar">
+  | </span><span class="Constructor">Blob</span> <a class="Reference" href="__builtin__Text.html">base.Text</a><span class="DelimiterChar">
+  | </span><span class="Constructor">Join</span> <span class="DelimiterChar">[</span><a class="Reference" href="v00j3buk6m0588orsna0oeuukfdh7g3sandn22qmld0m2fr2jvm7hjd6bpm5jh6db6hom5ag14hqmg4emhlm4urdj9ibom7s2m5417o.html">base.Doc</a><span class="DelimiterChar">]</span><span class="DelimiterChar">
+  | </span><span class="Constructor">Signature</span> <a class="Reference" href="quhghs26t7ovd6rv1bsgb5i1kjmtm5s49bk9u6rgg1teunrd6mk8dbn0ecmpb6mnjgg1hsb0ukd8ot7222kd3086h8re7ptshnb6o50.html#__builtin__Link.Term">base.Link.Term</a><span class="DelimiterChar">
+  | </span><span class="Constructor">Evaluate</span> <a class="Reference" href="quhghs26t7ovd6rv1bsgb5i1kjmtm5s49bk9u6rgg1teunrd6mk8dbn0ecmpb6mnjgg1hsb0ukd8ot7222kd3086h8re7ptshnb6o50.html#__builtin__Link.Term">base.Link.Term</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo" class="identifier"><a class="" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">Either</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="g0getkl6hu5tta40pjrpjg24ed6u1k8rhqdjermdaiqcp838s6gk35s7q7t5jdmnbicqtmmcs7c1sohcp0l9ahifm0ksmutqak15lc8.html">fold</a></div>
+<div><a class="sub-name" href="e62komfao3atrkqk84vuqmsl8832ptnagh94cjh9d0o0skjlog9kd75hkm60n4m5aluq2qtbbh0sdq296tfjua8jkritku4tac5tkpg.html">left</a></div>
+<div><a class="sub-name" href="vba3ihhk2csu8h1hmnt3ucjs6vvha6uv28ac7fl57d15bpfbqg7p6bqsaiogfef93lj6c5nu46cgcr3juj4jos7qk91uus63rbhirs0.html">mapLeft</a></div>
+<div><a class="sub-name" href="jruvg9gh6qs02cq95sn5j08map5mvdcgc6bb8kchoddfh29a9o08gu8dnjntthueneb4uk313dfi35f4r59tui3urer6qlvjefnrmq0.html">mapRight</a></div>
+<div><a class="sub-name" href="5unkfdecpi731tbh6uhj3a2389nqee9qvreav5nqbta7868c0jgkfn3sp696c3tcpb7qpftrdaihau65ec2236chtoce4e8r0a8k3v8.html">right</a></div>
+<div><a class="sub-name" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html#3c4a9f87emaue1giqm6puvqgpm7qeuh7uvfavbr4p2fq6pbum0eig9o4tv9k9k0fnreibdi4o697ijarlfciiihc0um9n8so3hitpe0">toException</a></div>
+<div><a class="sub-name" href="9ia19oftae0d9vg87c5pjeovotokkuj6efvaejh88tvlqm0f2ofjbfgqolubltnfuednhfc8014kjp39qq1eoi8em3iqvahjvq11ul8.html">unwrap</a></div></div>
+                <div><pre><code><span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Either</span> <span class="DataTypeParams">a</span> <span class="DataTypeParams">b</span><span class="DelimiterChar"> = </span><span class="Constructor">Left</span> <span class="Var">a</span><span class="DelimiterChar"> | </span><span class="Constructor">Right</span> <span class="Var">b</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="4au7dttqhck3nnqra618efqtvgr8lv06oqlkiibd1vp56532smn0hpbhkq6rdf9oo0kiqo8as57ohurajkcefm30p72md7go8j0u12g" class="identifier"><a class="" href="4au7dttqhck3nnqra618efqtvgr8lv06oqlkiibd1vp56532smn0hpbhkq6rdf9oo0kiqo8as57ohurajkcefm30p72md7go8j0u12g.html">Exception</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.Exception.tests.html">tests</a></div>
+<div><a class="sub-name" href="348lin9g81m8qqni2bornba0ru4mg9cdib3ajon3biqojsdevtf6crm0il6teif627foea523gveoivf2tmhdtlfboos14s6pcn5vm0.html">toEither</a></div></div>
+                <div><pre><code><span class="DataTypeKeyword">ability</span> <span class="HashQualifier">base.Exception</span> <span class="DataTypeParams">e</span><span class="ControlKeyword"> where</span> <span class="Constructor">raise</span><span class="TypeAscriptionColon"> :</span> <span class="Var">e</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="4au7dttqhck3nnqra618efqtvgr8lv06oqlkiibd1vp56532smn0hpbhkq6rdf9oo0kiqo8as57ohurajkcefm30p72md7go8j0u12g.html">base.Exception</a> <span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Var">a</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="__builtin__Float" class="identifier"><a class="" href="__builtin__Float.html">Float</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.*">*</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.+">+</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.-">-</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float./">/</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.abs">abs</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.acos">acos</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.acosh">acosh</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.asin">asin</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.asinh">asinh</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.atan">atan</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.atan2">atan2</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.atanh">atanh</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.ceiling">ceiling</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.cos">cos</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.cosh">cosh</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.==">eq</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.exp">exp</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.floor">floor</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.fromText">fromText</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.>">gt</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.>=">gteq</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.log">log</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.logBase">logBase</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.<">lt</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.<=">lteq</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.max">max</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.min">min</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.pow">pow</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.round">round</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.sin">sin</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.sinh">sinh</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.sqrt">sqrt</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.tan">tan</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.tanh">tanh</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.toText">toText</a></div>
+<div><a class="sub-name" href="__builtin__Float.html#__builtin__Float.truncate">truncate</a></div></div>
+                <div><pre><code>&lt;builtin type&gt;</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.Function.html">Function</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="vpso7gh9lhsqpms7uauq2pmdn3n3f6plf57i03v1qk95m86m0ondvo5rgd5n9pl6sokc86i78kf3141b9dg4tvfemerjdlvve14c6to.html">curry</a></div>
+<div><a class="sub-name" href="6f1emd9bflvukbd4e2cje9081jmu186sd5t8j7akucroq34t68ojph70i4k8rqk0pkfq17ei07leopar881ieeqs3ebqt6h4891vu8o.html">fix</a></div>
+<div><a class="sub-name" href="c1vkf8gcl9aualt6irpbaafqr30hrpk58a1rog2fjl6l2ak1fu6cimlr87g3l42pj1jv3udkmnjtv2985n3j2cpltf5baduuh35u8ao.html">flatMap</a></div>
+<div><a class="sub-name" href="tn6l3salqvhfm7djc47clr3mg2ddog7ecmjbtmdr1fb2ro97o2alufsm8pr66tc5rrgaht89rec7293bup3m0ius81nar21m5sv0np0.html">flip</a></div>
+<div><a class="sub-name" href="mgktvimgb43v0ttqot6is57dldfg1bug0kv6v9iu1dia4t116vbjdpfh4srmrukvujl30d7blkia1i5ipv30ndk70u0vij9trsjpnl0.html">on</a></div>
+<div><a class="sub-name" href="j6590l0rcelnrtnn9hfmb2r3l5l2m1d8hvs1phvgim7ddec5sjv46hk4qri4p7fh49c2nj27cgkadj57k0248hp4kl9qo5gmhqccn10.html">uncurry</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="rc29vdqe019p56kupcgkg07fkib86r3oooatbmsgfbdsgpmjhsh00l307iuts3r973q5etb61vbjkes42b6adb3mkorusvmudiuorno" class="identifier">GUID</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.GUID</span><span class="DelimiterChar"> = </span><span class="Constructor">GUID</span> <a class="Reference" href="__builtin__Bytes.html">base.Bytes</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="kq8poq07dvel6qilj7nrngolm466l34bbfj5eifeb3lfoge17t9e91pp4u3c8978vofa0vqbrp9p4fn051h6fr0v6g5b0l981au0bi0" class="identifier"><a class="" href="kq8poq07dvel6qilj7nrngolm466l34bbfj5eifeb3lfoge17t9e91pp4u3c8978vofa0vqbrp9p4fn051h6fr0v6g5b0l981au0bi0.html">Heap</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="kq8poq07dvel6qilj7nrngolm466l34bbfj5eifeb3lfoge17t9e91pp4u3c8978vofa0vqbrp9p4fn051h6fr0v6g5b0l981au0bi0.html#f2nrun519d7srn5r3n7vlkbto9fuil89n4n773mss9dlu0493hlv2uc3j696oree0cr5lkt3eho42b0u2fgfuoitmciatfpke6oc1t0">children</a></div>
+<div><a class="sub-name" href="kq8poq07dvel6qilj7nrngolm466l34bbfj5eifeb3lfoge17t9e91pp4u3c8978vofa0vqbrp9p4fn051h6fr0v6g5b0l981au0bi0.html#rbs27vvm1n2js6upgitn4qdrfvilnms68tbfde82uea4uh55on6kd1aouv5lcbont6djmrsrrdff1p76druhdt98rd7ugedfraib6f8">fromKeys</a></div>
+<div><a class="sub-name" href="kq8poq07dvel6qilj7nrngolm466l34bbfj5eifeb3lfoge17t9e91pp4u3c8978vofa0vqbrp9p4fn051h6fr0v6g5b0l981au0bi0.html#et7vgc96hcqhnobco8n36eoitulc0n8ag6n103b6f9hg5bb34seua0gceqvkrg70rlk1cron9uq43scft9pcabpdj1ckotvar0qddt0">fromList</a></div>
+<div><a class="sub-name" href="kq8poq07dvel6qilj7nrngolm466l34bbfj5eifeb3lfoge17t9e91pp4u3c8978vofa0vqbrp9p4fn051h6fr0v6g5b0l981au0bi0.html#21erbbb2lhrsgk1nq6f1roejl1qtrimv7adod3h59u1ejm34ig8lc1kn4tb1luggef8chrk6c9dvdur0099b9otn82vmh38ddpplg0o">max</a></div>
+<div><a class="sub-name" href="kq8poq07dvel6qilj7nrngolm466l34bbfj5eifeb3lfoge17t9e91pp4u3c8978vofa0vqbrp9p4fn051h6fr0v6g5b0l981au0bi0.html#mlma495f9ho6iuf9j00dcvif8fqgjlvsmjnhuebjnrknbh4jfaccbm4f7gpi5vnc68vsu599te2uqicd3r423oki6hmvc1r1tj8pmko">maxKey</a></div>
+<div><a class="sub-name" href="kq8poq07dvel6qilj7nrngolm466l34bbfj5eifeb3lfoge17t9e91pp4u3c8978vofa0vqbrp9p4fn051h6fr0v6g5b0l981au0bi0.html#ar5grl7qe86g2oiii3647he0mg6ropgnab17t06r5cm6a53opeoou98cclrjtou33grg2uqq619r813fhf6hd6lb4mjtf26rdse1kmg">pop</a></div>
+<div><a class="sub-name" href="kq8poq07dvel6qilj7nrngolm466l34bbfj5eifeb3lfoge17t9e91pp4u3c8978vofa0vqbrp9p4fn051h6fr0v6g5b0l981au0bi0.html#00tac3luv05e0tqqsef1t5lt7ih8vppek8tqgembt9fsrjapc0rti50n24l76mvq6fsafl8l8a0laoaa91q29bjd08p2dq0e7r69prg">singleton</a></div>
+<div><a class="sub-name" href="kq8poq07dvel6qilj7nrngolm466l34bbfj5eifeb3lfoge17t9e91pp4u3c8978vofa0vqbrp9p4fn051h6fr0v6g5b0l981au0bi0.html#odvevnnmlp27b01rpfn5so4gbs9g0jd4nvm6cudalqbuq36hcrqgav6m340kcjq0biosfi2dps5jg2ilfq1vto35qsl0r4tsshfn99o">size</a></div>
+<div><a class="sub-name" href="kq8poq07dvel6qilj7nrngolm466l34bbfj5eifeb3lfoge17t9e91pp4u3c8978vofa0vqbrp9p4fn051h6fr0v6g5b0l981au0bi0.html#75nrf25gjdp9cbc2qe61qkk0lqp5lql2c0h40tvn9ec8obnc3q130ome38fpb5bppurp54inrlbljokt91m1b6hk06ha5rcjnsf13u0">sort</a></div>
+<div><a class="sub-name" href="kq8poq07dvel6qilj7nrngolm466l34bbfj5eifeb3lfoge17t9e91pp4u3c8978vofa0vqbrp9p4fn051h6fr0v6g5b0l981au0bi0.html#usuniqo5iebgg3iu8htlclup6mkfmf9f5h22508hr707h1odcvgp894sg0b5gkbmhqs2oj9vvkvlp4u8ko3ic3jv3nmdl4uemo9tb6o">sortDescending</a></div>
+<div><a class="sub-name" href="kq8poq07dvel6qilj7nrngolm466l34bbfj5eifeb3lfoge17t9e91pp4u3c8978vofa0vqbrp9p4fn051h6fr0v6g5b0l981au0bi0.html#8g9kgrmgh9pb4ckm1lca74ossdvpf6sck2ams5p93v1cedlfiqbmbs2r603fovf28qmh9v3tmv8jr6j195p55fone9psoeogjqbf2mo">union</a></div></div>
+                <div><pre><code><span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Heap</span> <span class="DataTypeParams">k</span> <span class="DataTypeParams">v</span><span class="DelimiterChar"> = </span><span class="Constructor">Heap</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="Var">k</span> <span class="Var">v</span> <span class="DelimiterChar">[</span><a class="Reference" href="kq8poq07dvel6qilj7nrngolm466l34bbfj5eifeb3lfoge17t9e91pp4u3c8978vofa0vqbrp9p4fn051h6fr0v6g5b0l981au0bi0.html">base.Heap</a> <span class="Var">k</span> <span class="Var">v</span><span class="DelimiterChar">]</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="__builtin__Int" class="identifier"><a class="" href="__builtin__Int.html">Int</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.*">*</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.+">+</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.-">-</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int./">/</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.and">and</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.complement">complement</a></div>
+<div><a class="sub-name" href="2coul6hrdd9qugk0n1v6ctpldhfipo0frum94ivmrncggrvrdvqvarml6r30ia5jqrcel3cfbu5vvo26r9ndiqg3n3e64ovnqfqd7i0.html">decrement</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.==">eq</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.fromText">fromText</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.>">gt</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.>=">gteq</a></div>
+<div><a class="sub-name" href="rkp47k6al5bvbn47jsk8f8835hnj6o3oiuktifodcht2onn90bk3vv5sl8j996fqjulja2ijo01kpjgo3jkva5mug0bduvfav1jvkl8.html">inRange</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.increment">increment</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.isEven">isEven</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.isOdd">isOdd</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.leadingZeros">leadingZeros</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.<">lt</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.<=">lteq</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#d75vubeoep5o8ph72v0v9qdm36n17up0d7bsbdckjapcs7k9g1kv5mnbpp3444u8fmvo2h3benmk7o3sd09g1lkrrvk4q93vv8u2n3g">maxInt</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#p9og3s2h41natoslfjoi1do0omp82s4jiethebfd4j5p99ltbdmcua2egbiehs9tq9k65744cvugibiqdkgip21t7se4e8faktnl3k0">minInt</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.mod">mod</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.negate">negate</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.or">or</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.pow">pow</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#og60lls4kfhl0r330qp0b36p44kij20pa2pegthk7too68higsbrgn2j088a7mb5hdbj4nlemmaebji65g19eig7u49603hr0a05b48">range</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.shiftLeft">shiftLeft</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.shiftRight">shiftRight</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.signum">signum</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.toFloat">toFloat</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.toText">toText</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.trailingZeros">trailingZeros</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.truncate0">truncate0</a></div>
+<div><a class="sub-name" href="__builtin__Int.html#__builtin__Int.xor">xor</a></div></div>
+                <div><pre><code>&lt;builtin type&gt;</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="ffb7g9cull9nlj1d40dm6sna94nsdaqbsgs1tj3ch2f711d2pnkd22v5b4dp5ks9nb0p40sjltecqeteutgp7v00bqgmfdus92svrj0" class="identifier">IsPropagated</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.IsPropagated</span><span class="DelimiterChar"> = </span><span class="Constructor">IsPropagated</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="udk022hst8njtllajhq0g3spcpii7igeo9si0rq68i13vq9q1npf1vjp7mhqughcvoiskk387jrhnlvn9m1498aal85iubq49q398s0" class="identifier">IsTest</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.IsTest</span><span class="DelimiterChar"> = </span><span class="Constructor">IsTest</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="8octsro305lcedmk4mjajea842b5g5dm1ah2vqkga5ihvnq8solgnhhs97g255j0e1ootiprbhcb2kppcjsanrtmnhaj4n82tkmkghg" class="identifier"><a class="" href="8octsro305lcedmk4mjajea842b5g5dm1ah2vqkga5ihvnq8solgnhhs97g255j0e1ootiprbhcb2kppcjsanrtmnhaj4n82tkmkghg.html">License</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="7je1160o0dqku3i8bn2j6mkd4h5nc2ic92ku5bbhgo177393f6nbh3heibildvki3snoa3sgq09lh1j88r86qvbhgrm80s7q55akoh0.html">copyrightHolders</a></div>
+<div><a class="sub-name" href="j43ks8fjtbhadcvkr9c2o9g6o5hmmo5jbqd1icrrgnarn98latnosl6ek6jg1ejfbbfrvndvdtn2gec3c0kov6rok1m5hcu2m9mdm48.html">licenseType</a></div>
+<div><a class="sub-name" href="bcn69t5dc33i4ctd402t6f183cnhtfjamnvgg0vpo99pbeiie0j1evkh1742os5f0rg8fal69tljmjqi251q8c1iao0clro70pkhdvg.html">years</a></div></div>
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.License</span><span class="DelimiterChar">
+  = </span><span class="DelimiterChar">{ </span><span class="Constructor">copyrightHolders</span><span class="TypeAscriptionColon"> :</span> <span class="DelimiterChar">[</span><a class="Reference" href="aohndsu9bl844vspujp142j5aijv86rifmnrbnjvpv3h3f3aekn45rj5s1uf1ucrrtm5urbc5d1ajtm7lqq1tr8lkgv5fathp6arqug.html">base.CopyrightHolder</a><span class="DelimiterChar">]</span><span class="DelimiterChar">,</span>
+      <span class="Constructor">years</span><span class="TypeAscriptionColon"> :</span> <span class="DelimiterChar">[</span><a class="Reference" href="base.html#0pspj695ir2ghkecdch5o3s6cs6kmujf24m0b499pu3bgit8p2h5g888iru07ict9fh4frmihqcfpcovujs1aqctdc5boo2mpgqbn18">base.Year</a><span class="DelimiterChar">]</span><span class="DelimiterChar">,</span>
+      <span class="Constructor">licenseType</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.html#bktk34rfbrcvm9vbf1efgabab5lh42tjve5jk1ipj45jnmp4q91b852nj4hu763pftcjcl47mt7mpv39adjk8eo85hlp9pe99j5i4cg">base.LicenseType</a><span class="DelimiterChar"> }</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="bktk34rfbrcvm9vbf1efgabab5lh42tjve5jk1ipj45jnmp4q91b852nj4hu763pftcjcl47mt7mpv39adjk8eo85hlp9pe99j5i4cg" class="identifier">LicenseType</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.LicenseType</span><span class="DelimiterChar"> = </span><span class="Constructor">LicenseType</span> <a class="Reference" href="v00j3buk6m0588orsna0oeuukfdh7g3sandn22qmld0m2fr2jvm7hjd6bpm5jh6db6hom5ag14hqmg4emhlm4urdj9ibom7s2m5417o.html">base.Doc</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="quhghs26t7ovd6rv1bsgb5i1kjmtm5s49bk9u6rgg1teunrd6mk8dbn0ecmpb6mnjgg1hsb0ukd8ot7222kd3086h8re7ptshnb6o50" class="identifier"><a class="" href="quhghs26t7ovd6rv1bsgb5i1kjmtm5s49bk9u6rgg1teunrd6mk8dbn0ecmpb6mnjgg1hsb0ukd8ot7222kd3086h8re7ptshnb6o50.html">Link</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="quhghs26t7ovd6rv1bsgb5i1kjmtm5s49bk9u6rgg1teunrd6mk8dbn0ecmpb6mnjgg1hsb0ukd8ot7222kd3086h8re7ptshnb6o50.html#__builtin__Link.Term">Term</a></div>
+<div><a class="sub-name" href="quhghs26t7ovd6rv1bsgb5i1kjmtm5s49bk9u6rgg1teunrd6mk8dbn0ecmpb6mnjgg1hsb0ukd8ot7222kd3086h8re7ptshnb6o50.html#__builtin__Link.Type">Type</a></div></div>
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Link</span><span class="DelimiterChar"> = </span><span class="Constructor">Term</span> <a class="Reference" href="quhghs26t7ovd6rv1bsgb5i1kjmtm5s49bk9u6rgg1teunrd6mk8dbn0ecmpb6mnjgg1hsb0ukd8ot7222kd3086h8re7ptshnb6o50.html#__builtin__Link.Term">base.Link.Term</a><span class="DelimiterChar"> | </span><span class="Constructor">Type</span> <a class="Reference" href="quhghs26t7ovd6rv1bsgb5i1kjmtm5s49bk9u6rgg1teunrd6mk8dbn0ecmpb6mnjgg1hsb0ukd8ot7222kd3086h8re7ptshnb6o50.html#__builtin__Link.Type">base.Link.Type</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="__builtin__Sequence" class="identifier"><a class="" href="__builtin__Sequence.html">List</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="__builtin__Sequence.html#__builtin__List.++">++</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#__builtin__List.cons">+:</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#__builtin__List.snoc">:+</a></div>
+<div><a class="sub-name" href="9f58iojnfqnkf14ifh966q052vv9u8f3ov58icl53qre0jtn2m05fdfhasnjllvv7qv599ctbt188uc2b7d8bp4em1ds4t9lhvnkuso.html">Nonempty</a></div>
+<div><a class="sub-name" href="9n3hu1tn1bjvv1timi0943b6j5bk0t6uqentcjggmb5jfebgr22800lh7q9ac8igfbdovba203l0bt1jcs2c1lhlbtpha0c1rfb193g.html">all</a></div>
+<div><a class="sub-name" href="o8dfai63ij3vi035ekgntappg20mim9qt8gatho216dr40g6bgmek5li3clbfsrsbd02lkq0kf3p9gti6ce0htdndp7a27ck9shqi80.html">any</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#__builtin__List.at">at</a></div>
+<div><a class="sub-name" href="3c2ddn5suct2gb8hiu6t8qpn4l75lpteudiglmodl1qupf51bo0gcofpjs1qp4gi3t4o2l33lb9isq7iveq6bqmmpt69168okjt9vc8.html">concatOptional</a></div>
+<div><a class="sub-name" href="tv6f1hvi9h45lquufnbv814qqad26gbk0pqaa7rrjq1u24jv4ut7cq9b3msnu12jav4pg5gic85piphd1lcoa0fhjhmon060gcae4o8.html">contains</a></div>
+<div><a class="sub-name" href="m86mctd13ogilk6djod6os4gtp1og7udbrbgj0g9siu7798o7mmes1audh1eukn7oh53h0eajv8l0brnmtg9f4c21nrscvjqjk84a1g.html">deleteAt</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#n1l3j30gpt41mhhbkca0ujmea7nhotjmv7463a554ltit0lhu4k6brt6pc5bh5qb8l9qnm55ueptmi598cg40ikmbesomnv6637qrho">diagonal</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#4ep2v79uuvgb7c90kto8jl6qi7ivhse10tkl7a4a8466770pqsr1c66emv70hfdjotcqh8hiasmkn8g13epjm6sr7se3p20bkieesrg">distinct</a></div>
+<div><a class="sub-name" href="jb085q8pptddjja4oul1vkps4od1ra10id96i9npncfieulc5u7426ro15uf9uirgf4p9sge2l7c64ss45kgcf7tqbloagk0dsq1lv8.html">distinctBy</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#__builtin__List.drop">drop</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#n2677veevp0lm0jsk0n1sffushoto7k2pg9na43c2m5hnmoc3bm6ieebe8987kjtsmd0dg7hcmprbrs69uose8h1t1ll1mc5462ffug">dropLast</a></div>
+<div><a class="sub-name" href="n6vp6qhempi457q5a3js3oas0cte698a33j03m2p06m1gqj60k8fm4nh97mkfphfahrn014r6bmp99pqinojvot7hpedm06gfclrpm0.html">dropWhile</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#eif1mbcepvfub7brhmoag9l1v2qf60n2i1jidsokutkln6o887hpo7s8ldq6fp78jqfqrobhncpru8ptbr49h15cbiljt7l3oscc81o">empty</a></div>
+<div><a class="sub-name" href="on548j1qnnrlm747ijaoekla8ljubgk689uhqj4d6ue22ml7uspl2e9djsgtpar3nj36u1j0mcsv4il83tq0gh7hu164rebagebaa7g.html">fill</a></div>
+<div><a class="sub-name" href="u0asm0rr86m81omd4t5a1d3ko7bps3r3c7ap5at83juoub1nj963npbrb028tbq35ed1ui8lprj7avnfm4esseeiokthgupoaatnjeo.html">filter</a></div>
+<div><a class="sub-name" href="sgdvo1kgcndsnkucqhcr5gm0dsen6tk3njukcbbl0i6alpbh1no94douq5ilnjjtgqrr2t53e5fj2u007hnpvuodnunstjvouic2u0g.html">filterMap</a></div>
+<div><a class="sub-name" href="plhhvj2creihkbhs8kra2jke23ftu9ftvsoo05b4d4j9lbi49vk9n9qnchc101e6ne6f8jq1venepfh6144490hu5bh3oe6tlcbts90.html">flatMap</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#cqe9aa74fsjcg589r4rkiif3rm6o4trk8n06bg5d9rbhsaf1eiehmeufotfcsde4h88ldg7d21gcdi822925qlub4cr3bip7ssihrt8">foldLeft</a></div>
+<div><a class="sub-name" href="0em1d2c88tm3q11tsg1bccv8n3eocltnlnue2nsaos7u6hrnvdg97hc9aj2f1l4guk4f6g8p30taqfksbv7frl5kt8gmdkvio7j1pfo.html">foldRight</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#017bvhctrkag6e5gi0c811oathfjr950kbl7crurbf8fjtf9s5t021nb7rlrq7rf5hquakel1duke7jh4kc10t3sbikrlaj6fl5314g">foldb</a></div>
+<div><a class="sub-name" href="46cbdv3d7dla5sp7a6d6fbce1qq3gv3agehg97no8fr0a43hh2kkes2j5jmb0pc5i15ebvcgm9bff45pcpdd4tfdifug0fq9r6s5jm0.html">groupBy</a></div>
+<div><a class="sub-name" href="r25c2boho39hel4uc85e7i7qb95jq9f7sfbbhcnlm9a1cj2a4kaggjpcpr886bl2t1jjlipbm93sksp57vbi6qh3rban1dk25betie0.html">groupConsecutive</a></div>
+<div><a class="sub-name" href="kok2dfemnapmq8n11encn9tfkiggukm6lnul0l4vdrauftklqr2uk2pv3govielvnm4433a3hqq9e5audmnkmifm93tme0fpiji88qo.html">groupMap</a></div>
+<div><a class="sub-name" href="54mrj61fqah9dmvo1qov6b21s4inb2vujj1mo2cb2p5aln7ggo3efjui8302mj6sqhe3g9f86mp653c3u3etg98obi4q5nntt52mcd8.html">groupMapReduce</a></div>
+<div><a class="sub-name" href="p9c81ce74uu6lck4e6a2qipgvrg93rkc3sukoko2ri4gopk27ivl3101p22cddnmmnqpvijvt4unv5ql470bjmk3dggm0a4k1q0m6to.html">groupSublistsBy</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#a2k14s30mfe0rj6tafhr7rrl4du5n1mao7ob5tufp1d1b4slm4rsursnnntulej05ll1qism962mbrrcbbccjn167hq196nuod9f63g">halve</a></div>
+<div><a class="sub-name" href="nteff59i5t8e6p37r4paprh5v42jqrj9rlcsgu05i57pqaiivukqq161fi34dec59hip0v48uc0gk3h1vkulpusnr9m5gsqiae10k4g.html">head</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#k3c17f57vcp9g8h3l8tejqrhe7511p1fku70j713vto9d70a594gf5up60h2fqvtdpg1bdv5pt5suf5tj1cni3lhkq7cem2bm6hchm8">indexed</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#atp522l2v23mubqgqj5n4knq7dh0nd0a6lu81f7hjfd65q5l5u2qna56dkqbto93o1dk94gr9ba56qiop0ei1b4d7c38ne0b3tmcao0">init</a></div>
+<div><a class="sub-name" href="u7ugse6fkvo9q6u2thfp9nk40u9b06cclsh6j7d2ecd3pmmc05n15m14g3i1vr5t0j8qs93fvk3bcr7h4rck6s9tkiflohjpqvsda8o.html">initialize</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#9ukcak92g83od176vm0vbpcuva1c8ag5b96qc5a7fhli33a288bt1ol1qafeuvjhoi39am7vpm0ggp8mr4vnk03epbge65qt289ge8g">inits</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#76q0f96nprvosr72m4afr4csvn6e3smh05agbtn9dkm71b6heormn8ueoa03bkfaklsiqp90f7nqoef8ubbdqq28bbedd394lqbs628">insert</a></div>
+<div><a class="sub-name" href="tf031ba3q5tl06d8d4pms90da1f32n80qisee6ligsno5ijnqgu157qj4dllvpdctenro2l9f8tl27blfq0op97pc6hm9me9buk9d90.html">intercalate</a></div>
+<div><a class="sub-name" href="02f50ags7sss21fgo8kfuavcb7485jvn8oqds0ijjnv0me8fhbh3usk2cb59s9fg64378nb2cvg0g0p8e7crmmimgg9eik1uskaejsg.html">intersperse</a></div>
+<div><a class="sub-name" href="6k8iquckjf6i5s8sm5qf545ehe9gkgjmel8tpjdfnprk94m6rjelq5nj1ptmor2e3t5cmf4qpn0cdrss7m8925r21kuu1vka4kbmbjo.html">isInfixOf</a></div>
+<div><a class="sub-name" href="38hfsomlco6r2cr2iqi0q754ggjthsn45j0ogm4bjgsg0pdrk8tksctpjaus23dej8epcisej0108sj3i3plj21sa0qqnuffg896jmo.html">isPrefixOf</a></div>
+<div><a class="sub-name" href="bi2d1jefnshs17e2lkomjlol3kqdoq5isjpaqpbok67ag1t8r1nt0leh75kfb41bdno29i86plrnrr85rh3bfenbgmn29ejvaef2c8o.html">isSuffixOf</a></div>
+<div><a class="sub-name" href="4obsc8rgr225tst6i5jv4pik3fj91afs6542ecfbh6007mig8pkihs6i191bkqfe9kh1odn2l3o0q2jbr9947061vctkhsqaj10l20o.html">join</a></div>
+<div><a class="sub-name" href="0mcd1kai8e4d9pbbkvh97n6ut3m06iindalvhqn397jj6pqh42hh87t09ak4d5e1tie1dnt0ebh6qvug80f04b9fbftav046e795boo.html">last</a></div>
+<div><a class="sub-name" href="tra807h1malk1510713uj2o6vkgtsbmlaq6sr51kid9cfree7fituvarosgcjqhijsbri0fuvtjorcsv1c2j3mtpfjamkhk77tsa6vo.html">lefts</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#j1ejquc7so57gceg2fsnurckebs21napum8h7jbs58bmefncgvb8h654kcp6tdt31epf25vka01q0plg8dqbl9fat988n08i1571qtg">map</a></div>
+<div><a class="sub-name" href="1rhh8bar5e793qo5to1hjvhbvu1vpc19kb27ctr6fr86ker75bdkfos1nuq1c5qog83fi93h0t29je76m2ra3kgeavt970d7nrss508.html">mapIndexed</a></div>
+<div><a class="sub-name" href="i39m1g0c2ul9o9tock1khnhol1jm61tjsfqfcfmic4l2s07fm4cg80f8d7lcglrnqrn1m2p6urpp8dm4h2fh3lge5ll5ioj5dkg9h7o.html">maximum</a></div>
+<div><a class="sub-name" href="88vq542m88s3kb602h88t5p06eon71cu6dfj3m2tmjtmvgsdoa787b8i1582kgok1ve0c086vbv4m5voc90m6slud4etb85j0bf1fu0.html">minimum</a></div>
+<div><a class="sub-name" href="lof44uqn4iqbltb01panvaq67vqchnp9lnracr02ut6p16t7l3v172lsa9pkc20l81tb08pllffhlsrot0e7ke6p54p29a72k5bgdgg.html">nonEmptySubsequences</a></div>
+<div><a class="sub-name" href="a88kmel7vb4ag0f20dsh24vmf4mkfqref1uv5fapcrnb8naqf905ephght7miu9ep0j5m206l6msesnckaqrrjptdc7k3d2i0kci800.html">none</a></div>
+<div><a class="sub-name" href="ajft6jqvmc3irql3eodbkqe2i9pvs9cvnone0ak2jpenp4803cqoetu87jm36qqmof0e00ul95plkm2ahsbea68emaljp4ll849g848.html">nonempty</a></div>
+<div><a class="sub-name" href="mk290fi6jmelf3d3bouvllngp0on9ve1p1dkm1fh9uq6vnht4ntljrb2utm4tqlr8i836vh5kkduoad0rj65p4re1gvor275rvj3qt8.html">partitionEithers</a></div>
+<div><a class="sub-name" href="oa85p05elaom5e557s9gv0tcn7dvcbe4r7shqvngq4kmmb4hsi7n3n9ula44s7lu146rlfj87ih941oeigbf8v5n37aojjsmqle4hfo.html">powerslice</a></div>
+<div><a class="sub-name" href="4ecde41qvffhfeis46dh15ejfcriu0iihc6msmcqmpruc9e40ojl4i9lvb4it0vi4ikf8v9huc8eop4utqe7giopkcatd0uoubrq5r0.html">range</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#16qjsrhv7rblpv0ttfrg9lmdq3671de3k37ij3o7qijhpq85u9ob7aq2tsklo65pr1m3ab7v62ibg3ck6q4p2mf9i7mniakcefuljr0">replace</a></div>
+<div><a class="sub-name" href="apd2pd0ob7k20kqui8q43ns0840dbubc8p5tuh183n2q4d44qmqnfnhk3vpga0m6r8ci4e6jlhlu52vbpkj1p28tsgchm2m7tss620o.html">replicate</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#nti1cua2e466l67gjooq3empcf56ccbtqrhm7fcap3t515g1kru8irtamof0taq4fl3efhv02t28afrt4cd2qq754kpgkllbjk01jf8">reverse</a></div>
+<div><a class="sub-name" href="gjfsi02dllolqbk13cv0v1bgofd7epvvflvmaa630vp4a35ifeikdcg396a6kjdhuvlurq01gq0noak0e1m25c0u2fi3fnqtvh8ke3g.html">rights</a></div>
+<div><a class="sub-name" href="8qnrncdeoentntkdl2nui1qn7pjr2l76pccgdgrvp1u2pl5b0sf1dvvtqbchba2oo6t7cc7e2cfm8r40e6h9pa9gr347842h1ne4858.html">scanl</a></div>
+<div><a class="sub-name" href="n2vcp2eua8o30o0nul7g4ftt51s6679733brdsm06dua9bk5ojosogij77j57ns0ed1e5j6q5eei5n03dcibk329pkfd8vsufsrjtgo.html">scanr</a></div>
+<div><a class="sub-name" href="r9am8djs9rigjgauq92dshmfc2dhdvbgvkvsl9tnt93gthoo4ijqn6pgjtu5i0n6hutkq3n89cu6k8fbql57hjktd1gtum9gvet67i0.html">singleton</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#__builtin__List.size">size</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#r2hevaio9j8f5o9biudotg038utm40fuv27suj3jc8tj0a0nqqb37mgbh6ji9kr05t6o0pv5s14f7n8geagkrk1q2so48k7p51hv0cg">slice</a></div>
+<div><a class="sub-name" href="ks5j44gjj2r3o9s4hq55s0iin8g6inma15evdpim97dvern44j48i6071r40d03ou4967t464sitkt2idi0dpv4p5sf3jth0k8inmc8.html">somes</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#fu8msvtvjdaeiri7avbpuskjq8u46a5uavih5tcqmaneg1u3fpg1q5jj17q65pn60ina8e6pdtinbhps1g97ghi7nrimtfhh7rou8q0">sortBy</a></div>
+<div><a class="sub-name" href="19a7gdqfe1dcdc21nbmob31c0irkavn20iur2stskqvsqu06ravrq2db16e5u8pbhq2k76ckp9rljgr4irgn7ci14uq0qfkmd8feg9g.html">span</a></div>
+<div><a class="sub-name" href="i5ce1lmrt18hvb868ube20p0e9o5g0i100b0n8l775eaud8a4nrtplrpo59mu0nnmtno0mscgvao63v6702bhkfduvtclt0h3hij850.html">split</a></div>
+<div><a class="sub-name" href="0taj91tipeq9lrvni5dl94nnppfrp3hl3pus6qr66cnqprboprfem154c2chlalvc4j51oc6jk88s75ppv0pa500o40vlt6lp73mb3g.html">splitAt</a></div>
+<div><a class="sub-name" href="b8qj2lgutar2pul64mj6pmoeik0ia14gbls4ulgpu2ho401tufdmbujq427ojkinn4mng665l3sr37no14kfa1e7pt9h19n41aop6po.html">stripPrefix</a></div>
+<div><a class="sub-name" href="91m7j81bq3rumngog74mjadkeivqjdvevekc4n3gt0p4pv0rn7d2g2lknj0v67capjegteglc76hba98cmma6e3pk3jabco8uvmg1dg.html">subsequences</a></div>
+<div><a class="sub-name" href="no16e2j3b08opoqtjq1565tc3hu1m1s3qmurr2p10cgr8ceui8tu7kfm94bkbuqs1tuasr6tv8rb5udg401k75m28ns3aqor9kceh6g.html">tail</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#l8ah5rgo5l71eu7ejodi5gup2dgt3r4rjq3olruou9fe5deg5b6vtoevdoepokg263bf5ofhhs0foc7aso23ftdfedgoer1n585lhe0">tails</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#__builtin__List.take">take</a></div>
+<div><a class="sub-name" href="3cbd3grln5qq0hspjinq99hsh4jv25t5anmullht7612lbcuoguqathn82qr59lriamk3kmeit34i5bbmiplij4o9pd3fkkapi858to.html">takeWhile</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#e95a9ev05jdao981r1qcb3cott58bonl77jm205j4uv8ctvdedn5rthicig5igb4veoqvgdoklhnfpsvlelvbm72gk53b232mgei1l0">uncons</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#4omhgrnp2n42sku6t4kpg38rpe4qbvqc7l909a9v5650msj11ropb7s3ndptev3bimrh23fh120vajcu8h86o43pbofnd6b9dqtv6do">unfold</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#etge4adj957jmmosh03foaafoju2rjidbu8hmv0nnqkt3rg80q50hnn7ukr7ve9lmfgjjsm5ul5eeq7b8vbk1j6u4bopov2j4r3u2v8">unsafeAt</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#pcv60r843q8mkij85588tha9196eao3tc1p2dqu3ucn1gf5m8njlv46ke3jal1labkkq7r96bg3hagb2tr1lfm4353b0u8ltgqkatj0">unsnoc</a></div>
+<div><a class="sub-name" href="__builtin__Sequence.html#ooldaeqlo45hkl73dsa121o1amqobrq05vn8spick71tr8cla30aq5109fpfoqom41bica6b0e5isic60hm6nek1avplc9cvop8hmqo">zip</a></div>
+<div><a class="sub-name" href="umjdhe7ss9ls7fre6kmv2j6dndjaolb6l6npkm6bv5vbreb1qkcenj8jqjpnibqg00a55bfgap7olg13s0n0ecg4erd70dle5nrs018.html">zipWith</a></div></div>
+                <div><pre><code>&lt;builtin type&gt;</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="jk39javgi28eog9lmpblqeg6eb6dkv9f2eo1kauceki0h7g0t9tbg2oi3u4qioa5d0mioptr5548049odbuv9tg34s6foqs26hf1feg" class="identifier"><a class="" href="jk39javgi28eog9lmpblqeg6eb6dkv9f2eo1kauceki0h7g0t9tbg2oi3u4qioa5d0mioptr5548049odbuv9tg34s6foqs26hf1feg.html">Map</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="kveco2oh1klk63shkmv97ohsslns4500r0so497kca83ihu7onnnac0i72s7j0b6omi0s3kte0m2198s37cilljorvqc7dd42m2gl0o.html">==</a></div>
+<div><a class="sub-name" href="ab744k9rdta2ickglnkqcundv7hnhf4kjadm6n016b4mlvel6r2kuf6k3n42t44778oj10vtnhudl4r9osa7aekja8mb1gbd4u9109o.html">adjust</a></div>
+<div><a class="sub-name" href="jq5tvdhoe9ebljjvm5i5gpspbelant3ruh2u67l2jshjht55k66k458seou71dqe2jghi9s6b29l43u0rhfn2c9rg0qdcbfppmh3tgo.html">adjustWithKey</a></div>
+<div><a class="sub-name" href="k6atgtttvmg8lnv9ni7e6ddo6h16bjkr29f7333mbpf4vmej4l0gi08focjvcc1rvfp2n2qftq8t5ttb2f704c0qj974f5otnm1lh8o.html">alter</a></div>
+<div><a class="sub-name" href="4jf4okd5atm33ettcdck3h2hlrtnoap0dijllrchbl6n6pgl460m5b5o0va7q35hm72cvfsu0u62biuqah2jckeok17c1gcm0m36n5o.html">breakOffMax</a></div>
+<div><a class="sub-name" href="anjchol9321qcttbefsnjodm3croqdpe1fg18nq8ibm7br8tfratruifd7a0rs8qcc8oipci7feu7p7j5id6b5mdv09893m1eshcc2o.html">breakOffMin</a></div>
+<div><a class="sub-name" href="250f3ntrmi13fkvkk4g9so7ltte8r1i3gnldi8io7nu9avru9dhc885jg8hc8nva6agkqd60r070so7t496muh4p0knkevdc0er0sqo.html">contains</a></div>
+<div><a class="sub-name" href="qlnei2d5s6v6ikdntrrnn40c7boajrmslbf4tu9sjdnfbttes2cr90drib4b00eofvh3u6flg1rcsh7m42mmg8u9tpc7hgcibdq7gj8.html">delete</a></div>
+<div><a class="sub-name" href="sru11tsf1e3g99ls9up5o5j4st863kjfcup59l5hm09ijak3ohkh6meoua9p77c6ve74nvnvqinbbljubtoisgit3p70h8pfvp5i2mo.html">difference</a></div>
+<div><a class="sub-name" href="jk39javgi28eog9lmpblqeg6eb6dkv9f2eo1kauceki0h7g0t9tbg2oi3u4qioa5d0mioptr5548049odbuv9tg34s6foqs26hf1feg.html#bm41vkt790jqbq44cjkve0l9e34d00h0f9p75dg1ahdecvrr40me6i2k3ncd3mltjmch6eb0v16mvn4dl63e408hqdq1uab2dagqsq8">doc</a></div>
+<div><a class="sub-name" href="rlpq1dfh600jo3neoetcjfq09nj53l190erp44lt71c2cm83g93kjvot4jocn5srcv0bd4b8h0t1oet3q6edcpg296it8a3cja9svb0.html">empty</a></div>
+<div><a class="sub-name" href="base.Map.equals.html">equals</a></div>
+<div><a class="sub-name" href="ik8d6deknnvbk1e77h30qhj5f1hslfhe57sh5plpvmdu5onts6gvk18613lq6253vnj1g149qvamuqlce6ro28jmdr6k1n8kamdkdbo.html">foldLeft</a></div>
+<div><a class="sub-name" href="abjhss4ca8mndqid1itif881vubiju48pcip5k75qve6uflnpf2imgltdq6bdffl9qgfrpe6epsnc7ripmibb5pu7b84dsvh8vd3gfg.html">foldLeftWithKey</a></div>
+<div><a class="sub-name" href="lovb7vh3rb00ab6raaplv97fhha6qf94mft0j7de69re7b3uoj0s8lrfp5dachcjj09dd8me8cmndhie7mbek1229k10m081phjpom8.html">foldRight</a></div>
+<div><a class="sub-name" href="0lo2fe2ptgl8epncvba7bf0di4humam25i7okm11v55c2ofe4eh0qp7n5boajb5o3j6p08dd3fa68ukim48ellhlbeicn0aipc8j84g.html">foldRightWithKey</a></div>
+<div><a class="sub-name" href="m0nm5scj0hlvi80qmt2o4jh82qjk5evhnsskjpqve8huvbordkeea2gvemncgddcunkcpkcueklpciibnmi7qju88ufem08cesjbqmo.html">fromList</a></div>
+<div><a class="sub-name" href="olm8g9ahgb3bebe7h5hencaojj979sgssast94sldjvp3qh3r4udhetf72melnq3j8f5qt4ntrdide3gqn2pprsii9uqduc3rhcbdko.html">fromListWith</a></div>
+<div><a class="sub-name" href="q6g98vr95pftq29pbq4iof30mu0oukqbuphucoej6m7kvoouagk24vlie6dbdq2o3hhdp01fmtdor0jl4q039hv993i9flq3gr2ptdo.html">fromListWithKey</a></div>
+<div><a class="sub-name" href="r7psm5rtophouq1u6pm19lfkvglnot5s9s59k5078a2pbufevelihi6d5v3sq1hmge67n4ctjsfg1p283udsmcm43duooln3a5q6kdo.html">get</a></div>
+<div><a class="sub-name" href="qvhluoiutrcveiooa4ojrna8e1kk2ah45h5gjas2h36s858unoqs476gdn5jh9grrmfopbkg17jb1t4r0okkhe8tro2lk8oo1m36mog.html">getMax</a></div>
+<div><a class="sub-name" href="o8ru4mb0njar9r3ktkb31elga7g3m81ouk649vu79v06h06hhdb4stkul0p1cpidcad8h5e09n9su2vb2slnebhctaf2iir8o8j5sno.html">getMin</a></div>
+<div><a class="sub-name" href="pe28p37mp9551h71pev43ofqlpbvi6efck91mgle9kcrjo0k4fgb1jttpdu3hfdacn1iaqpmbp3nvvgih9cb90bjdn56p1vkb42a2eo.html">getOrElse</a></div>
+<div><a class="sub-name" href="jk39javgi28eog9lmpblqeg6eb6dkv9f2eo1kauceki0h7g0t9tbg2oi3u4qioa5d0mioptr5548049odbuv9tg34s6foqs26hf1feg.html#jiurmran5gvp930ld1a5pkaqhrdh807c8a58pph48um0qvs3e2cs7jakqoqhf6ju5r12fb0b5hk6a21iquptt0het42kfao78q2817g">insert</a></div>
+<div><a class="sub-name" href="base.Map.internal.html">internal</a></div>
+<div><a class="sub-name" href="l06fnnitqo7lt5mj0usu9l97ttp1jcqj4ufpjqr3igr9gio5f104jp88tb29olfkdj6qp7dt34pe76n83rnhb791me9p1nfl7li1fmg.html">intersect</a></div>
+<div><a class="sub-name" href="p7od7v602dbg5lanfgfcqktol4sms6mtac1kljea108eoil4pppb4o4qkhhkfpjklfsghac33dmjn3va5vb08ddpg70ueictf9h46dg.html">intersectWith</a></div>
+<div><a class="sub-name" href="47u7er4gvt43k8kg977179ifurgcqk11suhu4frm4rg67a3giu2gm0enpfvsvqtjv7mva6meaimsfo0q2e56aa0fn6m3b6750iu0aso.html">intersectWithKey</a></div>
+<div><a class="sub-name" href="epbnaq5r3kkkl76s8naqpa52574svd449dmmk71rkrk3fda686qtrl43hvjb3val4b3cuqginl1a9cnog7tn73v499li6epvj8bgn6o.html">isEmpty</a></div>
+<div><a class="sub-name" href="le87fquoe2femc5quc1df0o2cn95o8es7dj59bcm2lqujvi39h9aqu61qolmut3ceisk5u86dogdbp0sn742sanrm4csanirrf1ckd8.html">keys</a></div>
+<div><a class="sub-name" href="q91kr7n493c9tmf2qba02e3gdos39j5fjpkcvunf4b6g43d1tdri3pgjgd61rh035lkemds5rug89086laro3mvfdq7lh8tthdsl8eg.html">map</a></div>
+<div><a class="sub-name" href="6i7f9jar0am5p4vh794q7bvmol6dar0jh4a1kah8b8dr5fcrrvss9esj4hjof9c0mu99qcjloa9nu7im0qhh33uvr0mpkre11rm8rbg.html">mapKeys</a></div>
+<div><a class="sub-name" href="s094i7dg1j5ok0edfjjnaequvftstgraa4ult6cvv71msosn3365j6blpk8u2fbjtbld9g3ktquaq2g3j2q4tv8b8nhoub04vttkm1g.html">mapKeysWith</a></div>
+<div><a class="sub-name" href="oa5sunmrpeqbf279b6sjcie9kcbapivrhqmgrcnjas1bvipb0dtp6oiebu9510rq7arv8k55638njk78008n9jif8925aua5ula5vg8.html">mapWithKey</a></div>
+<div><a class="sub-name" href="base.Map.put.html">put</a></div>
+<div><a class="sub-name" href="kpqj8iprtfv5n30gpih57khn30lchi86q9rogpi6v5qa8b0svn56vmb2d31b828qcah11919f8reddlkaneocobglik0sf485pta3t0.html">putGetWithKey</a></div>
+<div><a class="sub-name" href="u8udcilnn0a2e96l3nc0464011ip12dqatckell5h6r5oru9b2009v33aecv0qbeop8q4ipgpssinluoedc5nq62vqqf7oni1qga65o.html">putWith</a></div>
+<div><a class="sub-name" href="2pocvepou982fml8601h84msct1o54ap062njsdvhpthhdj1c8k93glta7f2tu3s3i7qkbb5cc074milejvdfpcfi7hvao2cfmlgdsg.html">putWithKey</a></div>
+<div><a class="sub-name" href="c7p7j0f3m0r8a29isa6l1ba1d83hof7p91lavq7r5r1c1o5n2m6uikk6slpimumqdbh1t2iaup6o03me43ii82su214f7fu9gbh39l0.html">singleton</a></div>
+<div><a class="sub-name" href="5rclfqgp230hdb4ueo94eneomn9o1p83j5u9l26mie5f75b3tb1rq1atc2huhdolqcu9ram7uj2hg27o9tde36u4pu54vsp7nchvam8.html">size</a></div>
+<div><a class="sub-name" href="ep1fsmuf2h0ocemj05mq08vmttcql7rvc239b7efoh20c528ethc73jmrlj9hbbkht70gqbofprolqlgp9j31sr33h1kqgi3nb9ofko.html">split</a></div>
+<div><a class="sub-name" href="base.Map.tests.html">tests</a></div>
+<div><a class="sub-name" href="pjm7hfq1vtqcaaqa913gks0fcsa7e1nkuuoqmht7ea2r2quut23rsuhomlmi4ar09lgjjor8qfm6u3c0sj1n8eu3ebgrutcssqeb54g.html">toList</a></div>
+<div><a class="sub-name" href="6rm9a697j21bjfmijg4jtk8c62e6hg14cc2fkpigpnrhhavb1qnb2nn4na9k5anr9397n7pu09gjc2868sqetif0ev3o4o0nmlhtcqo.html">union</a></div>
+<div><a class="sub-name" href="9qsotl22cf4ru07fn7l9pq63hh1id10b556ua3girdt8o83aolb6sqbethf4894j7fmnsjqosdm6usr10fjl6qp96mpndh49b52lom0.html">unionWith</a></div>
+<div><a class="sub-name" href="2d57v1e2ajo0lc307pe4f4tghr3rjl06hneucu050hegdceejffv9kkbfuhn3fmnmv9jlsomtl8aeqc2avaju0msavukegs3nb6siag.html">unionWithKey</a></div>
+<div><a class="sub-name" href="0qgqn4bjjrhhqnjdtnmvminnkabh22iq3rj7qnddci35rf3e00mehf9oknm3mncr8327lsm81qaa7nr2olroj2i35tk94l6s35oh0pg.html">update</a></div>
+<div><a class="sub-name" href="ge99k56mhfjrir2f4vcq5l0244s3nt8dt5ioeo0ghasid5qc21f3ogtpr06hnjnugqr9keoa52v271tgs7t6itb2v0ks7mf2pf9hogo.html">updateWithKey</a></div>
+<div><a class="sub-name" href="a700rrbap7r6ohor9mm0ttbu59abn0teqsachc19vv48cbcc81cq0ff43jd0a53bstbo8bd6hp8noquuj5srn3huroqqafffmkeikq0.html">values</a></div></div>
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Map</span> <span class="DataTypeParams">k</span> <span class="DataTypeParams">v</span><span class="DelimiterChar">
+  = </span><span class="Constructor">internal.Tip</span><span class="DelimiterChar">
+  | </span><span class="Constructor">internal.Bin</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="Var">k</span> <span class="Var">v</span> (<a class="Reference" href="jk39javgi28eog9lmpblqeg6eb6dkv9f2eo1kauceki0h7g0t9tbg2oi3u4qioa5d0mioptr5548049odbuv9tg34s6foqs26hf1feg.html">base.Map</a> <span class="Var">k</span> <span class="Var">v</span>) (<a class="Reference" href="jk39javgi28eog9lmpblqeg6eb6dkv9f2eo1kauceki0h7g0t9tbg2oi3u4qioa5d0mioptr5548049odbuv9tg34s6foqs26hf1feg.html">base.Map</a> <span class="Var">k</span> <span class="Var">v</span>)</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.Multimap.html">Multimap</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.Multimap.html#9rqjk1uup0s7s201ibs1i6aslcuo4g16s9lfhd5fvthnefr29rua4q65c5jopossti1374s0qhlejoe41ufafr3h40co888606o3jqg">insert</a></div>
+<div><a class="sub-name" href="base.Multimap.html#ldd60bg4fp87kqvla786qr8gd5jb22b4iqk7f4bi33baqgmbuc8im6s4i3uqq6k87rjfgmtlk31r7cfn6rbp9j408sfaj4uq4607bp8">lookup</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="__builtin__Nat" class="identifier"><a class="" href="__builtin__Nat.html">Nat</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.*">*</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.+">+</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#m7uplgfko92kqdmm6u898j5h4n86587f44u7fq1vjcad1f68n35r8j2mdfdbjta5hq9o699dgn2aphteditp30g34hsh3gru68593j0">-</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat./">/</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.and">and</a></div>
+<div><a class="sub-name" href="ho3f6sc7fg96o6c4oljhhfnbs29tn1ah2tragno35d84loeh3cad2to20dngsgspkcrcfto4i14fsflbif54tv4mjdcfg1occ5k35d8.html">choose</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.complement">complement</a></div>
+<div><a class="sub-name" href="o7nshig29mlfbg90n773fmvlkhk63v3c17i0i8sjmdie5c598ok8o73c6v48p6qc8isu1b8hoovvumvsveduuojdo9hr8mkhvqeqhko.html">decrement</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.drop">drop</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.==">eq</a></div>
+<div><a class="sub-name" href="g0nrntkjgdm4uhnd807liga1psdtkjfh0mj82mu2881faq47b3jqdao6vm8f6bg7ee2jfb6s8ao3m0rnkm0ega7uqrgftdg6dj839ko.html">factorial</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.fromText">fromText</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.>">gt</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.>=">gteq</a></div>
+<div><a class="sub-name" href="8ric1m47rf989othpmv65hl4m69qmh0s4vljegjl60789njs8q7al69jm2l1p5341qqcna0lk7ilm48disj7r0sq488vlfgts5dtje0.html">hammingWeight</a></div>
+<div><a class="sub-name" href="3g6usi10t8o9vggsis5lnd9vo9eed63q38261u29c333sd2256ioirf1lhbadbfj71u5hdqgngqhpjgljn3lmgpo504bmkk5pbmtum8.html">inRange</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.increment">increment</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.isEven">isEven</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.isOdd">isOdd</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.leadingZeros">leadingZeros</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.<">lt</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.<=">lteq</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#s9h25aadei68iscfiu60eldfhe9uvh0pk3knd9m965gqlejvc5jlcqs9gfcgpgvfv85n2pefvee4ca2n7mepcoqamou73g7ilscf450">maxNat</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.mod">mod</a></div>
+<div><a class="sub-name" href="jjbr17ao2j60kqjr0qu87r3nh7h039o66s525qevgfolp4b2sd221bqb2jgkdmbj5ij099s8dkpicsh8fq56g5gpf1lf0etg5s3ntg8.html">msb</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.or">or</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.pow">pow</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.shiftLeft">shiftLeft</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.shiftRight">shiftRight</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.sub">sub</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.toFloat">toFloat</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.toInt">toInt</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.toText">toText</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.trailingZeros">trailingZeros</a></div>
+<div><a class="sub-name" href="__builtin__Nat.html#__builtin__Nat.xor">xor</a></div></div>
+                <div><pre><code>&lt;builtin type&gt;</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8" class="identifier"><a class="" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html">Optional</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html#9or9ct7idn9eomooi22d7icfnjhkhnavtafs98bd87p8vnu8mje7mr38bq130a8fd5qs34fnvtv4m04kgu5d3r3jmnorubeic7n7gv0">flatMap</a></div>
+<div><a class="sub-name" href="fvphrbjpf183e6jj8pfgcb0h4tj5b7huhrfrgk7a4unr65fsrvkhhfk67i1l15jv7rc8k6lt55jto6ashtmv2453l6aeas5k1m8ruso.html">isNone</a></div>
+<div><a class="sub-name" href="e5cko0cl2fnrss8al6fhc8nviq7imfopm57uej2chlecn60tc8ubcpc03tfhgh4k55k5te66etaovoftsmekv80f0tkn7c9loljani8.html">isSome</a></div>
+<div><a class="sub-name" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html#ereuuglgnvf3e5agqrk9up4am753enj0m85cjuo8q5buk708vpeqpmnogjtrg4uitfcndg3gmv0dlld9eedthcu39sqguvqvm3m04uo">map</a></div>
+<div><a class="sub-name" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html#628e8l86lu7dc2rcgr93lojmpkvle73lujjk7502v4reqtg0i0dirb3p30qkhg7ts5fepmf87pbmoat6r5k5tghun70djrg8bnvlmbg">map2</a></div>
+<div><a class="sub-name" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html#g91mabg1db2e06q34kfu1r1oo43ns5as8nn8d42phphincd1d8fadlvj44knmmusnpmgf1bkbgnecr1sqnos8ieb60er5coqg6esl5g">orDefault</a></div>
+<div><a class="sub-name" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html#9k1bvoo3h6pegbas4enlgr4sq9ee1ilklt3fji16smeqnpqhr4q2kelrfc880fg041n5u5akeequbco4j0f2m3uolj5bejl4bfd2sro">orElse</a></div>
+<div><a class="sub-name" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html#bmvknaph8oqlnuau1htoo5etupdl42uibu2nq91f37k1b07tc5uug8u1hsujak4bdbno5rc75ndtpci7ll6h4qfbdnfm55gnabet3no">toAbort</a></div>
+<div><a class="sub-name" href="l52tsrv3cjot95enrn5lvhsjeqed6no0jknbbss8vgghnd7i1srcj4vm8f66j2bub00ptg6mjrbf2dfhfbm45h9h5go54g3jvur0sqg.html">toList</a></div></div>
+                <div><pre><code><span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Optional</span> <span class="DataTypeParams">a</span><span class="DelimiterChar"> = </span><span class="Constructor">None</span><span class="DelimiterChar"> | </span><span class="Constructor">Some</span> <span class="Var">a</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="gudb5hg0qao9n85uj2394nucrb4nq5okqnru6eprolsfkpk8grttkgn57ba9nguk4lr8h675qgj6105rov8qstfcn2752k1mdu1jan0" class="identifier"><a class="" href="gudb5hg0qao9n85uj2394nucrb4nq5okqnru6eprolsfkpk8grttkgn57ba9nguk4lr8h675qgj6105rov8qstfcn2752k1mdu1jan0.html">Ordering</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="8l79kpibmhfd9uffbvojggk9b3opj9vutd8j8nkgum4asbg5etbo2baclg71oqhln590dcbhc0438aatgi1v09uipdtpch3j874ak18.html">andThen</a></div>
+<div><a class="sub-name" href="gudb5hg0qao9n85uj2394nucrb4nq5okqnru6eprolsfkpk8grttkgn57ba9nguk4lr8h675qgj6105rov8qstfcn2752k1mdu1jan0.html#1c1unrmreg50ke49dtse03sdtjr3p2qtepdbb1ie1cpbvgdiea57ja42a34ep0d6pnkc1dcfpmvuqe4rcodl30j4dktu1kocupn95ug">doc</a></div></div>
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Ordering</span><span class="DelimiterChar"> = </span><span class="Constructor">Less</span><span class="DelimiterChar"> | </span><span class="Constructor">Equal</span><span class="DelimiterChar"> | </span><span class="Constructor">Greater</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="__builtin__Effect" class="identifier">Request</h2>
+                
+                <div><pre><code>&lt;builtin type&gt;</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.Search.html">Search</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="9s4hdo67co9gdb16tbnlbe5rh9j94vnovcmlp92hle76d53272qqtar34npgi6h74hri8ntoa80tbmthns4sd4ai7d1een12lgf50b0.html">anyIndexOf</a></div>
+<div><a class="sub-name" href="base.Search.elem.html">elem</a></div>
+<div><a class="sub-name" href="cuv5ji02gjv98sapna3lgk1siqivi5pj64k9l7qjl3td4mcrvfjg7mhsjepucj24dpm0r0atmq07mp9gob3plv0q2t4918l1c88pa50.html">exact</a></div>
+<div><a class="sub-name" href="mqj1jp3rqctqgd7gk6jj3a7pmim7mugf5tv08aun50kk1cej0n9eefanuc5254ehtk3k2ko67681i2pq38chh5l5d5scqvaovtgq8k8.html">indexOf</a></div>
+<div><a class="sub-name" href="4pibi55cis86prlfggcaprd2s0md4l7m3mlmqobrjdds4qjva640qbge2hbtee04110e4nv21p1c0qln9rpha8tltbs8kau937vlfdg.html">lub</a></div>
+<div><a class="sub-name" href="95oa9uosupnsibr1c0ijfnbb0o7bhvb04gvqdqfa0rr4rjtclprgp5pll3h87v13alfvqvoa3c32gaiaqfiepv8hhjg43tppnqgl8eg.html">lubIndexOf</a></div>
+<div><a class="sub-name" href="v6q3nv802g3lfosq1lhn1976udu03kvu4i97ml4upbtu7d8dd6f3u7rhejgpjpgnbjlgrhfb483suoarv5qu3dmh1u7gk3imoaqcdmg.html">lubIndexOf'</a></div>
+<div><a class="sub-name" href="t2ff49khea9dv34gje8oc9invo0g2nfjnug7429btj03qtsfltnhh64so6sfug5iflnuobsh29r540pikalfeilh34tdn36f9mq1ff0.html">notElem</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg" class="identifier"><a class="" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html">Set</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="67pkgtd4qp43kbhavlu29fj5t8eoeqjac0fn46avgd07vcdufj6ul2u6gdpf2q3u4vmm4qrr4clcl51ggnpkr3r5f908qvlfvcu3ruo.html">all</a></div>
+<div><a class="sub-name" href="e6ldvdj4n4v02v48lgsi0b6l7nqf1var0a4b9ihi1ea8knq01g5al4fmras0n18jiil0p5l0rgcag5kb917j5217acdr123h2ipvb10.html">any</a></div>
+<div><a class="sub-name" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html#gikuj6iiuin87lfcu40hnu4tm9urgpucd40im5n7b303mrh1cd1m5lhhedequkvdqfuebnbljrjaquq167ccdrofse300v0q50sll5g">contains</a></div>
+<div><a class="sub-name" href="3idnf2q2ca8ahiv59g08qjaiht424p64td7irvlmht84f2ms7n9s208fgsru95b6us8ringd1ffamfohepr7khcj34n9mbilpu5gn58.html">delete</a></div>
+<div><a class="sub-name" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html#tdp33irgmrl1r6qcfa0hbckfffu19mhnd0qfm4tso3vv9toa79hsgphe3vvuq66p7q512vrh9rv18abjkbheo7ljsdp7fvg0tdjsut8">empty</a></div>
+<div><a class="sub-name" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html#om6jfo58ura1dv7eoej50aurnjafg2v1g4a74s9kdqkuedacu9q7s1b2je8ipbslq5on39n64ijbiruqgut031ih11km6jinjlqrslg">equals</a></div>
+<div><a class="sub-name" href="ub0tvqa38082vbpl1d26vnt1ko8mr1qga61rg00dfbbf6en0cigmpbms4lhstefr42dp3g7e43vpfutqr1adv77q9reserj01rusf80.html">flatMap</a></div>
+<div><a class="sub-name" href="6o86g5ej4s69vd5ngg8o1h8jg7dii0fdr9el8s9ei9nk4raol3lv1vqgk33vgmdb9578puev7p370vgop6h644mksb6nmja28254vjo.html">flatten</a></div>
+<div><a class="sub-name" href="pdvgr2oa07vmh1onatr56dorg7lq54dqac5qmlotbu53ropkdupjrs6c5ni343jq2llekmrsjjkkfjs2cuo815lb7408e4j1idi9rt0.html">foldLeft</a></div>
+<div><a class="sub-name" href="vjspehfqnekbcptk20h5d2f2ou2lnq0s5pcrdm7vbvfh3nveic7l66315e9sf9n34cpsl971uv3l3gglpgrfhsi9td3qd3ph5i9sic8.html">foldRight</a></div>
+<div><a class="sub-name" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html#h6cqe495fj8p2ht2vign8u3pejic8fpr179ar6a1p27hdn2lv90cdtrv8a8c1i5tg100mm1gg3m1iuvjv2llqkmc1vttbomrbk92mt0">fromList</a></div>
+<div><a class="sub-name" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html#06q99r8lb48ceuusoqf1p87e8bkj614hipaetmovj0abb9t3rkphjvhjata4kq22sam62alck7c64ibu521slr7pp9e03b19toi8kvg">insert</a></div>
+<div><a class="sub-name" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html#naa0vgoh4el6d8a2l0401vm125hv1pu9kr4k2hbrnlela0lbeerptmk7apfm19upg4sgd837uv2j3o5bpdsctl03jnn3ofvartg4m3g">intersect</a></div>
+<div><a class="sub-name" href="od4csv0hcfld6d40gt8a5rv4i9hk2anb8n9k038nv1sjqbe8ph2ps0hn2hcshntbfbhkk4v1el5lbfaqpnqaqs4vlg575r0eo3hpv7o.html">map</a></div>
+<div><a class="sub-name" href="c0vhl48ce95m9c949cd6f5j3ms3nia9m59is612ulqt89su79ritejjptl0rmkj2hbvi27aiv8b0qhh5cdosl27klbbe9f1gv28e1n8.html">singleton</a></div>
+<div><a class="sub-name" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html#6jg90qeauve11gmnstjh0f84mmgmseujsm0js2mlmleheo4ooo82q0dnnfgigqt4s4vggec2ml8k43tkgp7fsqt74rh9cnnsi3l15l0">size</a></div>
+<div><a class="sub-name" href="911h08etpqp3jg0368idg7bn1vkfghh51ertat69jdb1iu1d3egn3hm71jo38ac39vhqd1ova38i913d31pkafp32a8b6bp4h52a2qo.html">subset</a></div>
+<div><a class="sub-name" href="f9e90k0i6a82gu5lg381o8kn34ft2rokovc26lcup0kevgpqearfkftfr7psaaqkkjb5cuuofqh4s1737cjmhngm3n9v4r8lblr4mj0.html">superset</a></div>
+<div><a class="sub-name" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html#scjv0c3tivr7nqlladb65luicdu18dpi958ee1of1bd1reg4rvjn6vlp9s1f4co7jh5q85vlef9uo0lvhmdaqipro8ahd7nfa5369ao">toList</a></div>
+<div><a class="sub-name" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html#97e77bl5ij4pel5jtljeiak1lu4tthhvqsee694gsjgrmo5r463jrar2qj0sq8c5ssbh5et9uv4bfesfoi290d4e3ur7rhc6kntpk10">toMap</a></div>
+<div><a class="sub-name" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html#e5k1kiffl2ol7i7u3d76tiprnqlu5pu077ui99sl7i2r55pa0cb8db4q4qkgtp3id476sg8u0v7ksqfe88eo18vucq9i7ot49c165ng">underlying</a></div>
+<div><a class="sub-name" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html#frfd31s2nfn5jjess8vnooeg7a1h5ni2ki9js4vvahum31bg3paf5fdhg1a5jkd9pns55i2bag3apr59vc2mgcq0eub2o24f8vjqbgg">union</a></div>
+<div><a class="sub-name" href="eosmrriha2q0k7s1t1k9v2deu82dtcu9klnul1o70kbn3hjmfp95tkm7tf2r3svvq43fmhiqj9dbqerkivlr479t2jmqufqseqj8on8.html">unions</a></div></div>
+                <div><pre><code><span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Set</span> <span class="DataTypeParams">a</span><span class="DelimiterChar"> = </span><span class="Constructor">Set</span> (<a class="Reference" href="jk39javgi28eog9lmpblqeg6eb6dkv9f2eo1kauceki0h7g0t9tbg2oi3u4qioa5d0mioptr5548049odbuv9tg34s6foqs26hf1feg.html">base.Map</a> <span class="Var">a</span> ())</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="tkpo8b6903kdcggkdolc9kgsq2175dhg0drn17134edkambevl7aahadvueaqml9pemnttm81t7569jbrifmrg82ogjnlfv5gbc2q6o" class="identifier"><a class="" href="tkpo8b6903kdcggkdolc9kgsq2175dhg0drn17134edkambevl7aahadvueaqml9pemnttm81t7569jbrifmrg82ogjnlfv5gbc2q6o.html">Store</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="tkpo8b6903kdcggkdolc9kgsq2175dhg0drn17134edkambevl7aahadvueaqml9pemnttm81t7569jbrifmrg82ogjnlfv5gbc2q6o.html#v4k01hnjo50bd8ihulo6ovrihqr23e497d7bnp2vlbj8e8bndrqcsq219on17m9g976hrchcvd1ff3rjjd172f23khmnpf3v0a0l09g">doc</a></div>
+<div><a class="sub-name" href="base.Store.get.html">get</a></div>
+<div><a class="sub-name" href="fpsk6qidednfm1pd14ovhg5hhraqqs8mg7p253cm87l3ibmdups6ev64v2fvktreksn1kdr3ur1dj5fm6d5iib581vbvpckgne6erso.html">local</a></div>
+<div><a class="sub-name" href="q43hpq78pa3tdik7n22dfot4a9ju8s7eomgj0qfv27brtesmi5l79becetiiqklq774n6icofb2jts27qs29k4qg1nlvsn6efipg4t0.html">modify</a></div>
+<div><a class="sub-name" href="base.Store.put.html">put</a></div>
+<div><a class="sub-name" href="sdvlti5vf2e4q4st3c02cgtk0v9rqfjisokds1d6oi8og2dgcvclar9m3g6pmjocu37g0748g12fo74vu91nh4qe4oae09t4vjps8go.html">withInitialValue</a></div></div>
+                <div><pre><code><span class="DataTypeKeyword">ability</span> <span class="HashQualifier">base.Store</span> <span class="DataTypeParams">a</span><span class="ControlKeyword"> where</span>
+  <span class="Constructor">put</span><span class="TypeAscriptionColon"> :</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="tkpo8b6903kdcggkdolc9kgsq2175dhg0drn17134edkambevl7aahadvueaqml9pemnttm81t7569jbrifmrg82ogjnlfv5gbc2q6o.html">base.Store</a> <span class="Var">a</span><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+  <span class="Constructor">get</span><span class="TypeAscriptionColon"> :</span> <span class="AbilityBraces">{</span><a class="Reference" href="tkpo8b6903kdcggkdolc9kgsq2175dhg0drn17134edkambevl7aahadvueaqml9pemnttm81t7569jbrifmrg82ogjnlfv5gbc2q6o.html">base.Store</a> <span class="Var">a</span><span class="AbilityBraces">}</span> <span class="Var">a</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="mp6b3o3sukn9gfp4pil28vsuoq5a328b5tifgajbbs12cvb27peltifjhbigl3pabr1t4j5gp1a1b8uhie3j3akjep6ffhsvdjjkhu0" class="identifier"><a class="" href="mp6b3o3sukn9gfp4pil28vsuoq5a328b5tifgajbbs12cvb27peltifjhbigl3pabr1t4j5gp1a1b8uhie3j3akjep6ffhsvdjjkhu0.html">Stream</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="mp6b3o3sukn9gfp4pil28vsuoq5a328b5tifgajbbs12cvb27peltifjhbigl3pabr1t4j5gp1a1b8uhie3j3akjep6ffhsvdjjkhu0.html#328ireq31n0i81rompqg50b9d8p73m1afb84ijnfjkm5cr9gjd3n10dbdosktk7dffbfoast04tbp1dutdq4v1ksb1bmog7g1nsbac0">range</a></div>
+<div><a class="sub-name" href="base.Stream.tests.html">tests</a></div>
+<div><a class="sub-name" href="fl0g3klg929m89rv9ndntvk2a3ik101ok95bj1ll73u8qdhco5vc118gpj8ck274r41lok111i4tqm5f1dodkgomh0cblrqhisqk218.html">toList</a></div></div>
+                <div><pre><code><span class="DataTypeKeyword">ability</span> <span class="HashQualifier">base.Stream</span> <span class="DataTypeParams">e</span><span class="ControlKeyword"> where</span> <span class="Constructor">emit</span><span class="TypeAscriptionColon"> :</span> <span class="Var">e</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="mp6b3o3sukn9gfp4pil28vsuoq5a328b5tifgajbbs12cvb27peltifjhbigl3pabr1t4j5gp1a1b8uhie3j3akjep6ffhsvdjjkhu0.html">base.Stream</a> <span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Unit">()</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.Test.html">Test</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.Test.html#vmc06s4f236sps61vqv35g7ridnae03uetth98aocort1825stbv7m6ncfca2j0gcane47c8db2rjtd2o6kch2lr7v2gst895pcs0m0">Result</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="__builtin__Text" class="identifier"><a class="" href="__builtin__Text.html">Text</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="__builtin__Text.html#__builtin__Text.!=">!=</a></div>
+<div><a class="sub-name" href="__builtin__Text.html#__builtin__Text.++">++</a></div>
+<div><a class="sub-name" href="__builtin__Text.html#__builtin__Text.drop">drop</a></div>
+<div><a class="sub-name" href="__builtin__Text.html#__builtin__Text.empty">empty</a></div>
+<div><a class="sub-name" href="__builtin__Text.html#__builtin__Text.==">eq</a></div>
+<div><a class="sub-name" href="__builtin__Text.html#__builtin__Text.fromCharList">fromCharList</a></div>
+<div><a class="sub-name" href="__builtin__Text.html#__builtin__Text.>">gt</a></div>
+<div><a class="sub-name" href="__builtin__Text.html#__builtin__Text.>=">gteq</a></div>
+<div><a class="sub-name" href="__builtin__Text.html#__builtin__Text.<">lt</a></div>
+<div><a class="sub-name" href="__builtin__Text.html#__builtin__Text.<=">lteq</a></div>
+<div><a class="sub-name" href="2ej8b9q80tvghgd535d6ojfdp8eb8mjovjh9l0lbt4pvld8qj86urpltunrsorn2rgab899fs17johhu6nju0g8otcp1ncvmdp87n9o.html">reverse</a></div>
+<div><a class="sub-name" href="__builtin__Text.html#__builtin__Text.size">size</a></div>
+<div><a class="sub-name" href="rmmbrddsjgm1mf33mb3eudtspq8ka2s3fdvc5lkfl9f4ou1v77mags1h955rep0il9i6d78jge1uepivvl4pfljaptnlaqoj9pk8f1o.html">split</a></div>
+<div><a class="sub-name" href="__builtin__Text.html#__builtin__Text.take">take</a></div>
+<div><a class="sub-name" href="__builtin__Text.html#__builtin__Text.toCharList">toCharList</a></div>
+<div><a class="sub-name" href="__builtin__Text.html#__builtin__Text.uncons">uncons</a></div>
+<div><a class="sub-name" href="__builtin__Text.html#__builtin__Text.unsnoc">unsnoc</a></div></div>
+                <div><pre><code>&lt;builtin type&gt;</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="pb08jpel3ke87nh3licf8b6t1f0154b73g1bnltbtd8hkdv3v6p4viqh7mg2p2uv72mt31tufsgssacud197df5ku6kecauht1ob1d0" class="identifier"><a class="" href="pb08jpel3ke87nh3licf8b6t1f0154b73g1bnltbtd8hkdv3v6p4viqh7mg2p2uv72mt31tufsgssacud197df5ku6kecauht1ob1d0.html">Trie</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="pb08jpel3ke87nh3licf8b6t1f0154b73g1bnltbtd8hkdv3v6p4viqh7mg2p2uv72mt31tufsgssacud197df5ku6kecauht1ob1d0.html#pr6l29tb38dqh9mbujr21edmvcr611amufiuj3o1ppa8fhndthntqaf692f6tqn2vi56rc8r5bhtpruhogunqqm481qa1tl89vtj2r0">empty</a></div>
+<div><a class="sub-name" href="pb08jpel3ke87nh3licf8b6t1f0154b73g1bnltbtd8hkdv3v6p4viqh7mg2p2uv72mt31tufsgssacud197df5ku6kecauht1ob1d0.html#vsflnn0i9c9soqa78sk3odo6sgcr97t9t7vp118had81524rmc1aao4tcq7r7mfm5i688jhn0crv15t31m8j9vhh0llhnl22vfn8qoo">gen</a></div>
+<div><a class="sub-name" href="9q2r3tl5jcnvf3899v20pkleq2nf2apu4ja30ij1aqm5oha93dcfp0g918mt1qigf56jnp0teodgonjcefsr1ue9guhmt7oa0iagt38.html">head</a></div>
+<div><a class="sub-name" href="pb08jpel3ke87nh3licf8b6t1f0154b73g1bnltbtd8hkdv3v6p4viqh7mg2p2uv72mt31tufsgssacud197df5ku6kecauht1ob1d0.html#ukcke456ep5i5bsgqhg2o9figkqt6csgl9ltaod86esh394n8gbjgfjs7qq537c0e6q54hrc9iav0lhrf4tvb06fos85np213ujq6t8">insert</a></div>
+<div><a class="sub-name" href="pb08jpel3ke87nh3licf8b6t1f0154b73g1bnltbtd8hkdv3v6p4viqh7mg2p2uv72mt31tufsgssacud197df5ku6kecauht1ob1d0.html#vk0d6m5k4msjienmbs9o5fjca9rmarr6qrborrd18o07hh9mogm1ui17vrel3iuig13hs2o9q7slh7lnh368s8h2smmbp51efrtsoo0">lookup</a></div>
+<div><a class="sub-name" href="pb08jpel3ke87nh3licf8b6t1f0154b73g1bnltbtd8hkdv3v6p4viqh7mg2p2uv72mt31tufsgssacud197df5ku6kecauht1ob1d0.html#j7jl2kkqo8kit96hurdvm15f72ficrvomimb69koqpebnru0knfdd97cbsq1jhbdusv2hkjnvuir8j0equdcc3jofuh50f39erg488o">map</a></div>
+<div><a class="sub-name" href="pb08jpel3ke87nh3licf8b6t1f0154b73g1bnltbtd8hkdv3v6p4viqh7mg2p2uv72mt31tufsgssacud197df5ku6kecauht1ob1d0.html#esrerggpq7dfgsvjh2irv7frjpbu1ncc3m72dr4u9ufo1ubl4p1v711r0cj3u23b9dc9dpv4ju85poo8ktg6vkvn03krj6rrsau9cjg">mapKeys</a></div>
+<div><a class="sub-name" href="pb08jpel3ke87nh3licf8b6t1f0154b73g1bnltbtd8hkdv3v6p4viqh7mg2p2uv72mt31tufsgssacud197df5ku6kecauht1ob1d0.html#i2oqtsejk50gffkacdikj0vcgj4kt345g4dht013kjrk23mtesud28vbdosmpu0svnlninl4hci3jbsairo3ns2vncaeup9sgdb2gno">singleton</a></div>
+<div><a class="sub-name" href="if19p6aqht2grsievi066l12c7on1m22ujjhnhe3mscl5vffonnfaur06iie2rlikb8jgno24qjm7fcm7iltd3auogf83sb5k91rl8g.html">tail</a></div>
+<div><a class="sub-name" href="8m9gucuios9qfpmqdd8jnijvv23ro4c3le450cnk1citjv5ug0j29asinachtm0e5u1kr8anap46593jrn81a0q2e0qa7gs9fr2edb0.html">union</a></div>
+<div><a class="sub-name" href="pb08jpel3ke87nh3licf8b6t1f0154b73g1bnltbtd8hkdv3v6p4viqh7mg2p2uv72mt31tufsgssacud197df5ku6kecauht1ob1d0.html#qk55rh3bi8j365s8a66m7mg30u9sk6il85ifh9fiil4jr45etv4tiik14dqlemmvl56nsfucnur9ui4dk3sju9f9r5fdahlfu6mhp80">unionWith</a></div>
+<div><a class="sub-name" href="pb08jpel3ke87nh3licf8b6t1f0154b73g1bnltbtd8hkdv3v6p4viqh7mg2p2uv72mt31tufsgssacud197df5ku6kecauht1ob1d0.html#310790t58e85fn61sakgtsn4i6hggptnvi72ehtkurd4oa4hanbtvoot7kadgqdoggl14unmf2ntph82dsfjf9h2af0cdrfg1b5t3co">values</a></div></div>
+                <div><pre><code><span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Trie</span> <span class="DataTypeParams">k</span> <span class="DataTypeParams">v</span><span class="DelimiterChar">
+  = </span><span class="DelimiterChar">{ </span><span class="Constructor">head</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html">base.Optional</a> <span class="Var">v</span><span class="DelimiterChar">,</span> <span class="Constructor">tail</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="jk39javgi28eog9lmpblqeg6eb6dkv9f2eo1kauceki0h7g0t9tbg2oi3u4qioa5d0mioptr5548049odbuv9tg34s6foqs26hf1feg.html">base.Map</a> <span class="Var">k</span> (<a class="Reference" href="pb08jpel3ke87nh3licf8b6t1f0154b73g1bnltbtd8hkdv3v6p4viqh7mg2p2uv72mt31tufsgssacud197df5ku6kecauht1ob1d0.html">base.Trie</a> <span class="Var">k</span> <span class="Var">v</span>)<span class="DelimiterChar"> }</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="onbcm0qctbnuctpm57tkc5p16b8gfke8thjf19p4r4laokji0b606rd0frnhj103qb90lve3fohkoc1eda70491hot656s1m6kk3cn0" class="identifier"><a class="" href="onbcm0qctbnuctpm57tkc5p16b8gfke8thjf19p4r4laokji0b606rd0frnhj103qb90lve3fohkoc1eda70491hot656s1m6kk3cn0.html">Tuple</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="fpbbp1ad7t3qc7llsun77lf7kuj3gcsjueqrqea5t1btjad6l9p8v0457gv4v8nh6e1r1skcjtdig24kkqno6ack926aic9ggogjtg0.html">at1</a></div>
+<div><a class="sub-name" href="tpkh7k9r6vng3tv5m326d5bn35egtd5ough6e68i04jgc3hljg7q3omusefi8onfg4bfnipt6oe8r0tfcer3vqcl2mamttd4fpbd0kg.html">at2</a></div>
+<div><a class="sub-name" href="46hjk4i36t35r11tagufoememe6ngbk9oabae4skkqiicr1kds8ki16a6cm915trm020v0sipl6t2ok5g2duhl7njon8b48lpbd9480.html">at3</a></div>
+<div><a class="sub-name" href="v3o5sjhgeqfevgm8k9dpdqc67ff3uqklnj4ksnbpb0q9mtmsucf6iecgo1sd01trgo5d240tblo85ug5p9omcq1tmuk616ovjmdh4fg.html">at4</a></div>
+<div><a class="sub-name" href="onbcm0qctbnuctpm57tkc5p16b8gfke8thjf19p4r4laokji0b606rd0frnhj103qb90lve3fohkoc1eda70491hot656s1m6kk3cn0.html#j6larss9olvelqhffs00spa7n521a1h4qk1ra4fnbjb9f6c5e359n2vl2j1rmq9ke28drk17o6ov31pl7qjh1ujav8uk5rng1s1qur8">doc</a></div>
+<div><a class="sub-name" href="dldmnlvfcv7spj9pnukr9i2ieml9rua8gusa26eccm28eodb1eiokhve2gf5q18qovsum31003a1do9uvjovlsk8jlla2dlffo3pljo.html">first</a></div>
+<div><a class="sub-name" href="91uuji8ubd86l612ma5pvhdr66qa6v8es3hm5a5vlqu2vdrdu1r6i87q5siehaoj23up3b0m5giq8bjc29567c97m4a6qfgk59qfbr0.html">mapLeft</a></div>
+<div><a class="sub-name" href="us8sa266hebce3i9etgc93kn0ufkjo2tjp5s42lone4d6nsm9tjq1ab4jmfqh7gm35lrecfd6ljbvjn6aebktucv2h6oe8oen2asp0o.html">mapPair</a></div>
+<div><a class="sub-name" href="1vju40br8bn5vhl47nm98ajdagajle081f4ga7gmphbarq2srs270ppan9j2h8kht8eu066rgqhtu34lpte7ns6paqchek2jodsa370.html">mapRight</a></div>
+<div><a class="sub-name" href="ueqi8q5hkmfmjjeh3sbp3m5tumt875np6q3fit07gvf3ggn4fmncsjjanu0vp8kbj3oo3pia1p4roj484r507gq43h1kjcv4pig934o.html">pair</a></div>
+<div><a class="sub-name" href="i0gahjg5njmvbpvr588k55qcq7ulknp829dpci4hc57om2kmbj7kng2qd6s3n2pom0k3telf8rcg3rmjhlm6gccol3ju79fsi3f7088.html">second</a></div>
+<div><a class="sub-name" href="base.Tuple.tests.html">tests</a></div></div>
+                <div><pre><code><span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Tuple</span> <span class="DataTypeParams">a</span> <span class="DataTypeParams">b</span><span class="DelimiterChar"> = </span><span class="Constructor">Cons</span> <span class="Var">a</span> <span class="Var">b</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="568rsi7o3ghq8mmbea2sf8msdk20ohasob5s2rvjtqg2lr0vs39l1hm98urrjemsr3vo3fa52pibqu0maluq7g8sfg3h5f5re6vitj8" class="identifier">Unit</h2>
+                
+                <div><pre><code><span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Unit</span><span class="DelimiterChar"> = </span><span class="Constructor">Unit</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.Universal.html">Universal</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.Universal.html#f2c22r2a1sche28mn07brk1j45kp1bam3tr4k2j0un2hi1g7rbrud3f5mes2defqo1tpd9j38pqpg2f0efl3no0ede5ocl2am4bonm0">!=</a></div>
+<div><a class="sub-name" href="base.Universal.html#__builtin__Universal.<"><</a></div>
+<div><a class="sub-name" href="base.Universal.html#__builtin__Universal.<="><=</a></div>
+<div><a class="sub-name" href="base.Universal.html#__builtin__Universal.==">==</a></div>
+<div><a class="sub-name" href="base.Universal.html#__builtin__Universal.>">></a></div>
+<div><a class="sub-name" href="base.Universal.html#__builtin__Universal.>=">>=</a></div>
+<div><a class="sub-name" href="base.Universal.html#__builtin__Universal.compare">compare</a></div>
+<div><a class="sub-name" href="r6i5tj5up593vhcu65ajk5jaupi75of4i79aptrsjckj5e7kv9l4ntt0glrh94h8ocp52f2j9dj99pjvhdnq4t3icnt3d014d3skdp8.html">compareOn</a></div>
+<div><a class="sub-name" href="4k4mvb0me75tnvn6n34d27ri3gmdtu8qbqp7bkuc7k221okcd5kvuo7i1buvvujngeo6bgu8jege29lpee790jrfm23k5e1qtq6brl0.html">max</a></div>
+<div><a class="sub-name" href="lqf41uq6l8kejfaqvrbf9cnn6jshqptbm0iph32fvtm30oe17biptc5p16de25naopfgct2kg4olm27i7filo1s2u3sbvk25e6hquf8.html">min</a></div>
+<div><a class="sub-name" href="5gau0n2sd7lp3s8r69s2rno7iiirt79pa2bhce1tpbuhal1gnsk1m2kmhq5mjhu0tps69rjmdsa23vba43945qavdnobmvevestn4cg.html">ordering</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="k0nog99gjg2ronpsut0s46gir2gfdt98up0gf2brh33uqns1fg9occ3dsgn4uo2ih2ll6488s5hrcnctgkocdtjjth672cat45ec96g" class="identifier"><a class="" href="k0nog99gjg2ronpsut0s46gir2gfdt98up0gf2brh33uqns1fg9occ3dsgn4uo2ih2ll6488s5hrcnctgkocdtjjth672cat45ec96g.html">Void</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="k0nog99gjg2ronpsut0s46gir2gfdt98up0gf2brh33uqns1fg9occ3dsgn4uo2ih2ll6488s5hrcnctgkocdtjjth672cat45ec96g.html#89qk7pg3u97mq08pehtqkopmu2di311p4m59oakif8t9hgopq38arle6qj47nnsqkmn7u4qo7bu4ka4sqnbn9p5r4m814v35uki6ndg">doc</a></div></div>
+                <div><pre><code><span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Void</span><span class="DelimiterChar"> = </span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g" class="identifier"><a class="" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html">Weighted</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#b3tl0p6em4l1l9flulpe7mksfe4egpbp84rfh4iacfriqp01k3p617tr4h32s4i1s9pkd6jgp02vlhtatb6rrgeha2b6j5rbptk3r7o"><|></a></div>
+<div><a class="sub-name" href="0as6o5hhaarh94fd82iurjv0q4j9jfa93ets8j80m1ubdvt4jgh62ra395of6usrp32p2tb2biko0m0pt6dk7h6un1n9pkp55gimgpg.html">append</a></div>
+<div><a class="sub-name" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#u4m79obtc4sqfpev2vvn40v4v6vqhfu8b6gdvqm5o4a87qc1n0rd13gdbiuphc1fqov67p00s0s5f15dg6uv6s5khcka0u99qfb15n8">filter</a></div>
+<div><a class="sub-name" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#os7u0rcml0l2sj1r2mqvlkrcgnaolo3gvedh0vhg75nhn2v7hgl3poss4pdama73l50cqefmqo9o1dccuurf1potidmqbue30428i10">flatMap</a></div>
+<div><a class="sub-name" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#du56jrqcj0rcn22b432og1a630dl5abvbt2hob64hj5jdugcfovlv8k6c3f5brsjg2uo85lf87o1396s00enfh9k6sj789pfgcmcksg">fromList</a></div>
+<div><a class="sub-name" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#c400rlpoldoefm01gvp41mf0bel2ikr9o69fbhd1eravpg5glu5l6t8rcof878ifk4ef7havek2js5rmvr98ivncqftjnjvahelc7vo">ints</a></div>
+<div><a class="sub-name" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#c9prd76r3d6b3bu2qjv6jt8lk4clgl1vo4kdms0ggentgnpcl3hfi3fpp1bci1eu5d1op5bc85mskfarqn7b8gr14m4nt9rvdh6v5q8">lists</a></div>
+<div><a class="sub-name" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#ocr23hems3vhhjja6m7gdvaq0sv7vuicja3jiou2vbnrmh0ing9lj436a5md0vk78rmuh8obbnb2rcn18efjuit9n7dr678a684bk18">map</a></div>
+<div><a class="sub-name" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#3chr2jjsg597hbmldcsg0gsuoijhotq4jdumn9fovmd0sgjg1647ck7fhetmpuvvn9k17f7mnm4rlgs87mnik44o1vdgspeamvmpcb0">mergeWith</a></div>
+<div><a class="sub-name" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#2c2g3fqv6bvq9pueqd4m3jof7nmgfc550s74o0lm1uc8tvvm7b1spljn6bm4vmjucfib3lge71bectsb227nlimjuf48k2g8lk8o76o">nats</a></div>
+<div><a class="sub-name" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#adooae1bql1sd7v28381e1umeo03uldp2a3qn43sjiuioba42l9j0druj0v3j1867vfipc6nov13krs8osvei1hllco7kk9187vrmg8">sample</a></div>
+<div><a class="sub-name" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#e2dsohsu6ra6kgimsi1i32lln9s7e4vc4ua66afag9k8o9vm0omv28ilolsvlju5o5ioq0bm9vfu2o92akk2ddkrekmpk1vudl3vak8">weight</a></div>
+<div><a class="sub-name" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#tbb39c2i34bkepv8r43il0auhnbao55ftft9d18c5fq31f0gk6utf7v6ghnt76h8r8l1eesrsgsac4b0klqpoktofq6m7p2esck5id0">yield</a></div></div>
+                <div><pre><code><span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Weighted</span> <span class="DataTypeParams">a</span><span class="DelimiterChar">
+  = </span><span class="Constructor">Weight</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="DelayForceChar">'</span><a class="Reference" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html">base.Weighted</a> <span class="Var">a</span><span class="DelimiterChar">
+  | </span><span class="Constructor">Yield</span> <span class="Var">a</span> (<a class="Reference" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html">base.Weighted</a> <span class="Var">a</span>)<span class="DelimiterChar">
+  | </span><span class="Constructor">Fail</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="0pspj695ir2ghkecdch5o3s6cs6kmujf24m0b499pu3bgit8p2h5g888iru07ict9fh4frmihqcfpcovujs1aqctdc5boo2mpgqbn18" class="identifier">Year</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Year</span><span class="DelimiterChar"> = </span><span class="Constructor">Year</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="1ok5rh01kfridpsmk9uo8s5dk7vsthihtcnqag15311nfn42vbplodu3mu322t6rr073ih3sid24l69cne2so0mp7r8o7fmcunscor0" class="identifier"><a class="" href="1ok5rh01kfridpsmk9uo8s5dk7vsthihtcnqag15311nfn42vbplodu3mu322t6rr073ih3sid24l69cne2so0mp7r8o7fmcunscor0.html">absurd</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="1ok5rh01kfridpsmk9uo8s5dk7vsthihtcnqag15311nfn42vbplodu3mu322t6rr073ih3sid24l69cne2so0mp7r8o7fmcunscor0.html#llecgkbbng09o1jfi7g14iuullfpjhdj6hqtdra6b91h6i4i5asin7n1k11akfl1emeoe5annktqsgporebvc104hcq4rtv5tdc8mr8">doc</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.absurd</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="k0nog99gjg2ronpsut0s46gir2gfdt98up0gf2brh33uqns1fg9occ3dsgn4uo2ih2ll6488s5hrcnctgkocdtjjth672cat45ec96g.html">base.Void</a> <span class="TypeOperator">-&gt;</span> <span class="Var">a</span>
+<span class="HashQualifier">base.absurd</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span> </code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="d9j8la68k877k42cj042qf95vcfdn66smjht0bcrv6rc0pd5pplbnh3d15ghbeastnshbv3sf89849kvqd9t5qmij4a0pe6ffd93q0g" class="identifier">absurdly</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.absurdly</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="k0nog99gjg2ronpsut0s46gir2gfdt98up0gf2brh33uqns1fg9occ3dsgn4uo2ih2ll6488s5hrcnctgkocdtjjth672cat45ec96g.html">base.Void</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Var">a</span>
+<span class="HashQualifier">base.absurdly</span> <span class="Var">v</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">match </span><span class="DelayForceChar">!</span><span class="Var">v</span><span class="ControlKeyword"> with</span> </code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="cmgcvpc4b2ehsf0bt1tt3u7e821v6n7vs1ehlr1fbvtvuf7u9aoi67n73pvvh84gg4tcodi9h2hl866fsko7tkvbdqpe60hrp2nsl20" class="identifier">andThen</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.andThen</span><span class="TypeAscriptionColon"> :</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">b</span>) <span class="TypeOperator">-&gt;</span> (<span class="Var">b</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">c</span>) <span class="TypeOperator">-&gt;</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">c</span>
+<span class="HashQualifier">base.andThen</span> <span class="Var">f</span> <span class="Var">g</span> <span class="Var">x</span><span class="BindingEquals"> =</span> <span class="Var">g</span> <span class="Parenthesis">(</span><span class="Var">f</span> <span class="Var">x</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="__builtin__bug" class="identifier">bug</h2>
+                
+                <div><pre><code>&lt;builtin&gt;</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="2gc2s853b44gtdv5mik5h0v4ribtv81bl272k5b7ql57fkfmisnq44fdih5q8pe8vmhq0a39ksknjvp16jt32daq99l0ca2sv0hq2q8" class="identifier">const</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.const</span><span class="TypeAscriptionColon"> :</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="Var">b</span> <span class="TypeOperator">-&gt;</span> <span class="Var">a</span>
+<span class="HashQualifier">base.const</span> <span class="Var">a</span> <span class="Var">_</span><span class="BindingEquals"> =</span> <span class="Var">a</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="9773024b8g4b6om60eik5t8vtn8dgjd62vg2r9ulc0ojkh1ep7pdq0vtpj1i77kasl3s4i85o088pfdq9987k9t460gaio1563ob30g" class="identifier"><a class="" href="9773024b8g4b6om60eik5t8vtn8dgjd62vg2r9ulc0ojkh1ep7pdq0vtpj1i77kasl3s4i85o088pfdq9987k9t460gaio1563ob30g.html">force</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="9773024b8g4b6om60eik5t8vtn8dgjd62vg2r9ulc0ojkh1ep7pdq0vtpj1i77kasl3s4i85o088pfdq9987k9t460gaio1563ob30g.html#ctcmhruaril9apeo8v7gp4v0ndnul2e84mgn5k4k8t81gf4dcd31rk28ar87e1e79aju9eqgv24tqoqdtm47jpp07lrs0g2m1bq4fjg">doc</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.force</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Var">a</span>
+<span class="HashQualifier">base.force</span> <span class="Var">op</span><span class="BindingEquals"> =</span> <span class="DelayForceChar">!</span><span class="Var">op</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="59447inof4psi34sq0h37q34ivrmkpahmsq8gh6iiehd6591q0vvv1qmm796gqhe0o4pql7iibou2omifpdttmbih1nj6dngp7fmcsg" class="identifier"><a class="" href="59447inof4psi34sq0h37q34ivrmkpahmsq8gh6iiehd6591q0vvv1qmm796gqhe0o4pql7iibou2omifpdttmbih1nj6dngp7fmcsg.html">forever</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="59447inof4psi34sq0h37q34ivrmkpahmsq8gh6iiehd6591q0vvv1qmm796gqhe0o4pql7iibou2omifpdttmbih1nj6dngp7fmcsg.html#7f19ij76fr3thenatoilrl5iej5p7mamotc6c4tcnllb2172uh7oe4ehi7hiv4pu4ji7qp6bqpnjbu36hasppa168geet8jnmdl370o">doc</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.forever</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Var">b</span>
+<span class="HashQualifier">base.forever</span> <span class="Var">op</span><span class="BindingEquals"> =</span>
+  <span class="DelayForceChar">!</span><span class="Var">op</span>
+  <a class="Reference" href="59447inof4psi34sq0h37q34ivrmkpahmsq8gh6iiehd6591q0vvv1qmm796gqhe0o4pql7iibou2omifpdttmbih1nj6dngp7fmcsg.html">base.forever</a> <span class="Var">op</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="uqklbksj1467b3bpbo4gmrrep357i9p1v87dqdi7omro32dlv5igggsv3740d1dfgmld02pdbuoudop9ub714dof98o5051fqnvf5so" class="identifier"><a class="" href="uqklbksj1467b3bpbo4gmrrep357i9p1v87dqdi7omro32dlv5igggsv3740d1dfgmld02pdbuoudop9ub714dof98o5051fqnvf5so.html">forever'</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="uqklbksj1467b3bpbo4gmrrep357i9p1v87dqdi7omro32dlv5igggsv3740d1dfgmld02pdbuoudop9ub714dof98o5051fqnvf5so.html#b40o388s6ih60oa5139qp1av6l6bt3fr58c77sd3e0kc676adks2iri3fff0afc20bn2dtj6mnaq2r8rm2mj0eaqdmlm6nkj0fbgqqg">doc</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.forever'</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">b</span>
+<span class="HashQualifier">base.forever'</span> <span class="Var">a</span><span class="BindingEquals"> =</span> <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><a class="Reference" href="59447inof4psi34sq0h37q34ivrmkpahmsq8gh6iiehd6591q0vvv1qmm796gqhe0o4pql7iibou2omifpdttmbih1nj6dngp7fmcsg.html">base.forever</a> <span class="Var">a</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="a6au3g84b4cb49ovlvg40m4irr5c3eat8g5ir9vhl259l2uor5ctrb9spaepndpnngbof6dqkj6hmeafagmtpcvka78739pso472uig" class="identifier">id</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.id</span><span class="TypeAscriptionColon"> :</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="Var">a</span>
+<span class="HashQualifier">base.id</span> <span class="Var">a</span><span class="BindingEquals"> =</span> <span class="Var">a</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="psvidjdta7vs2g0osgk0j5oj5luu6id4vqr80kuursjuok7d9gvks8m0etg9ji7dcq9ap1s6c78je48311pc749d7pmi0k4f83ll3t0" class="identifier"><a class="" href="psvidjdta7vs2g0osgk0j5oj5luu6id4vqr80kuursjuok7d9gvks8m0etg9ji7dcq9ap1s6c78je48311pc749d7pmi0k4f83ll3t0.html">ignore</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="psvidjdta7vs2g0osgk0j5oj5luu6id4vqr80kuursjuok7d9gvks8m0etg9ji7dcq9ap1s6c78je48311pc749d7pmi0k4f83ll3t0.html#vt1m1mvupkvr53kfdpkuh4th3quoau2pnb7p4jn108hiv0q2dh2tmnik5saatt9fpi4fjq6vgvlp71l486eh8svksq9l72t97hir8t8">doc</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.ignore</span><span class="TypeAscriptionColon"> :</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.ignore</span> <span class="Var">_</span><span class="BindingEquals"> =</span> <span class="Parenthesis">(</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.io.html">io</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.io.html#u934c4e54dhbspa8mvrge30gt630anj09jrtaldtkm7okqte95a6tdhu38heog6c8oqss0jcch4jgn4rptnjvoq69sikd3rcs6lvai8">BufferMode</a></div>
+<div><a class="sub-name" href="base.io.html#kg74r0md7j6ij8mnmh77o7t49n0pican7qe2ami1buhtlqcj9dnm3o3ho42nr1bhor8kb4skmt48mlit8ofp9fc01370jiursf540t0">EpochTime</a></div>
+<div><a class="sub-name" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">Error</a></div>
+<div><a class="sub-name" href="base.io.html#f29o6fujg81a242j4trpq0l1jeq3o7afggrnm99b7g65kgkfod56rpk3dv65h4vnshol04far7ti07dhq2l1f549hm8kk4i7k9l5tl0">ErrorDescription</a></div>
+<div><a class="sub-name" href="base.io.html#9b9i9o1ms422jvrr0cfcf50t1jt014tjnp12pnvku1q874q0p6gu516jjm9rj6269u1vsipdll0ve2hkt5jfd4jg3j2m1l7hc58u5rg">ErrorLocation</a></div>
+<div><a class="sub-name" href="base.io.html#ks5ii1paqn8gcal86j8fnivedqqag9dta6rmggrms24dtt4hlsafqdmkkq603fo4i3g4p1vjnppivr46h2uoenk7rh19jvoans7ibd0">ErrorType</a></div>
+<div><a class="sub-name" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">FilePath</a></div>
+<div><a class="sub-name" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">Handle</a></div>
+<div><a class="sub-name" href="base.io.html#4a63ca3c83b889p9m6uphj11tb2st7m0341oinav6jfdb1nfmmfvg9f6n8dgmnid0g995ujb2e6gn1scejco2f7j7fulv5e5nu8ra7g">HostName</a></div>
+<div><a class="sub-name" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">IO</a></div>
+<div><a class="sub-name" href="base.io.html#drqrm3fo7q6ljc36mmhjf3cqteod1q9prchdb1jblpo6dito5m495kqc5592k9ilvsin6348kebspqtdh1c303ne5gd29de1a91o61o">Mode</a></div>
+<div><a class="sub-name" href="base.io.html#ep1qo0ujpuu501tqra77gq1vjmgqjfijig63bjcd4jrf22nuca3hmcu0b49m0bnmd1aurai7rm6e9tvorutd5geg9kehnaufe0dr5hg">SeekMode</a></div>
+<div><a class="sub-name" href="base.io.html#9giu4jv4864091hr03v5ji9ffh3i1qdg26v5n442qkjrek9gl2lt7asqphtq3gc43h5m9a0ehiar428rgeovvu1habrc8mnqapul1lo">ServiceName</a></div>
+<div><a class="sub-name" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">Socket</a></div>
+<div><a class="sub-name" href="base.io.html#jbn673ovtd9pa9108b71pbedh4mnvd1m08in36jslkecjl7cgf7lf46s4vclcmubsqqtqjj4gnn6mppbbgnrbfodvdfkgal5ivltlm8">ThreadId</a></div>
+<div><a class="sub-name" href="base.io.html#s6fpks1kj4ulsg83l8ih7hr7ab1k21jh2qkmu2rk47opc7lek2u7pcmqt8e3cb7e3jn6kilfrnboesainafou1fia4ve5j51suc9bc8">accept</a></div>
+<div><a class="sub-name" href="base.io.html#2a8l66l6e5dtk9961srg4m5hf1osl62d7jvmv9psnf8eqbsmvg85r7k7trahmfmh83dpp3jhg42nnfssb9rgm6i9t251ki6bo6q08s0">bracket</a></div>
+<div><a class="sub-name" href="base.io.html#sb97alikfa50nqkcd8l5qtoi28i0v4l50cmf342bsclq3hjjktgr4h61cg7l9ethpm1eeg82ba5r7b839rect0dqpc1u1o43b0bi2d0">clientSocket</a></div>
+<div><a class="sub-name" href="base.io.html#rn0onmpfcpl1gtp05filg8dlvq2al1qcafdj4vgk8vf706evrajk5hhjtg5nnbeldvft5l2eppunceohq156fj3bf8k1vbq04u7o7jo">closeFile</a></div>
+<div><a class="sub-name" href="base.io.html#sndvcmaeqakn1jakusaho0n6nhue7vmarjti9c4ouufqr2g7s5r43937pcn1irongrub0uajo5huvjltr8egl56gq6h24uk6k04p9u0">closeSocket</a></div>
+<div><a class="sub-name" href="base.io.html#11l799s1o1r5bs47rrbrjngqkun1r5o4plffdlblvedbqbfe966ubllbfv53kn5cpgsinjogd873iuiaaoeun5liqt9vp9t6jkdlhm0">createDirectory</a></div>
+<div><a class="sub-name" href="3rmlr7b9qs7vaept8ae43ugtu2b7h2v3bchgcpv9jftvlbqejcev6qs5rvk51smvqucm7o9g09qiqel5sfogetb2inmp20pd5ukh198.html">delay</a></div>
+<div><a class="sub-name" href="base.io.html#blrpud5hsj3dpvi5nf322jhn2loq3cgd0lhoviesabntj1s5tf1vqnmb73idqhnkf46ng4e9emks03e1kb5e07cqqflusda841b1dq8">directoryContents</a></div>
+<div><a class="sub-name" href="base.io.html#chjnfasrv0sclgb0paok89ef6h4usul0ab7b6qcpnhbqiad6c2vm76rt0fbnj5sime89k8l1r2itfeng87oqrrj3lvuqgdjc2vh199o">fileExists</a></div>
+<div><a class="sub-name" href="base.io.html#q9hu0sbh6o0mg2g5nholc4cnsr08fp9r4hipqp9us5iulav5bvbkf3apcoe95mtupeqoak0id93r2aag2agjcle9jtc7b8vv3dku7no">fork</a></div>
+<div><a class="sub-name" href="base.io.html#fpv86hl6b1c39jn2jgkjuv5rl0rq8jtd6obu0i209mjfcvklrip933ifitcu1iqp0892plt4ahanqmf5bqeggn7nthadn5l2p5otjdg">getBuffering</a></div>
+<div><a class="sub-name" href="base.io.html#8p5h38v9ka552jobiuegeut1urfd6mmb9ue3n5a0djb1l9pqog53nu6p2bhpb78nklkbuq9v91nvvgrit2u89uo4h61vo8ictb1m7dg">getCurrentDirectory</a></div>
+<div><a class="sub-name" href="base.io.html#nguiq4obnqodjlegi02j01v1vne4b30rvcit041nkjkfn3fh055vg9vbedqmoir52ci07og87uofhp3s4fu1f46qkuiuaf0i5mofncg">getFileSize</a></div>
+<div><a class="sub-name" href="base.io.html#i1vpaec80l9nhthu1mdhh2us2ttuffjlebf46t759lrilor4of77c5bcjp2nadsbtdrmg1s7jnr44toq9hfff8ef3o88s0966v3k8n0">getFileTimestamp</a></div>
+<div><a class="sub-name" href="base.io.html#293bqh2tirdq3bve6nh7puubfhj6vbn8q9uhsq0t7em0ugsr3qkohfv9fgsp3638q089fr27q39ko9mq2j1megef59iutrdqb21b0to">getLine</a></div>
+<div><a class="sub-name" href="base.io.html#gv0hkukek9kf1spsuba57h44jheqgkieq2sr3tc23u0h2d638s636a9947nkftc7rog0lacp9e9k55odvaj054ro00pc4o513n3rnsg">getTemporaryDirectory</a></div>
+<div><a class="sub-name" href="base.io.html#l66s5tdqpar79d8a173h127lcq0g4krnctsu94mm3m2v7dme4vvi3abq1ft5vqa74rv9q0o6ejjea0mp31si1e5nvq9j44nbrkac10o">getText</a></div>
+<div><a class="sub-name" href="base.io.html#jchq8li2n43ft8llqehb650c8duqrc78r401b2s02vu2vbcj9gs48oo68um6tkhv63eu8e0obccdbjsvbgu0coqri6nfq3nd7alhuro">isDirectory</a></div>
+<div><a class="sub-name" href="base.io.html#3v4omd6pspmf2596vibldudn2aiscvp2rvpo0a4u2r69cdi4qdj6j1rpda4stm13h9pu06htdddbdjjh9r6vkmj8j5hon7101jhq4e0">isFileEOF</a></div>
+<div><a class="sub-name" href="base.io.html#chhm2k85t3793mql1broqgqvvrgu1q4g6h4t30gpb2mu97k8si4cqac2vs837av3bgsf5n0ahdcsecracab0r2uveregcf3p4r4md98">isFileOpen</a></div>
+<div><a class="sub-name" href="base.io.html#u8tecclu1h4km9ek31i9u7jiat7epkcqfbqo2e30vedqiok64qoglbo9lr3qsofkvhrlnj9gha3esa96l5oerat32cb9l4f5tp47fng">isSeekable</a></div>
+<div><a class="sub-name" href="base.io.html#sgolenatisgavtfi478ebcmvald8mhfetfmcsgmcl9uhleu7u9m6u9ra3kd8f00oq524icu3ehae2ptgfh7bsllfvlqlin3ihb5ib80">kill</a></div>
+<div><a class="sub-name" href="base.io.html#svkh3mpbb92nvebhrk5et81e5dv7l2pu6p0hc2gbqi9mtd15qvko771nj1roncp7u8ivi090q5l045qqibd4h9bctg9qukmrf9to6gg">listen</a></div>
+<div><a class="sub-name" href="base.io.html#21fc70s2sun00ledska1gbkr8a6e0uf9ul1on8iogi5tai71tftsagqbkpug2q0k8re5tme45l8gkkdlhnceaffjmg7t8pps6tb6ckg">openFile</a></div>
+<div><a class="sub-name" href="base.io.html#8j1pafn62borh6pou4c1a0m11kqj1jn2rqe2gjr2bfeeuar1gt2cn50nmi1h741ql1014hssvve9gs8aghe836qi8bfflgdmdlhbiqo">position</a></div>
+<div><a class="sub-name" href="base.io.html#ssbdakrj0hbr2rpno34bj8i64mokaaoc5rdj7sil5c87qrqeamf2996qrg0gc1thhamd4bbc40l991d7vgd35qekh5hsoiqkpccvk50">printLine</a></div>
+<div><a class="sub-name" href="base.io.html#usjgb68ojte81tje2msm1s0t1p8advuocspasdi2l5cs3nc05vgt19pgoi7d3se228u50o5fjmbi3gvnugsgni77ptd4kh3nl39p5ho">putText</a></div>
+<div><a class="sub-name" href="base.io.html#fss4ukj8md987tj1k2cv5osmpg4n5c0ridoavh5qokqul1141h7hkrg2vspsfa3el74fdl424rhi0rl55nh4fo2pk3mi7fho3hgrieg">readLine</a></div>
+<div><a class="sub-name" href="base.io.html#ka3k1bcfmh1lj6b3a351tp9nnjdj714i6m9b82k730t22j4kgqt095mrkc9ksu0sm4f4qk4bscphkehlj8qodneberm468pf5ims14g">receive</a></div>
+<div><a class="sub-name" href="base.io.html#4s3a801c8hlka1rsr2sb79qcfr8ode3ld397bse80oq94qqjcnuvhm8llkej7t4lrbddnkuadb9lhsim1fa8v35bn5ldrj2o2cu1edo">removeDirectory</a></div>
+<div><a class="sub-name" href="base.io.html#2v69r3mpn51h9fo0ahe4sgu9f50usd2jj9hg18fh4je49eg9k48rppg60o6c17le2r5k640q5llr1tq7cl3r205ijj07j0gs8flsvs8">removeFile</a></div>
+<div><a class="sub-name" href="base.io.html#tb99v1l9vqfqqsnu8a37v3ceg1b67kenjtiusk54cvdkvlf0lc5227b7ja8ru38qdms5hs2mfgo1u2f2fl4fr1cu5q8utjjvrb8021o">renameDirectory</a></div>
+<div><a class="sub-name" href="base.io.html#0vjv37iqunnu4tvi3jiu3mees01le0278qs0sgmbgisoil83991351tgcqei5ke9flelqocsbh7n18t0n2s1ijorde2l3ol22327mv8">renameFile</a></div>
+<div><a class="sub-name" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">rethrow</a></div>
+<div><a class="sub-name" href="base.io.html#k45ikh5eqsas7unmcaui7vvi32cmv2k8lj4ebtf0684tg2n4rv85uc8gbc6a1s3o214f2duj0p40qta8ner72jeeq7iru5hbmtfemng">seek</a></div>
+<div><a class="sub-name" href="base.io.html#2hvi11d9q25a3disvhuuq6sdm1puekf4dncihb08dkdjtcmncjj1ovgf87fmnr5t21b9dhld2jnvm60r45cvhid339iqhuvgatfk1m0">send</a></div>
+<div><a class="sub-name" href="base.io.html#nkrrcefnvpr0i0lc66mrknd2rgurqjl4s7hqdlasac8pu2dqrdo4i2r6a9knp5nf148tr7bh1uml8n4r2etv3p8lv12hunkddpstq58">serverSocket</a></div>
+<div><a class="sub-name" href="base.io.html#lblh8c9q8n9rfs91feqlsl7dqimvcusm04aald14dc37i64eu78i1okfgn5qoffa7vhehnu8ct9bimifdaljjagam1fkejvj0u11c8o">setBuffering</a></div>
+<div><a class="sub-name" href="base.io.html#aviabg53r9s536te8ii7e8upribu61l6p2df19ae628oe5dp5gr2401ir28nb7cof36qk3bjql0luscb0dki6n9990sf7769ib0ne58">setCurrentDirectory</a></div>
+<div><a class="sub-name" href="base.io.html#h9aum4t6b5fuapvvl9g6rtdp56ki2pduflkc4j3s5i6agb3f4dl8ki3rlqlc8v0jo3uoct1thps1hse3iqa08s7257qlkjkactcmauo">stderr</a></div>
+<div><a class="sub-name" href="base.io.html#guan2g5fkio6mjpvkl1f4tsu05psuas54t8li2uhpgmh3pk7qd65128cj7p11b69knigo401poqjc4eo0983lf7v2pj3qs2310inem0">stdin</a></div>
+<div><a class="sub-name" href="base.io.html#7plc1gmlvn6ti9lpq4ufa4uvdal6elieppmcgvr0d0scsk9e3edakgnk09covbel3hjcjlsi7rmn8auhi935fo9iibed7krpfr337fo">stdout</a></div>
+<div><a class="sub-name" href="base.io.html#1tdqrgl90qnmqvrff0j76kg2rnajq7n8j54e9cbk4p8pdi41q343bnh8h2rv6nadhlin8teg8371d445pvo0as7j2sav8k401d2s3no">systemTime</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.metadata.html">metadata</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.metadata.authors.html">authors</a></div>
+<div><a class="sub-name" href="base.metadata.copyrightHolders.html">copyrightHolders</a></div>
+<div><a class="sub-name" href="base.metadata.html#uqdd5t2fgn50t7f7s8n60k7qqp6s9uqce93uhtuam0i0bks0o9pdt8p6cj4qrbusq15vkqvfq8dooecmclp3r7s2k7krthk9etotqe8">isPropagated</a></div>
+<div><a class="sub-name" href="base.metadata.html#krhcbbspn6s4ad6bfmn4gnc0s24ddh74j1j98gtkk4tdd65r065bm0g0oid2njrevnvgoi1jthrcfof7j0t2pd3jl5f2767t3tpfcm0">isTest</a></div>
+<div><a class="sub-name" href="base.metadata.licenseTypes.html">licenseTypes</a></div>
+<div><a class="sub-name" href="base.metadata.licenses.html">licenses</a></div>
+<div><a class="sub-name" href="base.metadata.unassignedGuids.html">unassignedGuids</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.prs.html">prs</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.prs.pr1.html">pr1</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="fui79mou2a3a1dn48f2fmcttsu8jua0aa4r2r94mvea9pnq71utjosapcb9ifubc3t020uol9eqrb6ladf0si3ghbpgptd4tqbuv0lo" class="identifier"><a class="" href="fui79mou2a3a1dn48f2fmcttsu8jua0aa4r2r94mvea9pnq71utjosapcb9ifubc3t020uol9eqrb6ladf0si3ghbpgptd4tqbuv0lo.html">repeat</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="fui79mou2a3a1dn48f2fmcttsu8jua0aa4r2r94mvea9pnq71utjosapcb9ifubc3t020uol9eqrb6ladf0si3ghbpgptd4tqbuv0lo.html#98qi81nsnko5qknici0ucl9aucgqqptb5ftprgmt1fce7su7s0imne2l4orus8vbuom9vv32ju4iq9mr055q09dqtqmbobe4aetucog">doc</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.repeat</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="TypeOperator">-&gt;</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.repeat</span> <span class="Var">n</span> <span class="Var">op</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Universal</span> <span class="UseSuffix">==</span>
+  <span class="ControlKeyword">if </span><span class="Var">n</span> <a class="Reference" href="base.Universal.html#__builtin__Universal.==">==</a> <span class="NumericLiteral">0</span><span class="ControlKeyword"> then</span> <span class="Parenthesis">(</span><span class="Parenthesis">)</span>
+  <span class="ControlKeyword">else</span>
+    <span class="DelayForceChar">!</span><span class="Var">op</span>
+    <a class="Reference" href="fui79mou2a3a1dn48f2fmcttsu8jua0aa4r2r94mvea9pnq71utjosapcb9ifubc3t020uol9eqrb6ladf0si3ghbpgptd4tqbuv0lo.html">base.repeat</a> <span class="Parenthesis">(</span><a class="Reference" href="__builtin__Nat.html#__builtin__Nat.drop">base.Nat.drop</a> <span class="Var">n</span> <span class="NumericLiteral">1</span><span class="Parenthesis">)</span> <span class="Var">op</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.test.html">test</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.test.html#fhc9hqfrec4adnot05s8mt7qbtpulmphmtd921s7gvqmukicimlkr0grssc9lfkag3hn32vcvbu9g3kfik0b5927e28g3t525aoa0q8">===</a></div>
+<div><a class="sub-name" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">Gen</a></div>
+<div><a class="sub-name" href="base.test.html#2qaa5n4j23fn1i7tvrmje38rea52rgfn79sjqfgalgpnjvtv7tiqu63o8fsk7dnkf0mtq4c58uf3qujbtrsd4p4futs3th6fird0q2g">Test</a></div>
+<div><a class="sub-name" href="l2imacom2canlcs9huda6uglde3n5ceanffcl33gvtubhs1pc9hpqns6tami0ucj3ivpf7al079b4rgavk5rm3gqfsbn0v209reql00.html">assert</a></div>
+<div><a class="sub-name" href="base.test.assertEquals.html">assertEquals</a></div>
+<div><a class="sub-name" href="base.test.html#2m72ni796d73oo9ep4v5poj0o4gjb4ggnol77scanvnq87q9b177i58sofu64v3skle2ask9mh205tmj3io4khrsgj2ii3jiho2u8d8">both</a></div>
+<div><a class="sub-name" href="base.test.html#vdjmi41b9nhc7eqkvjsh11sicvsl29kgoiieq05q0882fknjk22gb02fi9lb70rsr5kmojsvq5o933irp2e9u7i865fea7u186vurjg">cost</a></div>
+<div><a class="sub-name" href="base.test.html#nj9rmubquomi3cu3k97vaceq39e9fckcduffaqjod8eij0jgfvc5c8195daejs7mkm6ltmntp0ql6q4oh8mqrb0jngqu5rf2ace0ne0">expect</a></div>
+<div><a class="sub-name" href="base.test.html#0ahilqdnn5sdbf67u21p9b07m99ei7konm7i8n9lrc6ps2bmbjdbofhsitcavt8223ghpd11gjr4rd6hfub2vvfamvq0e6n0kf9hpjg">fail</a></div>
+<div><a class="sub-name" href="base.test.html#8ef1in8tfha35cm529b7sbe0hrqs505cnpmffikfp6maara0eutm3hdbj83e28f0s9rpj4ktlhchc0r8m75dk08au49ga0gu1fook5g">failWith</a></div>
+<div><a class="sub-name" href="base.test.gen.html">gen</a></div>
+<div><a class="sub-name" href="base.test.internals.html">internals</a></div>
+<div><a class="sub-name" href="base.test.laws.html">laws</a></div>
+<div><a class="sub-name" href="base.test.html#cjat6fhleaihhsbj7qe45bm91f74gcqotb9up28ro1c7nthfte9pr76r5dp8di283qddp0vrai4aru0js3or4tbf55qvmsrh1uq7p5g">pick</a></div>
+<div><a class="sub-name" href="base.test.html#o9un9dmq9e3a3e6gbts03g1cg6v900qg232t8jguimc88l9bbirk1rm81d9vd65rog6bn30i5keq7oqj23h30ltu6eptngtrf38rfq8">runs</a></div>
+<div><a class="sub-name" href="base.test.html#982pucutl3bhenjuqu7g2699idflutd7m2fg2teh9t7b4pe0lp091ucnofihkhpdl5qv72u24m79822o7qvnhvvpf3kb4on9291sif0">sample</a></div>
+<div><a class="sub-name" href="base.test.html#9uanthfolqs4659ih7n61hu3pvuqu8o2q9gv1k01vbt9ssa187v4qtm4ha3i6frb7414tb787f1jo0ao2i565nut5jefii15hc99seo">tests</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="__builtin__todo" class="identifier">todo</h2>
+                
+                <div><pre><code>&lt;builtin&gt;</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="hog38jts7gp5c1815it8sgdiuv1be7bfmd9jutdggrd8qg0g1fimrbshov3q6kdmnvh5dstvv4od20ig8n4qa0a2cfsj7hnfnfmhjj8" class="identifier"><a class="" href="hog38jts7gp5c1815it8sgdiuv1be7bfmd9jutdggrd8qg0g1fimrbshov3q6kdmnvh5dstvv4od20ig8n4qa0a2cfsj7hnfnfmhjj8.html">until</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="hog38jts7gp5c1815it8sgdiuv1be7bfmd9jutdggrd8qg0g1fimrbshov3q6kdmnvh5dstvv4od20ig8n4qa0a2cfsj7hnfnfmhjj8.html#qpbuhu9cn1r98a2q5oqd7kquhq5qn6592ub6ur9flk28bdmgo4kgkh408tv9p123oe0aicu807bmgpgc9pl7dsjr8npa0h2h8qcapf8">doc</a></div>
+<div><a class="sub-name" href="hog38jts7gp5c1815it8sgdiuv1be7bfmd9jutdggrd8qg0g1fimrbshov3q6kdmnvh5dstvv4od20ig8n4qa0a2cfsj7hnfnfmhjj8.html#ml0ms9fcbkqjnbgrlqr5jr96r3r6hhqrf5aojhpq22rv17tk4f9t1gpqmr9c02l3nns0qhgviru3omd0fauv075e4npcpjk6s8d3bog">test</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.until</span><span class="TypeAscriptionColon"> :</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>) <span class="TypeOperator">-&gt;</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Var">a</span>
+<span class="HashQualifier">base.until</span> <span class="Var">pred</span> <span class="Var">op</span><span class="BindingEquals"> =</span>
+  <span class="HashQualifier">r</span><span class="BindingEquals"> =</span> <span class="DelayForceChar">!</span><span class="Var">op</span>
+  <span class="ControlKeyword">if</span> <span class="Var">pred</span> <span class="Var">r</span><span class="ControlKeyword"> then</span> <span class="Var">r</span> <span class="ControlKeyword">else</span> <a class="Reference" href="hog38jts7gp5c1815it8sgdiuv1be7bfmd9jutdggrd8qg0g1fimrbshov3q6kdmnvh5dstvv4od20ig8n4qa0a2cfsj7hnfnfmhjj8.html">base.until</a> <span class="Var">pred</span> <span class="Var">op</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="kjcetud5nd10sid644j6d1ek6m96napu2miea5let9v4587bvkpgg617ngm0l8rcj4cqn63avu3hlt2gph3d05hlkp0a91kg4hh1r5o" class="identifier"><a class="" href="kjcetud5nd10sid644j6d1ek6m96napu2miea5let9v4587bvkpgg617ngm0l8rcj4cqn63avu3hlt2gph3d05hlkp0a91kg4hh1r5o.html">while</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="kjcetud5nd10sid644j6d1ek6m96napu2miea5let9v4587bvkpgg617ngm0l8rcj4cqn63avu3hlt2gph3d05hlkp0a91kg4hh1r5o.html#nc6osk499n4pvrigotp3op553roe3j1gtp5ukc1mbis871h4cfjnoc58pc8ohcke01fs9ao5qlrf0dkvhclrcfkgelgntkqmg897edg">doc</a></div>
+<div><a class="sub-name" href="kjcetud5nd10sid644j6d1ek6m96napu2miea5let9v4587bvkpgg617ngm0l8rcj4cqn63avu3hlt2gph3d05hlkp0a91kg4hh1r5o.html#6irjr8uh3dovcc95ligk93p7us6oh82vuq4p1m655qbpb328ntnq6grtpbgmk7mnpvla1kop79sak7k53c5p1v2nht0dlrc214jmid8">test</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.while</span><span class="TypeAscriptionColon"> :</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>) <span class="TypeOperator">-&gt;</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Var">a</span>
+<span class="HashQualifier">base.while</span> <span class="Var">pred</span> <span class="Var">op</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span> <span class="UseSuffix">.</span>
+  <a class="Reference" href="hog38jts7gp5c1815it8sgdiuv1be7bfmd9jutdggrd8qg0g1fimrbshov3q6kdmnvh5dstvv4od20ig8n4qa0a2cfsj7hnfnfmhjj8.html">base.until</a> <span class="Parenthesis">(</span><a class="Reference" href="__builtin__Boolean.html#__builtin__Boolean.not">base.Boolean.not</a> <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <span class="Var">pred</span><span class="Parenthesis">)</span> <span class="Var">op</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="cl34qtqcm0rqi571el9sbgtfs9m7dn3iqbogm9be1j2ieht73u2hbr6km9r0c4ahm2u9s8ebdcgk9hbm50orb5stqq2aou6vmb78pg0" class="identifier">|></h2>
+                
+                <div><pre><code><span class="Parenthesis">(</span><span class="HashQualifier">base.|&gt;</span><span class="Parenthesis">)</span><span class="TypeAscriptionColon"> :</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">b</span>) <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">b</span>
+<span class="Var">a</span> <span class="HashQualifier">base.|&gt;</span> <span class="Var">f</span><span class="BindingEquals"> =</span> <span class="Var">f</span> <span class="Var">a</span></code></pre></div>
+            </div>
+            
+    
+</body>

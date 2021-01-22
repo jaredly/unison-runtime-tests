@@ -1,0 +1,309 @@
+<!doctype html>
+<head>
+    <meta charset=utf8>
+    <title>base.test.gen</title>
+    <style>
+ body {
+     max-width: 800px;
+     margin: 0 auto;
+     font-size: 16px;
+     font-family: 'Inter', sans-serif;
+ }
+
+ p {
+   font-weight: 200;
+ }
+
+ h1 {
+   font-size: 3em;
+   line-height: 1;
+   margin-bottom: 8px;
+ }
+
+ h1.identifier, h2.identifier {
+   font-weight: 500;
+ }
+
+.un-site-nav__logo {
+  display: inline-block;
+  width: 100px;
+  height: 100%;
+  fill: currentColor;
+}
+
+ h1 a, h2 a {
+   color: #520066;
+   color: #8f228f;
+   text-decoration: none;
+ }
+
+ code, .code, .identifier, .sub-name {
+    font-family: 'Fira Code', monospace;
+ }
+
+ .breadcrumb {
+     font-size: 80%;
+     padding-left: 4px;
+     margin-bottom: 2em;
+ }
+
+ .breadcrumb .item {
+ }
+
+ .docs {
+     line-height: 1.5;
+ }
+  
+ pre {
+     padding: 10px 20px;
+     box-shadow: 0 0 2px;
+     border-radius: 3px;
+ }
+
+ p > code {
+    background-color: #fafafa;
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 0 0 2px inset #aaa;
+}
+  
+ .sub-name {
+     display: inline-block;
+     padding: 4px 8px;
+     margin-right: 8px;
+     margin-bottom: 8px;
+     border-radius: 5px;
+     background-color: #ddd;
+     font-size: 80%;
+     font-weight: 200;
+ }
+ a.sub-name {
+     text-decoration: none;
+     color: black;
+ }
+ .children {
+   display: flex; flex-direction: row; flex-wrap: wrap;
+ }
+  
+ .Constructor {
+     color: #ce8500
+ }
+ .DataTypeKeyword {
+     font-weight: bold;
+ }
+ .Var {
+     color: #00a;
+ }
+ .NumericLiteral, .TextLiteral, .CharLiteral, .BooleanLiteral {
+     color: green;
+ }
+  
+   .ControlKeyword      { font-weight: bold }
+   .AbilityBraces       ,
+   .LinkKeyword         ,
+   .TypeOperator        ,
+   .UseKeyword          ,
+   .UsePrefix           ,
+   .UseSuffix           ,
+   .HashQualifier      { color: #777 }
+   .DelayForceChar      { color: #adad00; }
+   .TypeAscriptionColon { color: blue }
+   .DocDelimiter        { color: green }
+   .DocKeyword          { font-weight: bold }
+</style>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    
+    <div style='display:flex;justify-content: space-between;padding: 16px;align-items:center'>
+      <a href="index.html">Home</a>
+      <a href="https://www.unisonweb.org/" style="display:block" target="_blank" nofollow noreferrer>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2989.27 1031.5" class="un-site-nav__logo"><title>logo-unison</title><path d="M1240.54 397.11c0-17.07 14.53-31.61 32.24-31.61 18.33 0 32.87 14.54 32.87 31.61v134c0 20.86 2.53 34.77 9.48 47.41 10.11 18.33 30.34 31 62.58 31s52.47-12.65 62.59-31c7-12.64 10.11-26.55 10.11-47.41v-134a32.24 32.24 0 0164.48 0v139.07c0 36.66-7.59 62-22.76 82.81-22.76 30.34-62.58 46.15-114.42 46.15-51.2 0-91.66-15.81-113.78-46.15-15.81-20.86-23.39-46.15-23.39-82.81V397.11zm351.27 0c0-17.7 14.54-31.61 32.24-31.61 18.33 0 32.24 13.91 32.24 31.61v12.64c20.86-29.08 53.73-44.25 93.56-44.25 32.86 0 62.58 8.22 83.44 27.18 21.49 19 33.5 49.94 33.5 93.56v147.29c0 17.7-15.17 31.61-32.24 31.61-18.33 0-32.87-13.91-32.87-31.61V502c0-25.92-3.79-49.3-18.33-64.47-10.12-10.12-24.66-16.44-46.15-16.44-29.08 0-51.83 13.27-65.74 37.93-10.74 19.59-15.17 43.62-15.17 67v107.51c0 17.7-15.18 31.61-32.24 31.61-17.7 0-32.24-13.91-32.24-31.61V397.11zm386.75-31.61a31.84 31.84 0 0132.24 31.61v236.42c0 17.7-15.17 31.61-32.24 31.61-18.33 0-32.24-13.91-32.24-31.61V397.11a31.84 31.84 0 0132.24-31.61zm285.84 65.74c-20.22 0-38.56-12.64-68.27-12.64-27.18 0-44.88 8.22-44.88 27.18 0 16.44 12.64 25.29 29.71 32.87 19.59 8.22 44.25 15.18 63.85 24.66 37.29 18.33 51.83 40.46 51.83 73.32 0 52.47-43.62 88.51-112.52 88.51-41.72 0-107.46-9.49-107.46-48a25.37 25.37 0 0125.28-25.28c23.39 0 33.5 22.75 77.76 22.75 29.08 0 48.67-10.11 48.67-32.24 0-19-13.9-27.81-32.87-36.66-17.7-8.22-43.62-14.54-65.11-24.65-31-14.54-47.41-37.93-47.41-74 0-50.57 39.19-81.55 109.36-81.55 50.57 0 97.35 10.11 97.35 39.82 0 14.58-11.38 26-25.29 26zm122.6-24c27.81-25.92 66.38-41.72 109.36-41.72 42.36 0 81.55 15.8 109.36 41.72 27.82 26.55 44.25 63.85 44.25 108.1 0 44.88-15.8 82.81-44.25 108.73-27.18 25.91-67 41.09-109.36 41.09-43 0-82.18-15.18-109.36-41.09-28.45-25.92-44.88-63.85-44.88-108.73 0-44.25 17.1-81.55 44.88-108.1zM2431.25 583c15.8 17.07 38.56 27.81 65.11 27.81a87.15 87.15 0 0064.48-27.81c15.8-17.71 25.28-40.46 25.28-67.64s-9.48-49.94-25.28-67.64a87.16 87.16 0 00-64.48-27.82c-26.55 0-49.31 10.75-65.11 27.82-15.8 17.7-24.65 40.46-24.65 67.64s8.89 49.93 24.69 67.64zm283-185.85c0-17.7 14.54-31.61 32.24-31.61 18.34 0 32.24 13.91 32.24 31.61v12.64c20.86-29.08 53.74-44.25 93.56-44.25 32.87 0 62.58 8.22 83.45 27.18 21.48 19 33.5 49.94 33.5 93.56v147.25c0 17.7-15.17 31.61-32.24 31.61-18.33 0-32.87-13.91-32.87-31.61V502c0-25.92-3.79-49.3-18.34-64.47-10.11-10.12-24.65-16.44-46.14-16.44-29.08 0-51.84 13.27-65.75 37.93-10.74 19.59-15.17 43.62-15.17 67v107.51c0 17.7-15.17 31.61-32.24 31.61-17.7 0-32.24-13.91-32.24-31.61V397.11zm-715.2-183.37a31 31 0 100 43.8 31 31 0 00.03-43.84zM887.36 286.16a27.21 27.21 0 010 38.47 27.2 27.2 0 01-38.46 0 27.21 27.21 0 0138.47-38.49zM720.18 196.8a327.23 327.23 0 0161.24 18.58 27.22 27.22 0 0114.75 35.55 27.2 27.2 0 01-35.55 14.73h-.05a272.19 272.19 0 00-50.32-15.35c-.46-.08-.91-.17-1.37-.27a271.94 271.94 0 00-51-5.09h-1.4a108.86 108.86 0 01-94.26-54.41c-.12-.21-.25-.43-.36-.65a272.28 272.28 0 00-69.6-79.2c-119.22-91.48-290-69-381.52 50.23a27.21 27.21 0 11-43.21-33.12c.28-.36.57-.71.86-1.06a326.6 326.6 0 0195-82.94c156.13-90.16 355.79-36.67 446 119.46v.05l.23.39a54.39 54.39 0 0045.69 26.83h1.21a326.64 326.64 0 0163.7 6.27zM43.41 544.94c.23-.44.49-.88.75-1.31a54.41 54.41 0 00-.07-53.28c-.27-.45-.52-.9-.77-1.35a326.57 326.57 0 01-32.14-246.94 27.21 27.21 0 0152.57 14.09A272.1 272.1 0 0090.6 462q.45.75.87 1.53a108.87 108.87 0 01-.09 107.13c-.35.63-.71 1.26-1.11 1.87A272.29 272.29 0 0056.8 672c-19.61 149 85.26 285.63 234.26 305.25v.06a27.2 27.2 0 0123.42 30.52 27.21 27.21 0 01-30.48 23.43h.05a326.27 326.27 0 01-120.64-41C7.37 900.26-46.21 701 43.41 544.94zm44.8 30.43a26.51 26.51 0 002.06-2.8l.08-.13a27.79 27.79 0 01-2.14 2.93zm322.87 447.54a27.2 27.2 0 01-33.32-19.22A27.22 27.22 0 01397 970.35a27.21 27.21 0 0114.09 52.56zm245.4-179.34a54.43 54.43 0 00-46.75 26.56c-.12.23-.25.46-.38.68a326.23 326.23 0 01-37.28 52c4.52-5.16 4.53-5.13 0 0-.28.32-.56.63-.85.93a326.51 326.51 0 01-45.87 42.78 27.21 27.21 0 01-38.15-5 27.22 27.22 0 015-38.15 272.06 272.06 0 0038.93-36.47c-4.36 5-4.37 4.94 0 0 .34-.38.68-.75 1-1.1a272 272 0 0029.6-41.42c.16-.3.33-.59.5-.89a108.83 108.83 0 0194.2-54.32 272 272 0 00104.13-20.72c138.55-57.39 204.51-216 147.61-354.67-.12-.26-.24-.53-.35-.8a27.21 27.21 0 0150.26-20.86 326.57 326.57 0 0124.86 125c0 180.33-146.19 326.52-326.52 326.52zm-24-542.93q10.79-1.18 21.66-1.3a217.72 217.72 0 11-21.61 434.12A108.9 108.9 0 00526 794.94 217.73 217.73 0 11151.92 577.5a109 109 0 00-.83-122.11q-3.9-5.33-7.47-10.87a217.71 217.71 0 11382.43-205.34 108.91 108.91 0 00106.45 61.46zm-447.29 488.5a163.25 163.25 0 1059.75-223 163.27 163.27 0 00-59.75 223zm329.94-190.46a163.25 163.25 0 1059.76-223 163.27 163.27 0 00-59.76 223zM326.61 489.84a163.25 163.25 0 10-163.3-163.22 163.26 163.26 0 00163.3 163.22z"></path></svg>
+      </a>
+    </div>
+    
+    <h1 class='identifier'>gen</h1>
+    <div class='breadcrumb'><a class="item" href="index.html">Home</a> : <a class="item" href="base.html">base</a> . <a class="item" href="base.test.html">test</a></div>
+    
+    
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.test.gen.Char.html">Char</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="mo05rebqphvabhkc3puiba6dk1f3op8pmnbfokb7ede8lluqm4eksjj9ojp2kht3v0n73ftqshktjv47pi0hueb8l1i00opac81o3pg.html">alpha</a></div>
+<div><a class="sub-name" href="epeppc1of08vdaf0u9jv59mp0jo6jaq2sevsid2lok77ca9jofjdkis5stbo78mc6glaos7v5k96tqjmm09tfaob680a2qom4usm0ug.html">ascii</a></div>
+<div><a class="sub-name" href="g5dglcb024e088pr5of85pkn2git1oo1doif7pi90sqn290rf0t0bhj6q5tkfet481gj7lka9obuverh4hf2n57kb3r4sro7d1v6j5g.html">asciiNonPrintable</a></div>
+<div><a class="sub-name" href="9ka5g3b4n07jgg4c0qel2hlr43cf5tb9pnuvljb08iaq5n85jpodbjeduskbfcm9n8b3dh2444936nllmd7m3e2q46t5d0vk5eat1c8.html">asciiPrintable</a></div>
+<div><a class="sub-name" href="hvd0mn80l6m29nnk686sr6diutrin4c8jvm5rkh792tmnksph2ec8jpml3k0afhsnrt5tt3dbauvs2pi9220u68hun46u5cuoauv6fg.html">digit</a></div>
+<div><a class="sub-name" href="vvbh8nb5s33sk21qvimkku396qted7lbt0qb3sb2hkprvvkhp62ae6678lj4q8ipsn77nhn9ejh9g13tnm6b3dbv5l6cnud5tutv26g.html">hexDigit</a></div>
+<div><a class="sub-name" href="odtglh6vvfobh3ffk20c2m48orelueh42o4ivb361ahhp5lhrj4f8t6jngppqsai5tfrsesngrvbul9n105dd0qhj5uallttiark8og.html">lower</a></div>
+<div><a class="sub-name" href="v915fhukt5f4pqfm3ecqe0jqve2gnfsgoapsnn3m78p1j9q1uunusa9b49gk7chekss45lil2ku7vb7ljkh2k3a58gnnrndrqm421e8.html">upper</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.test.gen.Text.html">Text</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="ds44nk2gqrfec4uruu8p0ngsqqc9kom5469k4e3o2pda08s22od1p0ihosci5cd4m5n2k0eh63nbb63iaiaj9rsu9peqlb4lc6u0reg.html">ascii</a></div>
+<div><a class="sub-name" href="koj9onohloo656ma6m3hfsc49t1t9cghne9thu14tvl3fc6p8c9rfelbg1e05ftbi5nh8aq0tsnghirhid0jpjgkh6u2c7nevknnhf0.html">asciiPrintable</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="qgoo8m9sa6g5b7c07kj038uv4qrt2lbn6j87hd78bghgns2biajql89clouhluokdnlqbt745odc4i8kr56ho3v2q4s1jhev57c8di0" class="identifier"><a class="" href="qgoo8m9sa6g5b7c07kj038uv4qrt2lbn6j87hd78bghgns2biajql89clouhluokdnlqbt745odc4i8kr56ho3v2q4s1jhev57c8di0.html">atLeastOne</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="qgoo8m9sa6g5b7c07kj038uv4qrt2lbn6j87hd78bghgns2biajql89clouhluokdnlqbt745odc4i8kr56ho3v2q4s1jhev57c8di0.html#p2a42elduiecoad9096sf27jks1k3qntmscrgcl0dpjmj55t6fa88pjtoluj2k4amo1kalu28icnu36birfc7psi5q7cdtan598i9s0">doc</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.test.gen.atLeastOne</span><span class="TypeAscriptionColon"> :</span>
+  <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <a class="Reference" href="9f58iojnfqnkf14ifh966q052vv9u8f3ov58icl53qre0jtn2m05fdfhasnjllvv7qv599ctbt188uc2b7d8bp4em1ds4t9lhvnkuso.html">base.List.Nonempty</a> <span class="Var">a</span>
+<span class="HashQualifier">base.test.gen.atLeastOne</span> <span class="Var">g</span><span class="BindingEquals"> =</span>
+  <span class="DelayForceChar">'</span><span class="ControlKeyword">let</span>
+    <span class="HashQualifier">a</span><span class="BindingEquals"> =</span> <span class="DelayForceChar">!</span><span class="Var">g</span>
+    <span class="HashQualifier">as</span><span class="BindingEquals"> =</span> <span class="DelayForceChar">!</span><span class="Parenthesis">(</span><a class="Reference" href="base.test.gen.html#qc34jhac8sn817rc3lnupn7v9qpi32mai7qcvlhnvp1b7g9usnfd1v9dtq36ub0hv2gkkifqtfvhrshcmagenhe75abp889jo36gmb8">base.test.gen.listOf</a> <span class="Var">g</span><span class="Parenthesis">)</span>
+    <span class="Constructor">base.List.Nonempty.Nonempty</span> <span class="Var">a</span> <span class="Var">as</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="9fo1r64fnsn8m97beiaeu353kr1j22vjd4b3rnad43v9vsl3e4545uuqqc63g60ev75m0vcb4m7k2pkhala5vrcd7i9ta0upli231eo" class="identifier"><a class="" href="9fo1r64fnsn8m97beiaeu353kr1j22vjd4b3rnad43v9vsl3e4545uuqqc63g60ev75m0vcb4m7k2pkhala5vrcd7i9ta0upli231eo.html">boolean</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="9fo1r64fnsn8m97beiaeu353kr1j22vjd4b3rnad43v9vsl3e4545uuqqc63g60ev75m0vcb4m7k2pkhala5vrcd7i9ta0upli231eo.html#3leq2urpvk3joci95hglhrp09vdh37ej9q8tv1qm3cacs2jphtdbg47o04itgffq6n93etspannu357n3fuk31h07gibehh8d937d08">doc</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.test.gen.boolean</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+<span class="HashQualifier">base.test.gen.boolean</span><span class="BindingEquals"> =</span>
+  <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><span class="Request">base.test.Gen.sample</span> <span class="Parenthesis">(</span><a class="Reference" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#du56jrqcj0rcn22b432og1a630dl5abvbt2hob64hj5jdugcfovlv8k6c3f5brsjg2uo85lf87o1396s00enfh9k6sj789pfgcmcksg">base.Weighted.fromList</a> <span class="DelimiterChar">[</span><span class="BooleanLiteral">false</span><span class="DelimiterChar">,</span> <span class="BooleanLiteral">true</span><span class="DelimiterChar">]</span><span class="Parenthesis">)</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="ufs27vkejqqdpe61k61jnsqse6lrbrhjv4u5ed23bb9or7519tn1no54cm31aq4mqjptnmtkngq1rpret38bs8q76vouhnte9bn88jo" class="identifier"><a class="" href="ufs27vkejqqdpe61k61jnsqse6lrbrhjv4u5ed23bb9or7519tn1no54cm31aq4mqjptnmtkngq1rpret38bs8q76vouhnte9bn88jo.html">either</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="ufs27vkejqqdpe61k61jnsqse6lrbrhjv4u5ed23bb9or7519tn1no54cm31aq4mqjptnmtkngq1rpret38bs8q76vouhnte9bn88jo.html#ba4mda922kvqs5qa9s53rh1eg4luiiars382u3oe07c7988u3ek1kjk4qbeod6b3q5aetabvt2n73526ice3pg9g2pkvrhlu9sar008">doc</a></div>
+<div><a class="sub-name" href="ufs27vkejqqdpe61k61jnsqse6lrbrhjv4u5ed23bb9or7519tn1no54cm31aq4mqjptnmtkngq1rpret38bs8q76vouhnte9bn88jo.html#5ne1fd3uci45gthf64jc5b1n2nbm4vluq14mc76oa2clhdulk41crs24lfk20uluu9n1du4in5arcl23tauuquupkivke2qias8k9do">test</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.test.gen.either</span><span class="TypeAscriptionColon"> :</span>
+  <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <span class="Var">b</span> <span class="TypeOperator">-&gt;</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <span class="Var">a</span> <span class="Var">b</span>
+<span class="HashQualifier">base.test.gen.either</span> <span class="Var">a</span> <span class="Var">b</span><span class="BindingEquals"> =</span>
+  <a class="Reference" href="base.test.html#cjat6fhleaihhsbj7qe45bm91f74gcqotb9up28ro1c7nthfte9pr76r5dp8di283qddp0vrai4aru0js3or4tbf55qvmsrh1uq7p5g">base.test.pick</a> <span class="DelimiterChar">[</span><span class="DelayForceChar">'</span><span class="Parenthesis">(</span><span class="Constructor">base.Either.Left</span> <span class="DelayForceChar">!</span><span class="Var">a</span><span class="Parenthesis">)</span><span class="DelimiterChar">,</span> <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><span class="Constructor">base.Either.Right</span> <span class="DelayForceChar">!</span><span class="Var">b</span><span class="Parenthesis">)</span><span class="DelimiterChar">]</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="adq35c72m197oav3brlpqkqopcqvl17p3v5uk9b5s4kq66epcb91t3nkniult8bb6cj6s70mjgbjbapdevmrs3002m8pnsact3ll0gg" class="identifier">empty</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.test.gen.empty</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <span class="Var">a</span>
+<span class="HashQualifier">base.test.gen.empty</span><span class="BindingEquals"> =</span> <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><span class="Request">base.test.Gen.sample</span> <span class="Constructor">base.Weighted.Fail</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.test.gen.functions.html">functions</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="7rcllqdr523g6c9cn5720ki0ivv3l8s8ua9g5qmhemdg9ocs73jfffeidt5fjjlvk95v2r51s2u4rt7k29gr83s8qvl8ktgruu90shg.html">logic</a></div>
+<div><a class="sub-name" href="d5ls0b7kl1n2jdm5sbfrpth2tnmplvq039auuh024v9cfr7h2sv30prnmg77dgueqtcbc6d19agllsvsshlsk81nkgnkjq4dt3dnpe8.html">someOrNone</a></div>
+<div><a class="sub-name" href="fkv0ab3bgc7u9ct3kgg3lsp7u93fmj1h0tgvge27shq5p6fcp9juu4v82g4rqcnq1r1e1r92aj5cpi73vsnou5jjhemd04u5uisitj0.html">yesNo</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="sufka06gjcbq63k9haiiqfr29j7ro1vl8vuo64rho7cj7hb8n34aorampl68inp2fe776lnt0lfq5bk4f9p216lhmsu4l06lmk1s758" class="identifier">int</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.test.gen.int</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Int.html">base.Int</a>
+<span class="HashQualifier">base.test.gen.int</span><span class="BindingEquals"> =</span> <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><span class="Request">base.test.Gen.sample</span> <a class="Reference" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#c400rlpoldoefm01gvp41mf0bel2ikr9o69fbhd1eravpg5glu5l6t8rcof878ifk4ef7havek2js5rmvr98ivncqftjnjvahelc7vo">base.Weighted.ints</a><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="qc34jhac8sn817rc3lnupn7v9qpi32mai7qcvlhnvp1b7g9usnfd1v9dtq36ub0hv2gkkifqtfvhrshcmagenhe75abp889jo36gmb8" class="identifier">listOf</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.test.gen.listOf</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <span class="DelimiterChar">[</span><span class="Var">a</span><span class="DelimiterChar">]</span>
+<span class="HashQualifier">base.test.gen.listOf</span> <span class="Var">g</span><span class="BindingEquals"> =</span>
+  <span class="DelayForceChar">'</span><span class="ControlKeyword">let</span>
+    <span class="HashQualifier">size</span><span class="BindingEquals"> =</span> <span class="DelayForceChar">!</span><a class="Reference" href="base.test.gen.html#iq5es3iubg3iiif9c7le557hd2snrvp9v3bka20ani67t7fpvm3ojbj5gbsjmpevbb3pb44jr8jq49j18rm1suj9isp9igsl583kmmg">base.test.gen.nat</a>
+    <a class="Reference" href="__builtin__Sequence.html#j1ejquc7so57gceg2fsnurckebs21napum8h7jbs58bmefncgvb8h654kcp6tdt31epf25vka01q0plg8dqbl9fat988n08i1571qtg">base.List.map</a> <span class="Parenthesis">(</span>_<span class="ControlKeyword"> -&gt;</span> <span class="DelayForceChar">!</span><span class="Var">g</span><span class="Parenthesis">)</span> <span class="Parenthesis">(</span><a class="Reference" href="4ecde41qvffhfeis46dh15ejfcriu0iihc6msmcqmpruc9e40ojl4i9lvb4it0vi4ikf8v9huc8eop4utqe7giopkcatd0uoubrq5r0.html">base.List.range</a> <span class="NumericLiteral">0</span> <span class="Var">size</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.test.gen.mapOf.html">mapOf</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.test.gen.mapOf.html#7161kkj0p560d87925pbjtil0rluhu8850ivg31cgqvlfg9mig1bpk5a4o523vk3j94opqj65sutfuatqkqfkoa466c4q9blk141lco">doc</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="iq5es3iubg3iiif9c7le557hd2snrvp9v3bka20ani67t7fpvm3ojbj5gbsjmpevbb3pb44jr8jq49j18rm1suj9isp9igsl583kmmg" class="identifier">nat</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.test.gen.nat</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a>
+<span class="HashQualifier">base.test.gen.nat</span><span class="BindingEquals"> =</span> <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><span class="Request">base.test.Gen.sample</span> <a class="Reference" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#2c2g3fqv6bvq9pueqd4m3jof7nmgfc550s74o0lm1uc8tvvm7b1spljn6bm4vmjucfib3lge71bectsb227nlimjuf48k2g8lk8o76o">base.Weighted.nats</a><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="502og7u6e3qo667kggfh4s9umfga8i0chkje8jl4uvb3j4hjv2oguepaf105f12dv373t17f86apio3ipc8lkp9mr1osgnramch042o" class="identifier">natIn</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.test.gen.natIn</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="TypeOperator">-&gt;</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a>
+<span class="HashQualifier">base.test.gen.natIn</span> <span class="Var">start</span> <span class="Var">stopExclusive</span> <span class="Var">_</span><span class="BindingEquals"> =</span>
+  <span class="HashQualifier">go</span> <span class="Var">n</span><span class="BindingEquals"> =</span>
+    <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Universal</span> <span class="UseSuffix">&lt;</span>
+    <span class="ControlKeyword">if </span><span class="Var">n</span> <a class="Reference" href="base.Universal.html#__builtin__Universal.<">&lt;</a> <span class="Var">stopExclusive</span><span class="ControlKeyword"> then</span>
+      <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Nat</span> <span class="UseSuffix">+</span>
+      <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Weighted</span> <span class="UseSuffix">&lt;|&gt;</span>
+      <a class="Reference" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#tbb39c2i34bkepv8r43il0auhnbao55ftft9d18c5fq31f0gk6utf7v6ghnt76h8r8l1eesrsgsac4b0klqpoktofq6m7p2esck5id0">base.Weighted.yield</a> <span class="Var">n</span> <a class="Reference" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#b3tl0p6em4l1l9flulpe7mksfe4egpbp84rfh4iacfriqp01k3p617tr4h32s4i1s9pkd6jgp02vlhtatb6rrgeha2b6j5rbptk3r7o">&lt;|&gt;</a> <a class="Reference" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#e2dsohsu6ra6kgimsi1i32lln9s7e4vc4ua66afag9k8o9vm0omv28ilolsvlju5o5ioq0bm9vfu2o92akk2ddkrekmpk1vudl3vak8">base.Weighted.weight</a> <span class="NumericLiteral">1</span> <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><span class="Var">go</span> <span class="Parenthesis">(</span><span class="Var">n</span> <a class="Reference" href="__builtin__Nat.html#__builtin__Nat.+">+</a> <span class="NumericLiteral">1</span><span class="Parenthesis">)</span><span class="Parenthesis">)</span>
+    <span class="ControlKeyword">else</span> <span class="Constructor">base.Weighted.Fail</span>
+  <span class="Request">base.test.Gen.sample</span> <span class="Parenthesis">(</span><span class="Var">go</span> <span class="Var">start</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="vc9t3l38k4a98tm2jo55dp6gsrg8ijdhmploov13eql3mii2674p6murabr0ckf160v6ilmshgtrivsjqveodgp8dark7oqh0krmpdg" class="identifier">nonemptyListOf</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.test.gen.nonemptyListOf</span><span class="TypeAscriptionColon"> :</span>
+  <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <a class="Reference" href="9f58iojnfqnkf14ifh966q052vv9u8f3ov58icl53qre0jtn2m05fdfhasnjllvv7qv599ctbt188uc2b7d8bp4em1ds4t9lhvnkuso.html">base.List.Nonempty</a> <span class="Var">a</span>
+<span class="HashQualifier">base.test.gen.nonemptyListOf</span> <span class="Var">ga</span><span class="BindingEquals"> =</span>
+  <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><span class="Constructor">base.List.Nonempty.Nonempty</span> <span class="DelayForceChar">!</span><span class="Var">ga</span> <span class="DelayForceChar">!</span><span class="Parenthesis">(</span><a class="Reference" href="base.test.gen.html#qc34jhac8sn817rc3lnupn7v9qpi32mai7qcvlhnvp1b7g9usnfd1v9dtq36ub0hv2gkkifqtfvhrshcmagenhe75abp889jo36gmb8">base.test.gen.listOf</a> <span class="Var">ga</span><span class="Parenthesis">)</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="em1cb6t1ubvu8gr5in0advr60s6n9va5pca43nda5ta40act1j9lu1l1u6a0v8ldbq2tfsgp36ockefkucb1q7t82397mcuil83ma8o" class="identifier"><a class="" href="em1cb6t1ubvu8gr5in0advr60s6n9va5pca43nda5ta40act1j9lu1l1u6a0v8ldbq2tfsgp36ockefkucb1q7t82397mcuil83ma8o.html">nonzeroNat</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="em1cb6t1ubvu8gr5in0advr60s6n9va5pca43nda5ta40act1j9lu1l1u6a0v8ldbq2tfsgp36ockefkucb1q7t82397mcuil83ma8o.html#3caloc3n37o0l7uhq0ijtmvtpju28k55unsb8c4febguj6thutugvdt4bjhmekupkavv6tut5v45q2f9brhvq7h1iv8o0u17vdnge4g">doc</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.test.gen.nonzeroNat</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a>
+<span class="HashQualifier">base.test.gen.nonzeroNat</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Universal</span> <span class="UseSuffix">&gt;</span>
+  <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><span class="Request">base.test.Gen.sample</span> <span class="Parenthesis">(</span><a class="Reference" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#u4m79obtc4sqfpev2vvn40v4v6vqhfu8b6gdvqm5o4a87qc1n0rd13gdbiuphc1fqov67p00s0s5f15dg6uv6s5khcka0u99qfb15n8">base.Weighted.filter</a> <span class="Parenthesis">(</span>x<span class="ControlKeyword"> -&gt;</span> <span class="Var">x</span> <a class="Reference" href="base.Universal.html#__builtin__Universal.>">&gt;</a> <span class="NumericLiteral">0</span><span class="Parenthesis">)</span> <a class="Reference" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#2c2g3fqv6bvq9pueqd4m3jof7nmgfc550s74o0lm1uc8tvvm7b1spljn6bm4vmjucfib3lge71bectsb227nlimjuf48k2g8lk8o76o">base.Weighted.nats</a><span class="Parenthesis">)</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="8hunjd76ef6njcvuiv20u3os2o2l3nnopobohupuucqjmm49ut30nkdaionbe4ugor9re2vj9h99u60qjlec9q4q0ainohip2sdqthg" class="identifier"><a class="" href="8hunjd76ef6njcvuiv20u3os2o2l3nnopobohupuucqjmm49ut30nkdaionbe4ugor9re2vj9h99u60qjlec9q4q0ainohip2sdqthg.html">oneOf</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="8hunjd76ef6njcvuiv20u3os2o2l3nnopobohupuucqjmm49ut30nkdaionbe4ugor9re2vj9h99u60qjlec9q4q0ainohip2sdqthg.html#499e2eubk2br622fn2tj7dvu369uoidk6snk38sa9inbsj18b9m22ljplodbsmuob5250pqtcma93splapsvh8pd7kn4rqvlpoduf9g">doc</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.test.gen.oneOf</span><span class="TypeAscriptionColon"> :</span> <span class="DelimiterChar">[</span><span class="Var">a</span><span class="DelimiterChar">]</span> <span class="TypeOperator">-&gt;</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <span class="Var">a</span>
+<span class="HashQualifier">base.test.gen.oneOf</span> <span class="Var">as</span><span class="BindingEquals"> =</span> <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><span class="Request">base.test.Gen.sample</span> <span class="Parenthesis">(</span><a class="Reference" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#du56jrqcj0rcn22b432og1a630dl5abvbt2hob64hj5jdugcfovlv8k6c3f5brsjg2uo85lf87o1396s00enfh9k6sj789pfgcmcksg">base.Weighted.fromList</a> <span class="Var">as</span><span class="Parenthesis">)</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="i87152fvijm0u7i7cmelq1i3rlfnihve3smf0bbra0rqq87tpdefu59asr4og46jjdloa3j5gqj4jt3dikbgbv8ntau39g71c0cgnko" class="identifier"><a class="" href="i87152fvijm0u7i7cmelq1i3rlfnihve3smf0bbra0rqq87tpdefu59asr4og46jjdloa3j5gqj4jt3dikbgbv8ntau39g71c0cgnko.html">optional</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="i87152fvijm0u7i7cmelq1i3rlfnihve3smf0bbra0rqq87tpdefu59asr4og46jjdloa3j5gqj4jt3dikbgbv8ntau39g71c0cgnko.html#30km1qmqbb2l554lb3dmgtqjh72i48enluljc1b5je3fv35sp6p85tigtpcajt3gldphn7226541mo1d0rmvoft32akk7balr0n4ti0">doc</a></div>
+<div><a class="sub-name" href="i87152fvijm0u7i7cmelq1i3rlfnihve3smf0bbra0rqq87tpdefu59asr4og46jjdloa3j5gqj4jt3dikbgbv8ntau39g71c0cgnko.html#7hedm6b3i909p2ip1nggg009mej17vr4b0es6r393b77g5d9gs3v4pmnm3lf8rb5uj77bttirnhr55qc8korjlmc8iga0u1iojhrupo">test</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.test.gen.optional</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <a class="Reference" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html">base.Optional</a> <span class="Var">a</span>
+<span class="HashQualifier">base.test.gen.optional</span> <span class="Var">a</span><span class="BindingEquals"> =</span>
+  <a class="Reference" href="ro1epe0t2ais7trfo10ob3nnpiholrkt413ufvtft8fq0eugl0tpt2ikn507021oj8pirrkjsa953ovutbdica6p67fgvqmad9enpkg.html">base.test.Gen.append</a>
+    <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><span class="Request">base.test.Gen.sample</span> <span class="Parenthesis">(</span><a class="Reference" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html#tbb39c2i34bkepv8r43il0auhnbao55ftft9d18c5fq31f0gk6utf7v6ghnt76h8r8l1eesrsgsac4b0klqpoktofq6m7p2esck5id0">base.Weighted.yield</a> <span class="Constructor">base.Optional.None</span><span class="Parenthesis">)</span><span class="Parenthesis">)</span>
+    <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><span class="Constructor">base.Optional.Some</span> <span class="DelayForceChar">!</span><span class="Var">a</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="37g71pvm7jequvmof754cd79k0frg9guoi5tvqaq8pa28prddrj08iu8ts5i0rkcfesiaf8bdert93p6874dnglkqdg9pjr18hs8jog" class="identifier"><a class="" href="37g71pvm7jequvmof754cd79k0frg9guoi5tvqaq8pa28prddrj08iu8ts5i0rkcfesiaf8bdert93p6874dnglkqdg9pjr18hs8jog.html">pairOf</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="37g71pvm7jequvmof754cd79k0frg9guoi5tvqaq8pa28prddrj08iu8ts5i0rkcfesiaf8bdert93p6874dnglkqdg9pjr18hs8jog.html#06hu75lrn0265aqp46rujvpnmfqgvncs5i4jmcl94ovi9e4jpdnoiake1oj6qiva6f0n0pbp0n93nbaqg6ogbg96mlf91qe6roroi4o">doc</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.test.gen.pairOf</span><span class="TypeAscriptionColon"> :</span>
+  <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <span class="Var">b</span> <span class="TypeOperator">-&gt;</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> (<span class="Var">a</span>, <span class="Var">b</span>)
+<span class="HashQualifier">base.test.gen.pairOf</span> <span class="Var">a</span> <span class="Var">b</span><span class="BindingEquals"> =</span> <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><span class="DelayForceChar">!</span><span class="Var">a</span><span class="DelimiterChar">,</span> <span class="DelayForceChar">!</span><span class="Var">b</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="4k5o83k6gkh4qhkj8tn7fsv7cipb9p0l061m0o4rh6l20bc6ome8en0lht82sitks5meekq62d9aavskq8l1nqi00adq7qopqjukb2o" class="identifier"><a class="" href="4k5o83k6gkh4qhkj8tn7fsv7cipb9p0l061m0o4rh6l20bc6ome8en0lht82sitks5meekq62d9aavskq8l1nqi00adq7qopqjukb2o.html">setOf</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="4k5o83k6gkh4qhkj8tn7fsv7cipb9p0l061m0o4rh6l20bc6ome8en0lht82sitks5meekq62d9aavskq8l1nqi00adq7qopqjukb2o.html#ea698ssqsbcghr8abgu06ab2ga1v70qadqrbc7ss6je75b04dcvcqr3c7ih55nl18kjkte2jqrapa9h1ip6hevc2lcuo3ou9gdbaj6g">doc</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.test.gen.setOf</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="bpcuhu7pt8jl0kj9515s2n2eiikpa3b035j5mak9jmlphs7uhmlqioh1r062jp7r737487gtt4g4pok03u31d7rrehjipmiqetmsl88.html">base.test.Gen</a><span class="AbilityBraces">}</span> <a class="Reference" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html">base.Set</a> <span class="Var">a</span>
+<span class="HashQualifier">base.test.gen.setOf</span> <span class="Var">a</span><span class="BindingEquals"> =</span> <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><a class="Reference" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html#h6cqe495fj8p2ht2vign8u3pejic8fpr179ar6a1p27hdn2lv90cdtrv8a8c1i5tg100mm1gg3m1iuvjv2llqkmc1vttbomrbk92mt0">base.Set.fromList</a> <span class="DelayForceChar">!</span><span class="Parenthesis">(</span><a class="Reference" href="base.test.gen.html#qc34jhac8sn817rc3lnupn7v9qpi32mai7qcvlhnvp1b7g9usnfd1v9dtq36ub0hv2gkkifqtfvhrshcmagenhe75abp889jo36gmb8">base.test.gen.listOf</a> <span class="Var">a</span><span class="Parenthesis">)</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+    
+</body>

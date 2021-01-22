@@ -1,0 +1,249 @@
+<!doctype html>
+<head>
+    <meta charset=utf8>
+    <title>base.test.internals.v1</title>
+    <style>
+ body {
+     max-width: 800px;
+     margin: 0 auto;
+     font-size: 16px;
+     font-family: 'Inter', sans-serif;
+ }
+
+ p {
+   font-weight: 200;
+ }
+
+ h1 {
+   font-size: 3em;
+   line-height: 1;
+   margin-bottom: 8px;
+ }
+
+ h1.identifier, h2.identifier {
+   font-weight: 500;
+ }
+
+.un-site-nav__logo {
+  display: inline-block;
+  width: 100px;
+  height: 100%;
+  fill: currentColor;
+}
+
+ h1 a, h2 a {
+   color: #520066;
+   color: #8f228f;
+   text-decoration: none;
+ }
+
+ code, .code, .identifier, .sub-name {
+    font-family: 'Fira Code', monospace;
+ }
+
+ .breadcrumb {
+     font-size: 80%;
+     padding-left: 4px;
+     margin-bottom: 2em;
+ }
+
+ .breadcrumb .item {
+ }
+
+ .docs {
+     line-height: 1.5;
+ }
+  
+ pre {
+     padding: 10px 20px;
+     box-shadow: 0 0 2px;
+     border-radius: 3px;
+ }
+
+ p > code {
+    background-color: #fafafa;
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 0 0 2px inset #aaa;
+}
+  
+ .sub-name {
+     display: inline-block;
+     padding: 4px 8px;
+     margin-right: 8px;
+     margin-bottom: 8px;
+     border-radius: 5px;
+     background-color: #ddd;
+     font-size: 80%;
+     font-weight: 200;
+ }
+ a.sub-name {
+     text-decoration: none;
+     color: black;
+ }
+ .children {
+   display: flex; flex-direction: row; flex-wrap: wrap;
+ }
+  
+ .Constructor {
+     color: #ce8500
+ }
+ .DataTypeKeyword {
+     font-weight: bold;
+ }
+ .Var {
+     color: #00a;
+ }
+ .NumericLiteral, .TextLiteral, .CharLiteral, .BooleanLiteral {
+     color: green;
+ }
+  
+   .ControlKeyword      { font-weight: bold }
+   .AbilityBraces       ,
+   .LinkKeyword         ,
+   .TypeOperator        ,
+   .UseKeyword          ,
+   .UsePrefix           ,
+   .UseSuffix           ,
+   .HashQualifier      { color: #777 }
+   .DelayForceChar      { color: #adad00; }
+   .TypeAscriptionColon { color: blue }
+   .DocDelimiter        { color: green }
+   .DocKeyword          { font-weight: bold }
+</style>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    
+    <div style='display:flex;justify-content: space-between;padding: 16px;align-items:center'>
+      <a href="index.html">Home</a>
+      <a href="https://www.unisonweb.org/" style="display:block" target="_blank" nofollow noreferrer>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2989.27 1031.5" class="un-site-nav__logo"><title>logo-unison</title><path d="M1240.54 397.11c0-17.07 14.53-31.61 32.24-31.61 18.33 0 32.87 14.54 32.87 31.61v134c0 20.86 2.53 34.77 9.48 47.41 10.11 18.33 30.34 31 62.58 31s52.47-12.65 62.59-31c7-12.64 10.11-26.55 10.11-47.41v-134a32.24 32.24 0 0164.48 0v139.07c0 36.66-7.59 62-22.76 82.81-22.76 30.34-62.58 46.15-114.42 46.15-51.2 0-91.66-15.81-113.78-46.15-15.81-20.86-23.39-46.15-23.39-82.81V397.11zm351.27 0c0-17.7 14.54-31.61 32.24-31.61 18.33 0 32.24 13.91 32.24 31.61v12.64c20.86-29.08 53.73-44.25 93.56-44.25 32.86 0 62.58 8.22 83.44 27.18 21.49 19 33.5 49.94 33.5 93.56v147.29c0 17.7-15.17 31.61-32.24 31.61-18.33 0-32.87-13.91-32.87-31.61V502c0-25.92-3.79-49.3-18.33-64.47-10.12-10.12-24.66-16.44-46.15-16.44-29.08 0-51.83 13.27-65.74 37.93-10.74 19.59-15.17 43.62-15.17 67v107.51c0 17.7-15.18 31.61-32.24 31.61-17.7 0-32.24-13.91-32.24-31.61V397.11zm386.75-31.61a31.84 31.84 0 0132.24 31.61v236.42c0 17.7-15.17 31.61-32.24 31.61-18.33 0-32.24-13.91-32.24-31.61V397.11a31.84 31.84 0 0132.24-31.61zm285.84 65.74c-20.22 0-38.56-12.64-68.27-12.64-27.18 0-44.88 8.22-44.88 27.18 0 16.44 12.64 25.29 29.71 32.87 19.59 8.22 44.25 15.18 63.85 24.66 37.29 18.33 51.83 40.46 51.83 73.32 0 52.47-43.62 88.51-112.52 88.51-41.72 0-107.46-9.49-107.46-48a25.37 25.37 0 0125.28-25.28c23.39 0 33.5 22.75 77.76 22.75 29.08 0 48.67-10.11 48.67-32.24 0-19-13.9-27.81-32.87-36.66-17.7-8.22-43.62-14.54-65.11-24.65-31-14.54-47.41-37.93-47.41-74 0-50.57 39.19-81.55 109.36-81.55 50.57 0 97.35 10.11 97.35 39.82 0 14.58-11.38 26-25.29 26zm122.6-24c27.81-25.92 66.38-41.72 109.36-41.72 42.36 0 81.55 15.8 109.36 41.72 27.82 26.55 44.25 63.85 44.25 108.1 0 44.88-15.8 82.81-44.25 108.73-27.18 25.91-67 41.09-109.36 41.09-43 0-82.18-15.18-109.36-41.09-28.45-25.92-44.88-63.85-44.88-108.73 0-44.25 17.1-81.55 44.88-108.1zM2431.25 583c15.8 17.07 38.56 27.81 65.11 27.81a87.15 87.15 0 0064.48-27.81c15.8-17.71 25.28-40.46 25.28-67.64s-9.48-49.94-25.28-67.64a87.16 87.16 0 00-64.48-27.82c-26.55 0-49.31 10.75-65.11 27.82-15.8 17.7-24.65 40.46-24.65 67.64s8.89 49.93 24.69 67.64zm283-185.85c0-17.7 14.54-31.61 32.24-31.61 18.34 0 32.24 13.91 32.24 31.61v12.64c20.86-29.08 53.74-44.25 93.56-44.25 32.87 0 62.58 8.22 83.45 27.18 21.48 19 33.5 49.94 33.5 93.56v147.25c0 17.7-15.17 31.61-32.24 31.61-18.33 0-32.87-13.91-32.87-31.61V502c0-25.92-3.79-49.3-18.34-64.47-10.11-10.12-24.65-16.44-46.14-16.44-29.08 0-51.84 13.27-65.75 37.93-10.74 19.59-15.17 43.62-15.17 67v107.51c0 17.7-15.17 31.61-32.24 31.61-17.7 0-32.24-13.91-32.24-31.61V397.11zm-715.2-183.37a31 31 0 100 43.8 31 31 0 00.03-43.84zM887.36 286.16a27.21 27.21 0 010 38.47 27.2 27.2 0 01-38.46 0 27.21 27.21 0 0138.47-38.49zM720.18 196.8a327.23 327.23 0 0161.24 18.58 27.22 27.22 0 0114.75 35.55 27.2 27.2 0 01-35.55 14.73h-.05a272.19 272.19 0 00-50.32-15.35c-.46-.08-.91-.17-1.37-.27a271.94 271.94 0 00-51-5.09h-1.4a108.86 108.86 0 01-94.26-54.41c-.12-.21-.25-.43-.36-.65a272.28 272.28 0 00-69.6-79.2c-119.22-91.48-290-69-381.52 50.23a27.21 27.21 0 11-43.21-33.12c.28-.36.57-.71.86-1.06a326.6 326.6 0 0195-82.94c156.13-90.16 355.79-36.67 446 119.46v.05l.23.39a54.39 54.39 0 0045.69 26.83h1.21a326.64 326.64 0 0163.7 6.27zM43.41 544.94c.23-.44.49-.88.75-1.31a54.41 54.41 0 00-.07-53.28c-.27-.45-.52-.9-.77-1.35a326.57 326.57 0 01-32.14-246.94 27.21 27.21 0 0152.57 14.09A272.1 272.1 0 0090.6 462q.45.75.87 1.53a108.87 108.87 0 01-.09 107.13c-.35.63-.71 1.26-1.11 1.87A272.29 272.29 0 0056.8 672c-19.61 149 85.26 285.63 234.26 305.25v.06a27.2 27.2 0 0123.42 30.52 27.21 27.21 0 01-30.48 23.43h.05a326.27 326.27 0 01-120.64-41C7.37 900.26-46.21 701 43.41 544.94zm44.8 30.43a26.51 26.51 0 002.06-2.8l.08-.13a27.79 27.79 0 01-2.14 2.93zm322.87 447.54a27.2 27.2 0 01-33.32-19.22A27.22 27.22 0 01397 970.35a27.21 27.21 0 0114.09 52.56zm245.4-179.34a54.43 54.43 0 00-46.75 26.56c-.12.23-.25.46-.38.68a326.23 326.23 0 01-37.28 52c4.52-5.16 4.53-5.13 0 0-.28.32-.56.63-.85.93a326.51 326.51 0 01-45.87 42.78 27.21 27.21 0 01-38.15-5 27.22 27.22 0 015-38.15 272.06 272.06 0 0038.93-36.47c-4.36 5-4.37 4.94 0 0 .34-.38.68-.75 1-1.1a272 272 0 0029.6-41.42c.16-.3.33-.59.5-.89a108.83 108.83 0 0194.2-54.32 272 272 0 00104.13-20.72c138.55-57.39 204.51-216 147.61-354.67-.12-.26-.24-.53-.35-.8a27.21 27.21 0 0150.26-20.86 326.57 326.57 0 0124.86 125c0 180.33-146.19 326.52-326.52 326.52zm-24-542.93q10.79-1.18 21.66-1.3a217.72 217.72 0 11-21.61 434.12A108.9 108.9 0 00526 794.94 217.73 217.73 0 11151.92 577.5a109 109 0 00-.83-122.11q-3.9-5.33-7.47-10.87a217.71 217.71 0 11382.43-205.34 108.91 108.91 0 00106.45 61.46zm-447.29 488.5a163.25 163.25 0 1059.75-223 163.27 163.27 0 00-59.75 223zm329.94-190.46a163.25 163.25 0 1059.76-223 163.27 163.27 0 00-59.76 223zM326.61 489.84a163.25 163.25 0 10-163.3-163.22 163.26 163.26 0 00163.3 163.22z"></path></svg>
+      </a>
+    </div>
+    
+    <h1 class='identifier'>v1</h1>
+    <div class='breadcrumb'><a class="item" href="index.html">Home</a> : <a class="item" href="base.html">base</a> . <a class="item" href="base.test.html">test</a> . <a class="item" href="base.test.internals.html">internals</a></div>
+    
+    
+            <div>
+                <h2 id="3naovllqs15po8fco3ckmt3s6q02odbee2ks33hfddlqegpojfsf3lctlkbskam3uriqpu2ffceja4q136h1rbbcjkimclthblpc4n0" class="identifier"><a class="" href="3naovllqs15po8fco3ckmt3s6q02odbee2ks33hfddlqegpojfsf3lctlkbskam3uriqpu2ffceja4q136h1rbbcjkimclthblpc4n0.html">Domain</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="3naovllqs15po8fco3ckmt3s6q02odbee2ks33hfddlqegpojfsf3lctlkbskam3uriqpu2ffceja4q136h1rbbcjkimclthblpc4n0.html#dah3hg9h2aqpqf11uhikurqrtg0s34uj5bvdjkal25c7aqao4v9l09b1pivs3kud1pbj28rqn0ldbvj52dgb5nf90n68malgia1u0a8">boolean</a></div>
+<div><a class="sub-name" href="3naovllqs15po8fco3ckmt3s6q02odbee2ks33hfddlqegpojfsf3lctlkbskam3uriqpu2ffceja4q136h1rbbcjkimclthblpc4n0.html#u21cemqj93mj0p2c72ea677v588kq25a49n32sqsahvecsmqspq30ac9r69aa84omra3u58d3816drmi3gmmf03alhmk25iuvoi4re0">ints</a></div>
+<div><a class="sub-name" href="3naovllqs15po8fco3ckmt3s6q02odbee2ks33hfddlqegpojfsf3lctlkbskam3uriqpu2ffceja4q136h1rbbcjkimclthblpc4n0.html#035i6di9p7vdsobjl1mi2mea60i51nr9k3dtmnfnm6mc08u8m21jvsdpsjfnkqt423cqb13512kpljshetcqqnu6uumud4k64ul9soo">lift2</a></div>
+<div><a class="sub-name" href="3naovllqs15po8fco3ckmt3s6q02odbee2ks33hfddlqegpojfsf3lctlkbskam3uriqpu2ffceja4q136h1rbbcjkimclthblpc4n0.html#065csgdh31v9mgtnrnqsqb43p2akvgs4tjaaj2jt875dval6j72lkps1gof1j2v4k8hmme7k1gth3l97bg6i52j3k0vqa0um3o9l8ho">lists</a></div>
+<div><a class="sub-name" href="3naovllqs15po8fco3ckmt3s6q02odbee2ks33hfddlqegpojfsf3lctlkbskam3uriqpu2ffceja4q136h1rbbcjkimclthblpc4n0.html#iek9gajqar873oedounla88b73fe7uc9t9p83d146qq5ovgeiv5jbknhfv8dqp78dipluorac835dt0ik04jes28ujau82hnc00do1g">listsOf</a></div>
+<div><a class="sub-name" href="3naovllqs15po8fco3ckmt3s6q02odbee2ks33hfddlqegpojfsf3lctlkbskam3uriqpu2ffceja4q136h1rbbcjkimclthblpc4n0.html#j75h7lhtdl5chgar80qrtollhlqcbe0dt74rukpt3b68sbe7mgd71932ipvr1umpav4kma7jsoofh9p5ue7iuvttkq82cg57j0tu9lo">map</a></div>
+<div><a class="sub-name" href="3naovllqs15po8fco3ckmt3s6q02odbee2ks33hfddlqegpojfsf3lctlkbskam3uriqpu2ffceja4q136h1rbbcjkimclthblpc4n0.html#trp32i5g5ts9jcfc78qcq0pft9ugudq5mlk5apcvsoeld1arf4jsm6sfhvctk26vmiqtjgd9kvoajfniq38srdioaa0llo55v0mf110">nats</a></div>
+<div><a class="sub-name" href="3naovllqs15po8fco3ckmt3s6q02odbee2ks33hfddlqegpojfsf3lctlkbskam3uriqpu2ffceja4q136h1rbbcjkimclthblpc4n0.html#2mtoq7v66jds44isfl6g3iumqqes19ndf7sv7tk11lliihrbg1rpc0fi3g7rmp1g0vnkq1bjb5rio377j91o8avi05at0ra6fcppooo">pairs</a></div>
+<div><a class="sub-name" href="3naovllqs15po8fco3ckmt3s6q02odbee2ks33hfddlqegpojfsf3lctlkbskam3uriqpu2ffceja4q136h1rbbcjkimclthblpc4n0.html#1mta3i6daretutg0584oroukpl1mfulsg21bk5f1bvgh64qchs63j5m15v3dkt4197s4qn2fep94dv82ptno4rl683j9of3buvqitr8">sample</a></div>
+<div><a class="sub-name" href="3naovllqs15po8fco3ckmt3s6q02odbee2ks33hfddlqegpojfsf3lctlkbskam3uriqpu2ffceja4q136h1rbbcjkimclthblpc4n0.html#447fer8m13n7stndnfrkdqehdb6tome5csg0jempo8bqvah37qgdupkvv34eb22qr71ouvjj3pfokpn0ekq9krv5h21e1jiligg5880">smallSize</a></div>
+<div><a class="sub-name" href="3naovllqs15po8fco3ckmt3s6q02odbee2ks33hfddlqegpojfsf3lctlkbskam3uriqpu2ffceja4q136h1rbbcjkimclthblpc4n0.html#5gqk21ts4sqcmpohf6tkf5s39kt05ck6mfkiip1c9ba0goljsmlqq3cke4mo54v1tevskfvn61167nj0kknp8kvjmmqfeturiae8ve0">tuples</a></div>
+<div><a class="sub-name" href="3naovllqs15po8fco3ckmt3s6q02odbee2ks33hfddlqegpojfsf3lctlkbskam3uriqpu2ffceja4q136h1rbbcjkimclthblpc4n0.html#2n7kn0l6jfukpqr7lo2o5mng1qernn1madv6f3p9fpq3og88i2kga4v47r5scbnnec2go3jbdgjhhutj9l74ssg2aj0vgpgg2g6opmg">weighted</a></div></div>
+                <div><pre><code><span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.test.internals.v1.Domain</span> <span class="DataTypeParams">a</span><span class="DelimiterChar"> = </span><span class="Constructor">Small</span> <span class="DelimiterChar">[</span><span class="Var">a</span><span class="DelimiterChar">]</span><span class="DelimiterChar"> | </span><span class="Constructor">Large</span> (<a class="Reference" href="gjdtr94auoqqhph6a6a72kluprtfepv2v6e6ikl5j6idrnmdmqm2a8tatt43mct14gt25953ee7pcrg7jm0o0d0snfl14e4pt27lf8g.html">base.Weighted</a> <span class="Var">a</span>)</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.test.internals.v1.Scope.html">Scope</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.test.internals.v1.Scope.html#53bs419do0n9q1ffpgp1pj6vkophp4l1f0e24prom8urqdq3ltggip7okht36g3hr3n30ro3vfl158ls316pshpn94u8cr1sjc0hao0">cons</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.test.internals.v1.Status.html">Status</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.test.internals.v1.Status.html#g228o3laf922k8t97tdq2aflvpf1aohnbeq87e9e4q8opi1hvk0kq3un70qqsa6ku02l6vsc8nsstdra9njr683hk43mei2j47put68">combine</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Status.html#924e0vfvlkrlc6qdiou6q109gk6ubokoleqi9jnql00033psrk78mn3r84uf4e47cg2ll8qoel674bdiogdnk3oo3pbjg4sj8rpkv2g">pending</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.test.internals.v1.Success.html">Success</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.test.internals.v1.Success.html#qsa651k91jhgqrd8rupd0uc4m8mtnus9dkd6ejimi8m3a4d2m6vbrao6c5vr5k17r0h15b3qo92pekdvgk5mags92mffomsmgukn26g">combine</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.test.internals.v1.Test.html">Test</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="2ltaq4gqdajn0t364gn0hive4r0tq7mufn9ttcn99o1q1pejp9hf658pf94ofjfceigi3osua3i7rnuqvtoac61cplpoj4g71dj4jco.html">Report</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#c6embbsl59hin2c7ndqboquchoi44786icggh4niodbar0sf5k4eue1qcj69ps8359u1bi5t6rr2hvcpkvego2euq6dldpcne7hlg38">Scope</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#mo80e1n080jd4hsln94nerrejv2bacn4cd9hoebifsabm44mjvs1km04dkvlue5o0op31vbjad9f2ld6227qeqdn787e4jdrdi89p50">Status</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#md6vee7q626dlqhdao1ecjgaa2v19dhhnq9l8mr80o2gf67qprmkqe5atbve2m997u7fur9cahnqklhst1sd3kb84b36jqtol5klbbg">Success</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#4govrgn4168dmvhdrvb4m4cg1c8i3lob57pogj290697b2pk7iafl9denpgeqo6f70fg3emucf637k2qrqqvqc60q0rmc8ilbvnljm0">check</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#vkda4fi82jt6qpgdbe36fr8f9710tokmaolq25ji9m2deatbdqacbpbbsseg6ffg6pcuvf6993soru3ccifvrs4gtsg5gn8v2mkrpb0">check'</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#p7anpqept8bi53k56qs3v82707hk9pl2pdaj9bjstqlsps1b905hdq81f4v6d6mns11em8vqm990ejt1crfv8h2u455ol4lisjij6bo">finished</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#p1j9sa5oq5l03k5rdt8hbqj1iibpu0ueqkms8p1sqrj2jippi8b688bi6ehm4j4ljf3dvdjfv13kgvj7on85c3n99eamsglnp4m2kp0">forAll</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#t0kk6vm0mabcjjfi4atajq8fo06brkcb8ljlhejdthmrtv29hgmc558tibf5l98n1au7jdl86963cjkcjpslfgdqn4sk37oaod92rp8">forAll'</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#h72po4vibnft35iu1rjsb8lqc88gid7sat8vfq1e8fots8cpm264stb1v5qdggni7vfdq8jobq9mt6qcab19oglkfjj6n9pd9tggdbg">label</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#gcrsff86r95fj0lh0gv1bjj17447nrjeqgvs94pnok3kf47d3drintquc1u02komdr2670b5a5rscrfu03nvpk015i83p25v720qgr8">modifyScope</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#if5rk1i6ni416pqgkaafoddjirc227lc7nofp3b3jvbgngqdpn43sv38l17uhor10hjgebgk8omt40n4lsb5e4etpdlvcrekbsir368">modifyStatus</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#4sg73lpvrm6qurp7dh47tn8gmndlrhq34hjmmfvjsqb0ukirus7cctsuvb7ckmjigjjr0dlekikld2iojiqjuhbdrs5g47hk8lvlqro">passed</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#lqnmkausuod98f33a12fkk569nef3tkk3b6bfs1u7ito4e41itnuqg65qrid5ldlm7bneut2m1pik0p4bm0u0h8l1gu5qnb0ad71gfg">passedUnexpectedly</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#ammmjcgr82hbu2o3k72m8su6hbj5b35dent75k66ngsu67n6fjj3hi4p537vch7phjemrvfqrpa94m8vafkg6o2vvj0lunnkl4f65g0">passedWith</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#6t59us5ciigfci9krfbtdcqlel42q77810fbp7ppnovn8q852j3sl38i4l6lidjg4nspvsqr1t1j12npneik8ttrq9hcbq9ijhvq6g0">pending</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#0kjno4mdif7ui19vdjgptoc17dgr095k50hrp4q7b5tdt4cm0467s06cn2lf96fdoa68oqa6f6f5hg4tbi2leuatmcdf04b6aq0s8ko">proved</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#csiebd28mdo0gnkbr0c4r7oqq1bine2tuek4379vpcd612ieejeahnnj5r6hkjm71271f271shsqvgvqoh2jqlc6p12qt0847j5m3o0">provedUnexpectedly</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#5r33mhu52rnff42bkc9kkqi7pbsbhb3h2ol1mlovvbh5h9i36qdmgia39cbvqq8gld7qnnqaqmitlo3a6nj7ohi3itp75lh38toubjo">provedWith</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#rfh9n1qd20nk2lsgesejrch1c34932dkfc35j34l510m4vv2p621ft5gj4ocvio060gg5gst0e83mjmk844gu1hg8nsgmif240t3p88">report</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#v8vnmbk3clqkujn37lpr2eresjk7mia4ru36ejv6r8vopjjt0ns2s0ej45iku7e8f9n62f6vv3vnseqpq6ujcc9sp4p7ug4no3t78lo">run</a></div>
+<div><a class="sub-name" href="base.test.internals.v1.Test.html#27l4mj8f05pgdidjla026cpfthplnnf564kos0c6n49g1mleb3di05hgv7nkle0ud74touskg0nnkaqq8365r0ik8amodf0k3kv81t0">runAll</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="vl8efucokj290gecieir9rsg7c0k7jt5ggo19a9fnjg2pv50km460fh1f85npdru8uqcf4nnbfcjbpe12kv95v5j3hrso8g14qpd5sg" class="identifier">foldReport</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.test.internals.v1.foldReport</span><span class="TypeAscriptionColon"> :</span>
+  (<a class="Reference" href="pb08jpel3ke87nh3licf8b6t1f0154b73g1bnltbtd8hkdv3v6p4viqh7mg2p2uv72mt31tufsgssacud197df5ku6kecauht1ob1d0.html">base.Trie</a> <a class="Reference" href="__builtin__Text.html">base.Text</a> <a class="Reference" href="base.test.internals.v1.Test.html#mo80e1n080jd4hsln94nerrejv2bacn4cd9hoebifsabm44mjvs1km04dkvlue5o0op31vbjad9f2ld6227qeqdn787e4jdrdi89p50">base.test.internals.v1.Test.Status</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Var">r</span>)
+  <span class="TypeOperator">-&gt;</span> <a class="Reference" href="2ltaq4gqdajn0t364gn0hive4r0tq7mufn9ttcn99o1q1pejp9hf658pf94ofjfceigi3osua3i7rnuqvtoac61cplpoj4g71dj4jco.html">base.test.internals.v1.Test.Report</a>
+  <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Var">r</span>
+<span class="HashQualifier">base.test.internals.v1.foldReport</span> <span class="Var">k</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span>
+  <span class="Constructor">base.test.internals.v1.Test.Report.Report</span> <span class="Var">t</span> <span class="ControlKeyword">-&gt;</span> <span class="Var">k</span> <span class="Var">t</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="fcgl4gvu81v618gdhlses5kbd72rdnia4ioangn10q5o5st6tmo6ga0an9neolgtuo14d2mjv79snj472emp5nkas4i09omoao2dih8" class="identifier">foldScope</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.test.internals.v1.foldScope</span><span class="TypeAscriptionColon"> :</span>
+  (<span class="DelimiterChar">[</span><a class="Reference" href="__builtin__Text.html">base.Text</a><span class="DelimiterChar">]</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">r</span>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="base.test.internals.v1.Test.html#c6embbsl59hin2c7ndqboquchoi44786icggh4niodbar0sf5k4eue1qcj69ps8359u1bi5t6rr2hvcpkvego2euq6dldpcne7hlg38">base.test.internals.v1.Test.Scope</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">r</span>
+<span class="HashQualifier">base.test.internals.v1.foldScope</span> <span class="Var">k</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span>
+  <span class="Constructor">base.test.internals.v1.Test.Scope.Scope</span> <span class="Var">ss</span> <span class="ControlKeyword">-&gt;</span> <span class="Var">k</span> <span class="Var">ss</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="kqoclivn68bi8173o0lcrovjj5ud9e4j44l5m2osdj33k87rgr3gnqdrrq42nc4kmj8ce77l59a1o1k5p9nuu9347e4omttkim65qe0" class="identifier">foldStatus</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.test.internals.v1.foldStatus</span><span class="TypeAscriptionColon"> :</span>
+  <span class="Var">r</span>
+  <span class="TypeOperator">-&gt;</span> (<a class="Reference" href="base.test.internals.v1.Test.html#md6vee7q626dlqhdao1ecjgaa2v19dhhnq9l8mr80o2gf67qprmkqe5atbve2m997u7fur9cahnqklhst1sd3kb84b36jqtol5klbbg">base.test.internals.v1.Test.Success</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">r</span>)
+  <span class="TypeOperator">-&gt;</span> (<a class="Reference" href="base.test.internals.v1.Test.html#md6vee7q626dlqhdao1ecjgaa2v19dhhnq9l8mr80o2gf67qprmkqe5atbve2m997u7fur9cahnqklhst1sd3kb84b36jqtol5klbbg">base.test.internals.v1.Test.Success</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">r</span>)
+  <span class="TypeOperator">-&gt;</span> <span class="Var">r</span>
+  <span class="TypeOperator">-&gt;</span> <a class="Reference" href="base.test.internals.v1.Test.html#mo80e1n080jd4hsln94nerrejv2bacn4cd9hoebifsabm44mjvs1km04dkvlue5o0op31vbjad9f2ld6227qeqdn787e4jdrdi89p50">base.test.internals.v1.Test.Status</a>
+  <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">r</span>
+<span class="HashQualifier">base.test.internals.v1.foldStatus</span> <span class="Var">failed</span> <span class="Var">expected</span> <span class="Var">unexpected</span> <span class="Var">pending</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span>
+  <span class="Constructor">base.test.internals.v1.Test.Status.Failed</span>       <span class="ControlKeyword">-&gt;</span> <span class="Var">failed</span>
+  <span class="Constructor">base.test.internals.v1.Test.Status.Expected</span> <span class="Var">s</span>   <span class="ControlKeyword">-&gt;</span> <span class="Var">expected</span> <span class="Var">s</span>
+  <span class="Constructor">base.test.internals.v1.Test.Status.Unexpected</span> <span class="Var">s</span> <span class="ControlKeyword">-&gt;</span> <span class="Var">unexpected</span> <span class="Var">s</span>
+  <span class="Constructor">base.test.internals.v1.Test.Status.Pending</span>      <span class="ControlKeyword">-&gt;</span> <span class="Var">pending</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="ekd00garohg8i5l4s7qht0csepu58lrthpcu0dd1i6h6n97asg0q34pn3pc6a3uptdgvf8brp9l2m7ep7sn91uv5fp9eba3oe3anlsg" class="identifier">foldSuccess</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.test.internals.v1.foldSuccess</span><span class="TypeAscriptionColon"> :</span>
+  (<a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">r</span>) <span class="TypeOperator">-&gt;</span> <span class="Var">r</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="base.test.internals.v1.Test.html#md6vee7q626dlqhdao1ecjgaa2v19dhhnq9l8mr80o2gf67qprmkqe5atbve2m997u7fur9cahnqklhst1sd3kb84b36jqtol5klbbg">base.test.internals.v1.Test.Success</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">𝕖</span><span class="AbilityBraces">}</span> <span class="Var">r</span>
+<span class="HashQualifier">base.test.internals.v1.foldSuccess</span> <span class="Var">passed</span> <span class="Var">proved</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span>
+  <span class="Constructor">base.test.internals.v1.Test.Success.Passed</span> <span class="Var">n</span> <span class="ControlKeyword">-&gt;</span> <span class="Var">passed</span> <span class="Var">n</span>
+  <span class="Constructor">base.test.internals.v1.Test.Success.Proved</span>   <span class="ControlKeyword">-&gt;</span> <span class="Var">proved</span></code></pre></div>
+            </div>
+            
+    
+</body>

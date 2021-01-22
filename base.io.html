@@ -1,0 +1,700 @@
+<!doctype html>
+<head>
+    <meta charset=utf8>
+    <title>base.io</title>
+    <style>
+ body {
+     max-width: 800px;
+     margin: 0 auto;
+     font-size: 16px;
+     font-family: 'Inter', sans-serif;
+ }
+
+ p {
+   font-weight: 200;
+ }
+
+ h1 {
+   font-size: 3em;
+   line-height: 1;
+   margin-bottom: 8px;
+ }
+
+ h1.identifier, h2.identifier {
+   font-weight: 500;
+ }
+
+.un-site-nav__logo {
+  display: inline-block;
+  width: 100px;
+  height: 100%;
+  fill: currentColor;
+}
+
+ h1 a, h2 a {
+   color: #520066;
+   color: #8f228f;
+   text-decoration: none;
+ }
+
+ code, .code, .identifier, .sub-name {
+    font-family: 'Fira Code', monospace;
+ }
+
+ .breadcrumb {
+     font-size: 80%;
+     padding-left: 4px;
+     margin-bottom: 2em;
+ }
+
+ .breadcrumb .item {
+ }
+
+ .docs {
+     line-height: 1.5;
+ }
+  
+ pre {
+     padding: 10px 20px;
+     box-shadow: 0 0 2px;
+     border-radius: 3px;
+ }
+
+ p > code {
+    background-color: #fafafa;
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 0 0 2px inset #aaa;
+}
+  
+ .sub-name {
+     display: inline-block;
+     padding: 4px 8px;
+     margin-right: 8px;
+     margin-bottom: 8px;
+     border-radius: 5px;
+     background-color: #ddd;
+     font-size: 80%;
+     font-weight: 200;
+ }
+ a.sub-name {
+     text-decoration: none;
+     color: black;
+ }
+ .children {
+   display: flex; flex-direction: row; flex-wrap: wrap;
+ }
+  
+ .Constructor {
+     color: #ce8500
+ }
+ .DataTypeKeyword {
+     font-weight: bold;
+ }
+ .Var {
+     color: #00a;
+ }
+ .NumericLiteral, .TextLiteral, .CharLiteral, .BooleanLiteral {
+     color: green;
+ }
+  
+   .ControlKeyword      { font-weight: bold }
+   .AbilityBraces       ,
+   .LinkKeyword         ,
+   .TypeOperator        ,
+   .UseKeyword          ,
+   .UsePrefix           ,
+   .UseSuffix           ,
+   .HashQualifier      { color: #777 }
+   .DelayForceChar      { color: #adad00; }
+   .TypeAscriptionColon { color: blue }
+   .DocDelimiter        { color: green }
+   .DocKeyword          { font-weight: bold }
+</style>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    
+    <div style='display:flex;justify-content: space-between;padding: 16px;align-items:center'>
+      <a href="index.html">Home</a>
+      <a href="https://www.unisonweb.org/" style="display:block" target="_blank" nofollow noreferrer>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2989.27 1031.5" class="un-site-nav__logo"><title>logo-unison</title><path d="M1240.54 397.11c0-17.07 14.53-31.61 32.24-31.61 18.33 0 32.87 14.54 32.87 31.61v134c0 20.86 2.53 34.77 9.48 47.41 10.11 18.33 30.34 31 62.58 31s52.47-12.65 62.59-31c7-12.64 10.11-26.55 10.11-47.41v-134a32.24 32.24 0 0164.48 0v139.07c0 36.66-7.59 62-22.76 82.81-22.76 30.34-62.58 46.15-114.42 46.15-51.2 0-91.66-15.81-113.78-46.15-15.81-20.86-23.39-46.15-23.39-82.81V397.11zm351.27 0c0-17.7 14.54-31.61 32.24-31.61 18.33 0 32.24 13.91 32.24 31.61v12.64c20.86-29.08 53.73-44.25 93.56-44.25 32.86 0 62.58 8.22 83.44 27.18 21.49 19 33.5 49.94 33.5 93.56v147.29c0 17.7-15.17 31.61-32.24 31.61-18.33 0-32.87-13.91-32.87-31.61V502c0-25.92-3.79-49.3-18.33-64.47-10.12-10.12-24.66-16.44-46.15-16.44-29.08 0-51.83 13.27-65.74 37.93-10.74 19.59-15.17 43.62-15.17 67v107.51c0 17.7-15.18 31.61-32.24 31.61-17.7 0-32.24-13.91-32.24-31.61V397.11zm386.75-31.61a31.84 31.84 0 0132.24 31.61v236.42c0 17.7-15.17 31.61-32.24 31.61-18.33 0-32.24-13.91-32.24-31.61V397.11a31.84 31.84 0 0132.24-31.61zm285.84 65.74c-20.22 0-38.56-12.64-68.27-12.64-27.18 0-44.88 8.22-44.88 27.18 0 16.44 12.64 25.29 29.71 32.87 19.59 8.22 44.25 15.18 63.85 24.66 37.29 18.33 51.83 40.46 51.83 73.32 0 52.47-43.62 88.51-112.52 88.51-41.72 0-107.46-9.49-107.46-48a25.37 25.37 0 0125.28-25.28c23.39 0 33.5 22.75 77.76 22.75 29.08 0 48.67-10.11 48.67-32.24 0-19-13.9-27.81-32.87-36.66-17.7-8.22-43.62-14.54-65.11-24.65-31-14.54-47.41-37.93-47.41-74 0-50.57 39.19-81.55 109.36-81.55 50.57 0 97.35 10.11 97.35 39.82 0 14.58-11.38 26-25.29 26zm122.6-24c27.81-25.92 66.38-41.72 109.36-41.72 42.36 0 81.55 15.8 109.36 41.72 27.82 26.55 44.25 63.85 44.25 108.1 0 44.88-15.8 82.81-44.25 108.73-27.18 25.91-67 41.09-109.36 41.09-43 0-82.18-15.18-109.36-41.09-28.45-25.92-44.88-63.85-44.88-108.73 0-44.25 17.1-81.55 44.88-108.1zM2431.25 583c15.8 17.07 38.56 27.81 65.11 27.81a87.15 87.15 0 0064.48-27.81c15.8-17.71 25.28-40.46 25.28-67.64s-9.48-49.94-25.28-67.64a87.16 87.16 0 00-64.48-27.82c-26.55 0-49.31 10.75-65.11 27.82-15.8 17.7-24.65 40.46-24.65 67.64s8.89 49.93 24.69 67.64zm283-185.85c0-17.7 14.54-31.61 32.24-31.61 18.34 0 32.24 13.91 32.24 31.61v12.64c20.86-29.08 53.74-44.25 93.56-44.25 32.87 0 62.58 8.22 83.45 27.18 21.48 19 33.5 49.94 33.5 93.56v147.25c0 17.7-15.17 31.61-32.24 31.61-18.33 0-32.87-13.91-32.87-31.61V502c0-25.92-3.79-49.3-18.34-64.47-10.11-10.12-24.65-16.44-46.14-16.44-29.08 0-51.84 13.27-65.75 37.93-10.74 19.59-15.17 43.62-15.17 67v107.51c0 17.7-15.17 31.61-32.24 31.61-17.7 0-32.24-13.91-32.24-31.61V397.11zm-715.2-183.37a31 31 0 100 43.8 31 31 0 00.03-43.84zM887.36 286.16a27.21 27.21 0 010 38.47 27.2 27.2 0 01-38.46 0 27.21 27.21 0 0138.47-38.49zM720.18 196.8a327.23 327.23 0 0161.24 18.58 27.22 27.22 0 0114.75 35.55 27.2 27.2 0 01-35.55 14.73h-.05a272.19 272.19 0 00-50.32-15.35c-.46-.08-.91-.17-1.37-.27a271.94 271.94 0 00-51-5.09h-1.4a108.86 108.86 0 01-94.26-54.41c-.12-.21-.25-.43-.36-.65a272.28 272.28 0 00-69.6-79.2c-119.22-91.48-290-69-381.52 50.23a27.21 27.21 0 11-43.21-33.12c.28-.36.57-.71.86-1.06a326.6 326.6 0 0195-82.94c156.13-90.16 355.79-36.67 446 119.46v.05l.23.39a54.39 54.39 0 0045.69 26.83h1.21a326.64 326.64 0 0163.7 6.27zM43.41 544.94c.23-.44.49-.88.75-1.31a54.41 54.41 0 00-.07-53.28c-.27-.45-.52-.9-.77-1.35a326.57 326.57 0 01-32.14-246.94 27.21 27.21 0 0152.57 14.09A272.1 272.1 0 0090.6 462q.45.75.87 1.53a108.87 108.87 0 01-.09 107.13c-.35.63-.71 1.26-1.11 1.87A272.29 272.29 0 0056.8 672c-19.61 149 85.26 285.63 234.26 305.25v.06a27.2 27.2 0 0123.42 30.52 27.21 27.21 0 01-30.48 23.43h.05a326.27 326.27 0 01-120.64-41C7.37 900.26-46.21 701 43.41 544.94zm44.8 30.43a26.51 26.51 0 002.06-2.8l.08-.13a27.79 27.79 0 01-2.14 2.93zm322.87 447.54a27.2 27.2 0 01-33.32-19.22A27.22 27.22 0 01397 970.35a27.21 27.21 0 0114.09 52.56zm245.4-179.34a54.43 54.43 0 00-46.75 26.56c-.12.23-.25.46-.38.68a326.23 326.23 0 01-37.28 52c4.52-5.16 4.53-5.13 0 0-.28.32-.56.63-.85.93a326.51 326.51 0 01-45.87 42.78 27.21 27.21 0 01-38.15-5 27.22 27.22 0 015-38.15 272.06 272.06 0 0038.93-36.47c-4.36 5-4.37 4.94 0 0 .34-.38.68-.75 1-1.1a272 272 0 0029.6-41.42c.16-.3.33-.59.5-.89a108.83 108.83 0 0194.2-54.32 272 272 0 00104.13-20.72c138.55-57.39 204.51-216 147.61-354.67-.12-.26-.24-.53-.35-.8a27.21 27.21 0 0150.26-20.86 326.57 326.57 0 0124.86 125c0 180.33-146.19 326.52-326.52 326.52zm-24-542.93q10.79-1.18 21.66-1.3a217.72 217.72 0 11-21.61 434.12A108.9 108.9 0 00526 794.94 217.73 217.73 0 11151.92 577.5a109 109 0 00-.83-122.11q-3.9-5.33-7.47-10.87a217.71 217.71 0 11382.43-205.34 108.91 108.91 0 00106.45 61.46zm-447.29 488.5a163.25 163.25 0 1059.75-223 163.27 163.27 0 00-59.75 223zm329.94-190.46a163.25 163.25 0 1059.76-223 163.27 163.27 0 00-59.76 223zM326.61 489.84a163.25 163.25 0 10-163.3-163.22 163.26 163.26 0 00163.3 163.22z"></path></svg>
+      </a>
+    </div>
+    
+    <h1 class='identifier'>io</h1>
+    <div class='breadcrumb'><a class="item" href="index.html">Home</a> : <a class="item" href="base.html">base</a></div>
+    
+    
+            <div>
+                <h2 id="u934c4e54dhbspa8mvrge30gt630anj09jrtaldtkm7okqte95a6tdhu38heog6c8oqss0jcch4jgn4rptnjvoq69sikd3rcs6lvai8" class="identifier">BufferMode</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.io.BufferMode</span><span class="DelimiterChar"> = </span><span class="Constructor">Line</span><span class="DelimiterChar"> | </span><span class="Constructor">Block</span> (<a class="Reference" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html">base.Optional</a> <a class="Reference" href="__builtin__Nat.html">base.Nat</a>)</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="kg74r0md7j6ij8mnmh77o7t49n0pican7qe2ami1buhtlqcj9dnm3o3ho42nr1bhor8kb4skmt48mlit8ofp9fc01370jiursf540t0" class="identifier">EpochTime</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.io.EpochTime</span><span class="DelimiterChar"> = </span><span class="Constructor">EpochTime</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8" class="identifier">Error</h2>
+                
+                <div><pre><code><span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.io.Error</span><span class="DelimiterChar"> = </span><span class="Constructor">Error</span> <a class="Reference" href="base.io.html#ks5ii1paqn8gcal86j8fnivedqqag9dta6rmggrms24dtt4hlsafqdmkkq603fo4i3g4p1vjnppivr46h2uoenk7rh19jvoans7ibd0">base.io.ErrorType</a> <a class="Reference" href="__builtin__Text.html">base.Text</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="f29o6fujg81a242j4trpq0l1jeq3o7afggrnm99b7g65kgkfod56rpk3dv65h4vnshol04far7ti07dhq2l1f549hm8kk4i7k9l5tl0" class="identifier">ErrorDescription</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.io.ErrorDescription</span><span class="DelimiterChar"> = </span><span class="Constructor">ErrorDescription</span> <a class="Reference" href="__builtin__Text.html">base.Text</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="9b9i9o1ms422jvrr0cfcf50t1jt014tjnp12pnvku1q874q0p6gu516jjm9rj6269u1vsipdll0ve2hkt5jfd4jg3j2m1l7hc58u5rg" class="identifier">ErrorLocation</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.io.ErrorLocation</span><span class="DelimiterChar"> = </span><span class="Constructor">ErrorLocation</span> <a class="Reference" href="__builtin__Text.html">base.Text</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="ks5ii1paqn8gcal86j8fnivedqqag9dta6rmggrms24dtt4hlsafqdmkkq603fo4i3g4p1vjnppivr46h2uoenk7rh19jvoans7ibd0" class="identifier">ErrorType</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.io.ErrorType</span><span class="DelimiterChar">
+  = </span><span class="Constructor">AlreadyExists</span><span class="DelimiterChar">
+  | </span><span class="Constructor">NoSuchThing</span><span class="DelimiterChar">
+  | </span><span class="Constructor">ResourceBusy</span><span class="DelimiterChar">
+  | </span><span class="Constructor">ResourceExhausted</span><span class="DelimiterChar">
+  | </span><span class="Constructor">EOF</span><span class="DelimiterChar">
+  | </span><span class="Constructor">IllegalOperation</span><span class="DelimiterChar">
+  | </span><span class="Constructor">PermissionDenied</span><span class="DelimiterChar">
+  | </span><span class="Constructor">UserError</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso" class="identifier">FilePath</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.io.FilePath</span><span class="DelimiterChar"> = </span><span class="Constructor">FilePath</span> <a class="Reference" href="__builtin__Text.html">base.Text</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o" class="identifier">Handle</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.io.Handle</span><span class="DelimiterChar"> = </span><span class="Constructor">Handle</span> <a class="Reference" href="__builtin__Text.html">base.Text</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="4a63ca3c83b889p9m6uphj11tb2st7m0341oinav6jfdb1nfmmfvg9f6n8dgmnid0g995ujb2e6gn1scejco2f7j7fulv5e5nu8ra7g" class="identifier">HostName</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.io.HostName</span><span class="DelimiterChar"> = </span><span class="Constructor">HostName</span> <a class="Reference" href="__builtin__Text.html">base.Text</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g" class="identifier">IO</h2>
+                
+                <div><pre><code><span class="DataTypeKeyword">ability</span> <span class="HashQualifier">base.io.IO</span><span class="ControlKeyword"> where</span>
+  <span class="Constructor">getFileSize_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="__builtin__Nat.html">base.Nat</a>
+  <span class="Constructor">kill_</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#jbn673ovtd9pa9108b71pbedh4mnvd1m08in36jslkecjl7cgf7lf46s4vclcmubsqqtqjj4gnn6mppbbgnrbfodvdfkgal5ivltlm8">base.io.ThreadId</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> ()
+  <span class="Constructor">send_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">base.io.Socket</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Bytes.html">base.Bytes</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> ()
+  <span class="Constructor">bracket_</span><span class="TypeAscriptionColon"> :</span>
+    <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Var">a</span>
+    <span class="TypeOperator">-&gt;</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Var">b</span>)
+    <span class="TypeOperator">-&gt;</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Var">c</span>)
+    <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <span class="Var">c</span>
+  <span class="Constructor">getLine_</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="__builtin__Text.html">base.Text</a>
+  <span class="Constructor">getText_</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="__builtin__Text.html">base.Text</a>
+  <span class="Constructor">getFileTimestamp_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="base.io.html#kg74r0md7j6ij8mnmh77o7t49n0pican7qe2ami1buhtlqcj9dnm3o3ho42nr1bhor8kb4skmt48mlit8ofp9fc01370jiursf540t0">base.io.EpochTime</a>
+  <span class="Constructor">closeFile_</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> ()
+  <span class="Constructor">getTemporaryDirectory_</span><span class="TypeAscriptionColon"> :</span>
+    <span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> (<a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a>)
+  <span class="Constructor">getCurrentDirectory_</span><span class="TypeAscriptionColon"> :</span>
+    <span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> (<a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a>)
+  <span class="Constructor">renameDirectory_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a>
+    <span class="TypeOperator">-&gt;</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a>
+    <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> ()
+  <span class="Constructor">renameFile_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a>
+    <span class="TypeOperator">-&gt;</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a>
+    <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> ()
+  <span class="Constructor">receive_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">base.io.Socket</a>
+    <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a>
+    <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> (<a class="Reference" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html">base.Optional</a> <a class="Reference" href="__builtin__Bytes.html">base.Bytes</a>)
+  <span class="Constructor">fileExists_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+  <span class="Constructor">isDirectory_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+  <span class="Constructor">directoryContents_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a>
+    <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <span class="DelimiterChar">[</span><a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a><span class="DelimiterChar">]</span>
+  <span class="Constructor">listen_</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">base.io.Socket</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> ()
+  <span class="Constructor">closeSocket_</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">base.io.Socket</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> ()
+  <span class="Constructor">clientSocket_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#4a63ca3c83b889p9m6uphj11tb2st7m0341oinav6jfdb1nfmmfvg9f6n8dgmnid0g995ujb2e6gn1scejco2f7j7fulv5e5nu8ra7g">base.io.HostName</a>
+    <span class="TypeOperator">-&gt;</span> <a class="Reference" href="base.io.html#9giu4jv4864091hr03v5ji9ffh3i1qdg26v5n442qkjrek9gl2lt7asqphtq3gc43h5m9a0ehiar428rgeovvu1habrc8mnqapul1lo">base.io.ServiceName</a>
+    <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">base.io.Socket</a>
+  <span class="Constructor">delay_</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> ()
+  <span class="Constructor">seek_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a>
+    <span class="TypeOperator">-&gt;</span> <a class="Reference" href="base.io.html#ep1qo0ujpuu501tqra77gq1vjmgqjfijig63bjcd4jrf22nuca3hmcu0b49m0bnmd1aurai7rm6e9tvorutd5geg9kehnaufe0dr5hg">base.io.SeekMode</a>
+    <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Int.html">base.Int</a>
+    <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> ()
+  <span class="Constructor">serverSocket_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html">base.Optional</a> <a class="Reference" href="base.io.html#4a63ca3c83b889p9m6uphj11tb2st7m0341oinav6jfdb1nfmmfvg9f6n8dgmnid0g995ujb2e6gn1scejco2f7j7fulv5e5nu8ra7g">base.io.HostName</a>
+    <span class="TypeOperator">-&gt;</span> <a class="Reference" href="base.io.html#9giu4jv4864091hr03v5ji9ffh3i1qdg26v5n442qkjrek9gl2lt7asqphtq3gc43h5m9a0ehiar428rgeovvu1habrc8mnqapul1lo">base.io.ServiceName</a>
+    <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">base.io.Socket</a>
+  <span class="Constructor">accept_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">base.io.Socket</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">base.io.Socket</a>
+  <span class="Constructor">setBuffering_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a>
+    <span class="TypeOperator">-&gt;</span> <a class="Reference" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html">base.Optional</a> <a class="Reference" href="base.io.html#u934c4e54dhbspa8mvrge30gt630anj09jrtaldtkm7okqte95a6tdhu38heog6c8oqss0jcch4jgn4rptnjvoq69sikd3rcs6lvai8">base.io.BufferMode</a>
+    <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> ()
+  <span class="Constructor">openFile_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a>
+    <span class="TypeOperator">-&gt;</span> <a class="Reference" href="base.io.html#drqrm3fo7q6ljc36mmhjf3cqteod1q9prchdb1jblpo6dito5m495kqc5592k9ilvsin6348kebspqtdh1c303ne5gd29de1a91o61o">base.io.Mode</a>
+    <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a>
+  <span class="Constructor">throw</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Var">a</span>
+  <span class="Constructor">fork_</span><span class="TypeAscriptionColon"> :</span>
+    <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="base.io.html#jbn673ovtd9pa9108b71pbedh4mnvd1m08in36jslkecjl7cgf7lf46s4vclcmubsqqtqjj4gnn6mppbbgnrbfodvdfkgal5ivltlm8">base.io.ThreadId</a>
+  <span class="Constructor">getBuffering_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a>
+    <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> (<a class="Reference" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html">base.Optional</a> <a class="Reference" href="base.io.html#u934c4e54dhbspa8mvrge30gt630anj09jrtaldtkm7okqte95a6tdhu38heog6c8oqss0jcch4jgn4rptnjvoq69sikd3rcs6lvai8">base.io.BufferMode</a>)
+  <span class="Constructor">position_</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="__builtin__Int.html">base.Int</a>
+  <span class="Constructor">setCurrentDirectory_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> ()
+  <span class="Constructor">createDirectory_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> ()
+  <span class="Constructor">removeDirectory_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> ()
+  <span class="Constructor">removeFile_</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> ()
+  <span class="Constructor">systemTime_</span><span class="TypeAscriptionColon"> :</span> <span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> (<a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="base.io.html#kg74r0md7j6ij8mnmh77o7t49n0pican7qe2ami1buhtlqcj9dnm3o3ho42nr1bhor8kb4skmt48mlit8ofp9fc01370jiursf540t0">base.io.EpochTime</a>)
+  <span class="Constructor">isFileEOF_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+  <span class="Constructor">isFileOpen_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+  <span class="Constructor">isSeekable_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+  <span class="Constructor">putText_</span><span class="TypeAscriptionColon"> :</span>
+    <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Text.html">base.Text</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> ()</code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="drqrm3fo7q6ljc36mmhjf3cqteod1q9prchdb1jblpo6dito5m495kqc5592k9ilvsin6348kebspqtdh1c303ne5gd29de1a91o61o" class="identifier">Mode</h2>
+                
+                <div><pre><code><span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.io.Mode</span><span class="DelimiterChar"> = </span><span class="Constructor">Read</span><span class="DelimiterChar"> | </span><span class="Constructor">Write</span><span class="DelimiterChar"> | </span><span class="Constructor">Append</span><span class="DelimiterChar"> | </span><span class="Constructor">ReadWrite</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="ep1qo0ujpuu501tqra77gq1vjmgqjfijig63bjcd4jrf22nuca3hmcu0b49m0bnmd1aurai7rm6e9tvorutd5geg9kehnaufe0dr5hg" class="identifier">SeekMode</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.io.SeekMode</span><span class="DelimiterChar"> = </span><span class="Constructor">Absolute</span><span class="DelimiterChar"> | </span><span class="Constructor">Relative</span><span class="DelimiterChar"> | </span><span class="Constructor">FromEnd</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="9giu4jv4864091hr03v5ji9ffh3i1qdg26v5n442qkjrek9gl2lt7asqphtq3gc43h5m9a0ehiar428rgeovvu1habrc8mnqapul1lo" class="identifier">ServiceName</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.io.ServiceName</span><span class="DelimiterChar"> = </span><span class="Constructor">ServiceName</span> <a class="Reference" href="__builtin__Text.html">base.Text</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo" class="identifier">Socket</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.io.Socket</span><span class="DelimiterChar"> = </span><span class="Constructor">Socket</span> <a class="Reference" href="__builtin__Text.html">base.Text</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="jbn673ovtd9pa9108b71pbedh4mnvd1m08in36jslkecjl7cgf7lf46s4vclcmubsqqtqjj4gnn6mppbbgnrbfodvdfkgal5ivltlm8" class="identifier">ThreadId</h2>
+                
+                <div><pre><code><span class="DataTypeModifier">unique</span> <span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.io.ThreadId</span><span class="DelimiterChar"> = </span><span class="Constructor">ThreadId</span> <a class="Reference" href="__builtin__Text.html">base.Text</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="s6fpks1kj4ulsg83l8ih7hr7ab1k21jh2qkmu2rk47opc7lek2u7pcmqt8e3cb7e3jn6kilfrnboesainafou1fia4ve5j51suc9bc8" class="identifier">accept</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.accept</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">base.io.Socket</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">base.io.Socket</a>
+<span class="HashQualifier">base.io.accept</span> <span class="Var">s</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.accept_</span> <span class="Var">s</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="2a8l66l6e5dtk9961srg4m5hf1osl62d7jvmv9psnf8eqbsmvg85r7k7trahmfmh83dpp3jhg42nnfssb9rgm6i9t251ki6bo6q08s0" class="identifier">bracket</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.bracket</span><span class="TypeAscriptionColon"> :</span>
+  <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Var">a</span>
+  <span class="TypeOperator">-&gt;</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Var">b</span>)
+  <span class="TypeOperator">-&gt;</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Var">c</span>)
+  <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Var">c</span>
+<span class="HashQualifier">base.io.bracket</span> <span class="Var">acquire</span> <span class="Var">release</span> <span class="Var">what</span><span class="BindingEquals"> =</span>
+  <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.bracket_</span> <span class="Var">acquire</span> <span class="Var">release</span> <span class="Var">what</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="sb97alikfa50nqkcd8l5qtoi28i0v4l50cmf342bsclq3hjjktgr4h61cg7l9ethpm1eeg82ba5r7b839rect0dqpc1u1o43b0bi2d0" class="identifier">clientSocket</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.clientSocket</span><span class="TypeAscriptionColon"> :</span>
+  <a class="Reference" href="base.io.html#4a63ca3c83b889p9m6uphj11tb2st7m0341oinav6jfdb1nfmmfvg9f6n8dgmnid0g995ujb2e6gn1scejco2f7j7fulv5e5nu8ra7g">base.io.HostName</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="base.io.html#9giu4jv4864091hr03v5ji9ffh3i1qdg26v5n442qkjrek9gl2lt7asqphtq3gc43h5m9a0ehiar428rgeovvu1habrc8mnqapul1lo">base.io.ServiceName</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">base.io.Socket</a>
+<span class="HashQualifier">base.io.clientSocket</span> <span class="Var">host</span> <span class="Var">service</span><span class="BindingEquals"> =</span>
+  <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.clientSocket_</span> <span class="Var">host</span> <span class="Var">service</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="rn0onmpfcpl1gtp05filg8dlvq2al1qcafdj4vgk8vf706evrajk5hhjtg5nnbeldvft5l2eppunceohq156fj3bf8k1vbq04u7o7jo" class="identifier">closeFile</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.closeFile</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.io.closeFile</span> <span class="Var">f</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.closeFile_</span> <span class="Var">f</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="sndvcmaeqakn1jakusaho0n6nhue7vmarjti9c4ouufqr2g7s5r43937pcn1irongrub0uajo5huvjltr8egl56gq6h24uk6k04p9u0" class="identifier">closeSocket</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.closeSocket</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">base.io.Socket</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.io.closeSocket</span> <span class="Var">s</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.closeSocket_</span> <span class="Var">s</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="11l799s1o1r5bs47rrbrjngqkun1r5o4plffdlblvedbqbfe966ubllbfv53kn5cpgsinjogd873iuiaaoeun5liqt9vp9t6jkdlhm0" class="identifier">createDirectory</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.createDirectory</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.io.createDirectory</span> <span class="Var">d</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.createDirectory_</span> <span class="Var">d</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="3rmlr7b9qs7vaept8ae43ugtu2b7h2v3bchgcpv9jftvlbqejcev6qs5rvk51smvqucm7o9g09qiqel5sfogetb2inmp20pd5ukh198" class="identifier"><a class="" href="3rmlr7b9qs7vaept8ae43ugtu2b7h2v3bchgcpv9jftvlbqejcev6qs5rvk51smvqucm7o9g09qiqel5sfogetb2inmp20pd5ukh198.html">delay</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="3rmlr7b9qs7vaept8ae43ugtu2b7h2v3bchgcpv9jftvlbqejcev6qs5rvk51smvqucm7o9g09qiqel5sfogetb2inmp20pd5ukh198.html#sg2nk75v323pn32ab0s79pbtpppltfss4tqv6d0ddfm1kjo982ghg63irkc8o9nvv2kk4aur65gc08hknekcr249q647vvjtbatu2eo">doc</a></div>
+<div><a class="sub-name" href="base.io.delay.examples.html">examples</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.io.delay</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.io.delay</span> <span class="Var">n</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.delay_</span> <span class="Var">n</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="blrpud5hsj3dpvi5nf322jhn2loq3cgd0lhoviesabntj1s5tf1vqnmb73idqhnkf46ng4e9emks03e1kb5e07cqqflusda841b1dq8" class="identifier">directoryContents</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.directoryContents</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="DelimiterChar">[</span><a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a><span class="DelimiterChar">]</span>
+<span class="HashQualifier">base.io.directoryContents</span> <span class="Var">d</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.directoryContents_</span> <span class="Var">d</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="chjnfasrv0sclgb0paok89ef6h4usul0ab7b6qcpnhbqiad6c2vm76rt0fbnj5sime89k8l1r2itfeng87oqrrj3lvuqgdjc2vh199o" class="identifier">fileExists</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.fileExists</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+<span class="HashQualifier">base.io.fileExists</span> <span class="Var">d</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.fileExists_</span> <span class="Var">d</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="q9hu0sbh6o0mg2g5nholc4cnsr08fp9r4hipqp9us5iulav5bvbkf3apcoe95mtupeqoak0id93r2aag2agjcle9jtc7b8vv3dku7no" class="identifier">fork</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.fork</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="base.io.html#jbn673ovtd9pa9108b71pbedh4mnvd1m08in36jslkecjl7cgf7lf46s4vclcmubsqqtqjj4gnn6mppbbgnrbfodvdfkgal5ivltlm8">base.io.ThreadId</a>
+<span class="HashQualifier">base.io.fork</span> <span class="Var">a</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.fork_</span> <span class="Var">a</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="fpv86hl6b1c39jn2jgkjuv5rl0rq8jtd6obu0i209mjfcvklrip933ifitcu1iqp0892plt4ahanqmf5bqeggn7nthadn5l2p5otjdg" class="identifier">getBuffering</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.getBuffering</span><span class="TypeAscriptionColon"> :</span>
+  <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html">base.Optional</a> <a class="Reference" href="base.io.html#u934c4e54dhbspa8mvrge30gt630anj09jrtaldtkm7okqte95a6tdhu38heog6c8oqss0jcch4jgn4rptnjvoq69sikd3rcs6lvai8">base.io.BufferMode</a>
+<span class="HashQualifier">base.io.getBuffering</span> <span class="Var">h</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.getBuffering_</span> <span class="Var">h</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="8p5h38v9ka552jobiuegeut1urfd6mmb9ue3n5a0djb1l9pqog53nu6p2bhpb78nklkbuq9v91nvvgrit2u89uo4h61vo8ictb1m7dg" class="identifier">getCurrentDirectory</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.getCurrentDirectory</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a>
+<span class="HashQualifier">base.io.getCurrentDirectory</span><span class="BindingEquals"> =</span>
+  <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Request">base.io.IO.getCurrentDirectory_</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="nguiq4obnqodjlegi02j01v1vne4b30rvcit041nkjkfn3fh055vg9vbedqmoir52ci07og87uofhp3s4fu1f46qkuiuaf0i5mofncg" class="identifier">getFileSize</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.getFileSize</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a>
+<span class="HashQualifier">base.io.getFileSize</span> <span class="Var">d</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.getFileSize_</span> <span class="Var">d</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="i1vpaec80l9nhthu1mdhh2us2ttuffjlebf46t759lrilor4of77c5bcjp2nadsbtdrmg1s7jnr44toq9hfff8ef3o88s0966v3k8n0" class="identifier">getFileTimestamp</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.getFileTimestamp</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="base.io.html#kg74r0md7j6ij8mnmh77o7t49n0pican7qe2ami1buhtlqcj9dnm3o3ho42nr1bhor8kb4skmt48mlit8ofp9fc01370jiursf540t0">base.io.EpochTime</a>
+<span class="HashQualifier">base.io.getFileTimestamp</span> <span class="Var">d</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.getFileTimestamp_</span> <span class="Var">d</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="293bqh2tirdq3bve6nh7puubfhj6vbn8q9uhsq0t7em0ugsr3qkohfv9fgsp3638q089fr27q39ko9mq2j1megef59iutrdqb21b0to" class="identifier">getLine</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.getLine</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Text.html">base.Text</a>
+<span class="HashQualifier">base.io.getLine</span> <span class="Var">h</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.getLine_</span> <span class="Var">h</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="gv0hkukek9kf1spsuba57h44jheqgkieq2sr3tc23u0h2d638s636a9947nkftc7rog0lacp9e9k55odvaj054ro00pc4o513n3rnsg" class="identifier">getTemporaryDirectory</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.getTemporaryDirectory</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a>
+<span class="HashQualifier">base.io.getTemporaryDirectory</span><span class="BindingEquals"> =</span>
+  <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Request">base.io.IO.getTemporaryDirectory_</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="l66s5tdqpar79d8a173h127lcq0g4krnctsu94mm3m2v7dme4vvi3abq1ft5vqa74rv9q0o6ejjea0mp31si1e5nvq9j44nbrkac10o" class="identifier">getText</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.getText</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Text.html">base.Text</a>
+<span class="HashQualifier">base.io.getText</span> <span class="Var">h</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.getText_</span> <span class="Var">h</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="jchq8li2n43ft8llqehb650c8duqrc78r401b2s02vu2vbcj9gs48oo68um6tkhv63eu8e0obccdbjsvbgu0coqri6nfq3nd7alhuro" class="identifier">isDirectory</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.isDirectory</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+<span class="HashQualifier">base.io.isDirectory</span> <span class="Var">d</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.isDirectory_</span> <span class="Var">d</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="3v4omd6pspmf2596vibldudn2aiscvp2rvpo0a4u2r69cdi4qdj6j1rpda4stm13h9pu06htdddbdjjh9r6vkmj8j5hon7101jhq4e0" class="identifier">isFileEOF</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.isFileEOF</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+<span class="HashQualifier">base.io.isFileEOF</span> <span class="Var">h</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.isFileEOF_</span> <span class="Var">h</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="chhm2k85t3793mql1broqgqvvrgu1q4g6h4t30gpb2mu97k8si4cqac2vs837av3bgsf5n0ahdcsecracab0r2uveregcf3p4r4md98" class="identifier">isFileOpen</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.isFileOpen</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+<span class="HashQualifier">base.io.isFileOpen</span> <span class="Var">h</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.isFileOpen_</span> <span class="Var">h</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="u8tecclu1h4km9ek31i9u7jiat7epkcqfbqo2e30vedqiok64qoglbo9lr3qsofkvhrlnj9gha3esa96l5oerat32cb9l4f5tp47fng" class="identifier">isSeekable</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.isSeekable</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+<span class="HashQualifier">base.io.isSeekable</span> <span class="Var">h</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.isSeekable_</span> <span class="Var">h</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="sgolenatisgavtfi478ebcmvald8mhfetfmcsgmcl9uhleu7u9m6u9ra3kd8f00oq524icu3ehae2ptgfh7bsllfvlqlin3ihb5ib80" class="identifier">kill</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.kill</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#jbn673ovtd9pa9108b71pbedh4mnvd1m08in36jslkecjl7cgf7lf46s4vclcmubsqqtqjj4gnn6mppbbgnrbfodvdfkgal5ivltlm8">base.io.ThreadId</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.io.kill</span> <span class="Var">t</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.kill_</span> <span class="Var">t</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="svkh3mpbb92nvebhrk5et81e5dv7l2pu6p0hc2gbqi9mtd15qvko771nj1roncp7u8ivi090q5l045qqibd4h9bctg9qukmrf9to6gg" class="identifier">listen</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.listen</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">base.io.Socket</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.io.listen</span> <span class="Var">s</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.listen_</span> <span class="Var">s</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="21fc70s2sun00ledska1gbkr8a6e0uf9ul1on8iogi5tai71tftsagqbkpug2q0k8re5tme45l8gkkdlhnceaffjmg7t8pps6tb6ckg" class="identifier">openFile</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.openFile</span><span class="TypeAscriptionColon"> :</span>
+  <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="base.io.html#drqrm3fo7q6ljc36mmhjf3cqteod1q9prchdb1jblpo6dito5m495kqc5592k9ilvsin6348kebspqtdh1c303ne5gd29de1a91o61o">base.io.Mode</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a>
+<span class="HashQualifier">base.io.openFile</span> <span class="Var">f</span> <span class="Var">m</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.openFile_</span> <span class="Var">f</span> <span class="Var">m</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="8j1pafn62borh6pou4c1a0m11kqj1jn2rqe2gjr2bfeeuar1gt2cn50nmi1h741ql1014hssvve9gs8aghe836qi8bfflgdmdlhbiqo" class="identifier">position</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.position</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Int.html">base.Int</a>
+<span class="HashQualifier">base.io.position</span> <span class="Var">h</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.position_</span> <span class="Var">h</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="ssbdakrj0hbr2rpno34bj8i64mokaaoc5rdj7sil5c87qrqeamf2996qrg0gc1thhamd4bbc40l991d7vgd35qekh5hsoiqkpccvk50" class="identifier">printLine</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.printLine</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="__builtin__Text.html">base.Text</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.io.printLine</span> <span class="Var">t</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">io</span> <span class="UseSuffix">putText</span><span class="UseSuffix"> </span><span class="UseSuffix">stdout</span>
+  <a class="Reference" href="base.io.html#usjgb68ojte81tje2msm1s0t1p8advuocspasdi2l5cs3nc05vgt19pgoi7d3se228u50o5fjmbi3gvnugsgni77ptd4kh3nl39p5ho">putText</a> <a class="Reference" href="base.io.html#7plc1gmlvn6ti9lpq4ufa4uvdal6elieppmcgvr0d0scsk9e3edakgnk09covbel3hjcjlsi7rmn8auhi935fo9iibed7krpfr337fo">stdout</a> <span class="Var">t</span>
+  <a class="Reference" href="base.io.html#usjgb68ojte81tje2msm1s0t1p8advuocspasdi2l5cs3nc05vgt19pgoi7d3se228u50o5fjmbi3gvnugsgni77ptd4kh3nl39p5ho">putText</a> <a class="Reference" href="base.io.html#7plc1gmlvn6ti9lpq4ufa4uvdal6elieppmcgvr0d0scsk9e3edakgnk09covbel3hjcjlsi7rmn8auhi935fo9iibed7krpfr337fo">stdout</a> <span class="TextLiteral">"\n"</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="usjgb68ojte81tje2msm1s0t1p8advuocspasdi2l5cs3nc05vgt19pgoi7d3se228u50o5fjmbi3gvnugsgni77ptd4kh3nl39p5ho" class="identifier">putText</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.putText</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Text.html">base.Text</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.io.putText</span> <span class="Var">h</span> <span class="Var">t</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.putText_</span> <span class="Var">h</span> <span class="Var">t</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="fss4ukj8md987tj1k2cv5osmpg4n5c0ridoavh5qokqul1141h7hkrg2vspsfa3el74fdl424rhi0rl55nh4fo2pk3mi7fho3hgrieg" class="identifier">readLine</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.readLine</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Text.html">base.Text</a>
+<span class="HashQualifier">base.io.readLine</span><span class="BindingEquals"> =</span> <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><a class="Reference" href="base.io.html#293bqh2tirdq3bve6nh7puubfhj6vbn8q9uhsq0t7em0ugsr3qkohfv9fgsp3638q089fr27q39ko9mq2j1megef59iutrdqb21b0to">base.io.getLine</a> <a class="Reference" href="base.io.html#guan2g5fkio6mjpvkl1f4tsu05psuas54t8li2uhpgmh3pk7qd65128cj7p11b69knigo401poqjc4eo0983lf7v2pj3qs2310inem0">base.io.stdin</a><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="ka3k1bcfmh1lj6b3a351tp9nnjdj714i6m9b82k730t22j4kgqt095mrkc9ksu0sm4f4qk4bscphkehlj8qodneberm468pf5ims14g" class="identifier">receive</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.receive</span><span class="TypeAscriptionColon"> :</span>
+  <a class="Reference" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">base.io.Socket</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html">base.Optional</a> <a class="Reference" href="__builtin__Bytes.html">base.Bytes</a>
+<span class="HashQualifier">base.io.receive</span> <span class="Var">s</span> <span class="Var">n</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.receive_</span> <span class="Var">s</span> <span class="Var">n</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="4s3a801c8hlka1rsr2sb79qcfr8ode3ld397bse80oq94qqjcnuvhm8llkej7t4lrbddnkuadb9lhsim1fa8v35bn5ldrj2o2cu1edo" class="identifier">removeDirectory</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.removeDirectory</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.io.removeDirectory</span> <span class="Var">d</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.removeDirectory_</span> <span class="Var">d</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="2v69r3mpn51h9fo0ahe4sgu9f50usd2jj9hg18fh4je49eg9k48rppg60o6c17le2r5k640q5llr1tq7cl3r205ijj07j0gs8flsvs8" class="identifier">removeFile</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.removeFile</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.io.removeFile</span> <span class="Var">d</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.removeFile_</span> <span class="Var">d</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="tb99v1l9vqfqqsnu8a37v3ceg1b67kenjtiusk54cvdkvlf0lc5227b7ja8ru38qdms5hs2mfgo1u2f2fl4fr1cu5q8utjjvrb8021o" class="identifier">renameDirectory</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.renameDirectory</span><span class="TypeAscriptionColon"> :</span>
+  <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.io.renameDirectory</span> <span class="Var">from</span> <span class="Var">to</span><span class="BindingEquals"> =</span>
+  <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.renameDirectory_</span> <span class="Var">from</span> <span class="Var">to</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="0vjv37iqunnu4tvi3jiu3mees01le0278qs0sgmbgisoil83991351tgcqei5ke9flelqocsbh7n18t0n2s1ijorde2l3ol22327mv8" class="identifier">renameFile</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.renameFile</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.io.renameFile</span> <span class="Var">from</span> <span class="Var">to</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.renameFile_</span> <span class="Var">from</span> <span class="Var">to</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70" class="identifier">rethrow</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.rethrow</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="kc92tha5f12vamultsbq93aqnphg9pnhuq3sodqvhes6st2a3h5sd2rksuptds94ptvvpg0tj0jp1rehlb73rkn0kj2r6elkdqndhjo.html">base.Either</a> <a class="Reference" href="base.io.html#jkhagbadavfdu4mb0gfhj7mpkpjdftaps1hq7t5vu1mafhgln49i7gt999ut08hffovsqd6uks02kot5kgvtmhg5q35cs34btn2j2q8">base.io.Error</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Var">a</span>
+<span class="HashQualifier">base.io.rethrow</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span>
+  <span class="Constructor">base.Either.Left</span> <span class="Var">e</span>  <span class="ControlKeyword">-&gt;</span> <span class="Request">base.io.IO.throw</span> <span class="Var">e</span>
+  <span class="Constructor">base.Either.Right</span> <span class="Var">a</span> <span class="ControlKeyword">-&gt;</span> <span class="Var">a</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="k45ikh5eqsas7unmcaui7vvi32cmv2k8lj4ebtf0684tg2n4rv85uc8gbc6a1s3o214f2duj0p40qta8ner72jeeq7iru5hbmtfemng" class="identifier">seek</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.seek</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="base.io.html#ep1qo0ujpuu501tqra77gq1vjmgqjfijig63bjcd4jrf22nuca3hmcu0b49m0bnmd1aurai7rm6e9tvorutd5geg9kehnaufe0dr5hg">base.io.SeekMode</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Int.html">base.Int</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.io.seek</span> <span class="Var">h</span> <span class="Var">m</span> <span class="Var">i</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.seek_</span> <span class="Var">h</span> <span class="Var">m</span> <span class="Var">i</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="2hvi11d9q25a3disvhuuq6sdm1puekf4dncihb08dkdjtcmncjj1ovgf87fmnr5t21b9dhld2jnvm60r45cvhid339iqhuvgatfk1m0" class="identifier">send</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.send</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">base.io.Socket</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Bytes.html">base.Bytes</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.io.send</span> <span class="Var">s</span> <span class="Var">bs</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.send_</span> <span class="Var">s</span> <span class="Var">bs</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="nkrrcefnvpr0i0lc66mrknd2rgurqjl4s7hqdlasac8pu2dqrdo4i2r6a9knp5nf148tr7bh1uml8n4r2etv3p8lv12hunkddpstq58" class="identifier">serverSocket</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.serverSocket</span><span class="TypeAscriptionColon"> :</span>
+  <a class="Reference" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html">base.Optional</a> <a class="Reference" href="base.io.html#4a63ca3c83b889p9m6uphj11tb2st7m0341oinav6jfdb1nfmmfvg9f6n8dgmnid0g995ujb2e6gn1scejco2f7j7fulv5e5nu8ra7g">base.io.HostName</a>
+  <span class="TypeOperator">-&gt;</span> <a class="Reference" href="base.io.html#9giu4jv4864091hr03v5ji9ffh3i1qdg26v5n442qkjrek9gl2lt7asqphtq3gc43h5m9a0ehiar428rgeovvu1habrc8mnqapul1lo">base.io.ServiceName</a>
+  <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="base.io.html#3n6ctj9fne0fjmf2mhem6bschovul0hic2uoumblsp47rfrrhn6beoi613r373bbt7nfgtod93u5i5fjnvutqh3gspi9lc4ral1nkgo">base.io.Socket</a>
+<span class="HashQualifier">base.io.serverSocket</span> <span class="Var">host</span> <span class="Var">service</span><span class="BindingEquals"> =</span>
+  <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.serverSocket_</span> <span class="Var">host</span> <span class="Var">service</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="lblh8c9q8n9rfs91feqlsl7dqimvcusm04aald14dc37i64eu78i1okfgn5qoffa7vhehnu8ct9bimifdaljjagam1fkejvj0u11c8o" class="identifier">setBuffering</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.setBuffering</span><span class="TypeAscriptionColon"> :</span>
+  <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html">base.Optional</a> <a class="Reference" href="base.io.html#u934c4e54dhbspa8mvrge30gt630anj09jrtaldtkm7okqte95a6tdhu38heog6c8oqss0jcch4jgn4rptnjvoq69sikd3rcs6lvai8">base.io.BufferMode</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.io.setBuffering</span> <span class="Var">h</span> <span class="Var">bm</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.setBuffering_</span> <span class="Var">h</span> <span class="Var">bm</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="aviabg53r9s536te8ii7e8upribu61l6p2df19ae628oe5dp5gr2401ir28nb7cof36qk3bjql0luscb0dki6n9990sf7769ib0ne58" class="identifier">setCurrentDirectory</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.setCurrentDirectory</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#53ai5nivms98htel68e7n79oeto45u3h59ho0b59rt5qinvo197e8hc58qfcmatanfvunmcn6oavseb3e926mg102n72ju3nd8b1uso">base.io.FilePath</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <span class="Unit">()</span>
+<span class="HashQualifier">base.io.setCurrentDirectory</span> <span class="Var">d</span><span class="BindingEquals"> =</span>
+  <a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Parenthesis">(</span><span class="Request">base.io.IO.setCurrentDirectory_</span> <span class="Var">d</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="h9aum4t6b5fuapvvl9g6rtdp56ki2pduflkc4j3s5i6agb3f4dl8ki3rlqlc8v0jo3uoct1thps1hse3iqa08s7257qlkjkactcmauo" class="identifier">stderr</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.stderr</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a>
+<span class="HashQualifier">base.io.stderr</span><span class="BindingEquals"> =</span> <span class="Constructor">base.io.Handle.Handle</span> <span class="TextLiteral">"stderr"</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="guan2g5fkio6mjpvkl1f4tsu05psuas54t8li2uhpgmh3pk7qd65128cj7p11b69knigo401poqjc4eo0983lf7v2pj3qs2310inem0" class="identifier">stdin</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.stdin</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a>
+<span class="HashQualifier">base.io.stdin</span><span class="BindingEquals"> =</span> <span class="Constructor">base.io.Handle.Handle</span> <span class="TextLiteral">"stdin"</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="7plc1gmlvn6ti9lpq4ufa4uvdal6elieppmcgvr0d0scsk9e3edakgnk09covbel3hjcjlsi7rmn8auhi935fo9iibed7krpfr337fo" class="identifier">stdout</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.stdout</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="base.io.html#b7kh3q81n1htidjsbuuk80a7kmm6qi62lidg0hbg8o0nph7e6eubqq6k43n50qaurghvgv8p1on925980ft1jsl3pd1snq0jtj86d4o">base.io.Handle</a>
+<span class="HashQualifier">base.io.stdout</span><span class="BindingEquals"> =</span> <span class="Constructor">base.io.Handle.Handle</span> <span class="TextLiteral">"stdout"</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="1tdqrgl90qnmqvrff0j76kg2rnajq7n8j54e9cbk4p8pdi41q343bnh8h2rv6nadhlin8teg8371d445pvo0as7j2sav8k401d2s3no" class="identifier">systemTime</h2>
+                
+                <div><pre><code><span class="HashQualifier">base.io.systemTime</span><span class="TypeAscriptionColon"> :</span> <span class="DelayForceChar">'</span><span class="AbilityBraces">{</span><a class="Reference" href="base.io.html#fgaevis4bljt5a8f8nv4dckj5ckau43r5dbda6s0oucsa5j8fn3ie5apjouc00pksqpja5vbud0d0joavnu7mcbja1mr56jumfu8d5g">base.io.IO</a><span class="AbilityBraces">}</span> <a class="Reference" href="base.io.html#kg74r0md7j6ij8mnmh77o7t49n0pican7qe2ami1buhtlqcj9dnm3o3ho42nr1bhor8kb4skmt48mlit8ofp9fc01370jiursf540t0">base.io.EpochTime</a>
+<span class="HashQualifier">base.io.systemTime</span><span class="BindingEquals"> =</span> <span class="DelayForceChar">'</span><span class="Parenthesis">(</span><a class="Reference" href="base.io.html#rultimjsuqimjid9ktklj6n26ejvsbn21d1d161vk54hf7a7nmic96c1aefb4jhoko520e6fbtetje3fe54i4mhdjrh3p7movr3uk70">base.io.rethrow</a> <span class="Request">base.io.IO.systemTime_</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+    
+</body>

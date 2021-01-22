@@ -1,0 +1,919 @@
+<!doctype html>
+<head>
+    <meta charset=utf8>
+    <title>base.Bag</title>
+    <style>
+ body {
+     max-width: 800px;
+     margin: 0 auto;
+     font-size: 16px;
+     font-family: 'Inter', sans-serif;
+ }
+
+ p {
+   font-weight: 200;
+ }
+
+ h1 {
+   font-size: 3em;
+   line-height: 1;
+   margin-bottom: 8px;
+ }
+
+ h1.identifier, h2.identifier {
+   font-weight: 500;
+ }
+
+.un-site-nav__logo {
+  display: inline-block;
+  width: 100px;
+  height: 100%;
+  fill: currentColor;
+}
+
+ h1 a, h2 a {
+   color: #520066;
+   color: #8f228f;
+   text-decoration: none;
+ }
+
+ code, .code, .identifier, .sub-name {
+    font-family: 'Fira Code', monospace;
+ }
+
+ .breadcrumb {
+     font-size: 80%;
+     padding-left: 4px;
+     margin-bottom: 2em;
+ }
+
+ .breadcrumb .item {
+ }
+
+ .docs {
+     line-height: 1.5;
+ }
+  
+ pre {
+     padding: 10px 20px;
+     box-shadow: 0 0 2px;
+     border-radius: 3px;
+ }
+
+ p > code {
+    background-color: #fafafa;
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 0 0 2px inset #aaa;
+}
+  
+ .sub-name {
+     display: inline-block;
+     padding: 4px 8px;
+     margin-right: 8px;
+     margin-bottom: 8px;
+     border-radius: 5px;
+     background-color: #ddd;
+     font-size: 80%;
+     font-weight: 200;
+ }
+ a.sub-name {
+     text-decoration: none;
+     color: black;
+ }
+ .children {
+   display: flex; flex-direction: row; flex-wrap: wrap;
+ }
+  
+ .Constructor {
+     color: #ce8500
+ }
+ .DataTypeKeyword {
+     font-weight: bold;
+ }
+ .Var {
+     color: #00a;
+ }
+ .NumericLiteral, .TextLiteral, .CharLiteral, .BooleanLiteral {
+     color: green;
+ }
+  
+   .ControlKeyword      { font-weight: bold }
+   .AbilityBraces       ,
+   .LinkKeyword         ,
+   .TypeOperator        ,
+   .UseKeyword          ,
+   .UsePrefix           ,
+   .UseSuffix           ,
+   .HashQualifier      { color: #777 }
+   .DelayForceChar      { color: #adad00; }
+   .TypeAscriptionColon { color: blue }
+   .DocDelimiter        { color: green }
+   .DocKeyword          { font-weight: bold }
+</style>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    
+    <div style='display:flex;justify-content: space-between;padding: 16px;align-items:center'>
+      <a href="index.html">Home</a>
+      <a href="https://www.unisonweb.org/" style="display:block" target="_blank" nofollow noreferrer>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2989.27 1031.5" class="un-site-nav__logo"><title>logo-unison</title><path d="M1240.54 397.11c0-17.07 14.53-31.61 32.24-31.61 18.33 0 32.87 14.54 32.87 31.61v134c0 20.86 2.53 34.77 9.48 47.41 10.11 18.33 30.34 31 62.58 31s52.47-12.65 62.59-31c7-12.64 10.11-26.55 10.11-47.41v-134a32.24 32.24 0 0164.48 0v139.07c0 36.66-7.59 62-22.76 82.81-22.76 30.34-62.58 46.15-114.42 46.15-51.2 0-91.66-15.81-113.78-46.15-15.81-20.86-23.39-46.15-23.39-82.81V397.11zm351.27 0c0-17.7 14.54-31.61 32.24-31.61 18.33 0 32.24 13.91 32.24 31.61v12.64c20.86-29.08 53.73-44.25 93.56-44.25 32.86 0 62.58 8.22 83.44 27.18 21.49 19 33.5 49.94 33.5 93.56v147.29c0 17.7-15.17 31.61-32.24 31.61-18.33 0-32.87-13.91-32.87-31.61V502c0-25.92-3.79-49.3-18.33-64.47-10.12-10.12-24.66-16.44-46.15-16.44-29.08 0-51.83 13.27-65.74 37.93-10.74 19.59-15.17 43.62-15.17 67v107.51c0 17.7-15.18 31.61-32.24 31.61-17.7 0-32.24-13.91-32.24-31.61V397.11zm386.75-31.61a31.84 31.84 0 0132.24 31.61v236.42c0 17.7-15.17 31.61-32.24 31.61-18.33 0-32.24-13.91-32.24-31.61V397.11a31.84 31.84 0 0132.24-31.61zm285.84 65.74c-20.22 0-38.56-12.64-68.27-12.64-27.18 0-44.88 8.22-44.88 27.18 0 16.44 12.64 25.29 29.71 32.87 19.59 8.22 44.25 15.18 63.85 24.66 37.29 18.33 51.83 40.46 51.83 73.32 0 52.47-43.62 88.51-112.52 88.51-41.72 0-107.46-9.49-107.46-48a25.37 25.37 0 0125.28-25.28c23.39 0 33.5 22.75 77.76 22.75 29.08 0 48.67-10.11 48.67-32.24 0-19-13.9-27.81-32.87-36.66-17.7-8.22-43.62-14.54-65.11-24.65-31-14.54-47.41-37.93-47.41-74 0-50.57 39.19-81.55 109.36-81.55 50.57 0 97.35 10.11 97.35 39.82 0 14.58-11.38 26-25.29 26zm122.6-24c27.81-25.92 66.38-41.72 109.36-41.72 42.36 0 81.55 15.8 109.36 41.72 27.82 26.55 44.25 63.85 44.25 108.1 0 44.88-15.8 82.81-44.25 108.73-27.18 25.91-67 41.09-109.36 41.09-43 0-82.18-15.18-109.36-41.09-28.45-25.92-44.88-63.85-44.88-108.73 0-44.25 17.1-81.55 44.88-108.1zM2431.25 583c15.8 17.07 38.56 27.81 65.11 27.81a87.15 87.15 0 0064.48-27.81c15.8-17.71 25.28-40.46 25.28-67.64s-9.48-49.94-25.28-67.64a87.16 87.16 0 00-64.48-27.82c-26.55 0-49.31 10.75-65.11 27.82-15.8 17.7-24.65 40.46-24.65 67.64s8.89 49.93 24.69 67.64zm283-185.85c0-17.7 14.54-31.61 32.24-31.61 18.34 0 32.24 13.91 32.24 31.61v12.64c20.86-29.08 53.74-44.25 93.56-44.25 32.87 0 62.58 8.22 83.45 27.18 21.48 19 33.5 49.94 33.5 93.56v147.25c0 17.7-15.17 31.61-32.24 31.61-18.33 0-32.87-13.91-32.87-31.61V502c0-25.92-3.79-49.3-18.34-64.47-10.11-10.12-24.65-16.44-46.14-16.44-29.08 0-51.84 13.27-65.75 37.93-10.74 19.59-15.17 43.62-15.17 67v107.51c0 17.7-15.17 31.61-32.24 31.61-17.7 0-32.24-13.91-32.24-31.61V397.11zm-715.2-183.37a31 31 0 100 43.8 31 31 0 00.03-43.84zM887.36 286.16a27.21 27.21 0 010 38.47 27.2 27.2 0 01-38.46 0 27.21 27.21 0 0138.47-38.49zM720.18 196.8a327.23 327.23 0 0161.24 18.58 27.22 27.22 0 0114.75 35.55 27.2 27.2 0 01-35.55 14.73h-.05a272.19 272.19 0 00-50.32-15.35c-.46-.08-.91-.17-1.37-.27a271.94 271.94 0 00-51-5.09h-1.4a108.86 108.86 0 01-94.26-54.41c-.12-.21-.25-.43-.36-.65a272.28 272.28 0 00-69.6-79.2c-119.22-91.48-290-69-381.52 50.23a27.21 27.21 0 11-43.21-33.12c.28-.36.57-.71.86-1.06a326.6 326.6 0 0195-82.94c156.13-90.16 355.79-36.67 446 119.46v.05l.23.39a54.39 54.39 0 0045.69 26.83h1.21a326.64 326.64 0 0163.7 6.27zM43.41 544.94c.23-.44.49-.88.75-1.31a54.41 54.41 0 00-.07-53.28c-.27-.45-.52-.9-.77-1.35a326.57 326.57 0 01-32.14-246.94 27.21 27.21 0 0152.57 14.09A272.1 272.1 0 0090.6 462q.45.75.87 1.53a108.87 108.87 0 01-.09 107.13c-.35.63-.71 1.26-1.11 1.87A272.29 272.29 0 0056.8 672c-19.61 149 85.26 285.63 234.26 305.25v.06a27.2 27.2 0 0123.42 30.52 27.21 27.21 0 01-30.48 23.43h.05a326.27 326.27 0 01-120.64-41C7.37 900.26-46.21 701 43.41 544.94zm44.8 30.43a26.51 26.51 0 002.06-2.8l.08-.13a27.79 27.79 0 01-2.14 2.93zm322.87 447.54a27.2 27.2 0 01-33.32-19.22A27.22 27.22 0 01397 970.35a27.21 27.21 0 0114.09 52.56zm245.4-179.34a54.43 54.43 0 00-46.75 26.56c-.12.23-.25.46-.38.68a326.23 326.23 0 01-37.28 52c4.52-5.16 4.53-5.13 0 0-.28.32-.56.63-.85.93a326.51 326.51 0 01-45.87 42.78 27.21 27.21 0 01-38.15-5 27.22 27.22 0 015-38.15 272.06 272.06 0 0038.93-36.47c-4.36 5-4.37 4.94 0 0 .34-.38.68-.75 1-1.1a272 272 0 0029.6-41.42c.16-.3.33-.59.5-.89a108.83 108.83 0 0194.2-54.32 272 272 0 00104.13-20.72c138.55-57.39 204.51-216 147.61-354.67-.12-.26-.24-.53-.35-.8a27.21 27.21 0 0150.26-20.86 326.57 326.57 0 0124.86 125c0 180.33-146.19 326.52-326.52 326.52zm-24-542.93q10.79-1.18 21.66-1.3a217.72 217.72 0 11-21.61 434.12A108.9 108.9 0 00526 794.94 217.73 217.73 0 11151.92 577.5a109 109 0 00-.83-122.11q-3.9-5.33-7.47-10.87a217.71 217.71 0 11382.43-205.34 108.91 108.91 0 00106.45 61.46zm-447.29 488.5a163.25 163.25 0 1059.75-223 163.27 163.27 0 00-59.75 223zm329.94-190.46a163.25 163.25 0 1059.76-223 163.27 163.27 0 00-59.76 223zM326.61 489.84a163.25 163.25 0 10-163.3-163.22 163.26 163.26 0 00163.3 163.22z"></path></svg>
+      </a>
+    </div>
+    
+    <h1 class='identifier'>Bag</h1>
+    <div class='breadcrumb'><a class="item" href="index.html">Home</a> : <a class="item" href="base.html">base</a></div>
+    <pre><code><span class="DataTypeKeyword">type</span> <span class="HashQualifier">base.Bag</span> <span class="DataTypeParams">a</span><span class="DelimiterChar"> = </span><span class="Constructor">internal.MkBag</span> (<a class="Reference" href="jk39javgi28eog9lmpblqeg6eb6dkv9f2eo1kauceki0h7g0t9tbg2oi3u4qioa5d0mioptr5548049odbuv9tg34s6foqs26hf1feg.html">base.Map</a> <span class="Var">a</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a>)</code></pre>
+    
+            <div>
+                <h2 id="2pun3lahrm8aeq09k70qvebfprc59os1e88teq2tu0o1nhameoj3kk67imrqe36mfd1ssmqcoe402dhlfc88uu745iqd1sdn5492ms0" class="identifier">*</h2>
+                
+                <div><pre><code><span class="Parenthesis">(</span><span class="HashQualifier">base.Bag.*</span><span class="Parenthesis">)</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">b</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> (<span class="Var">a</span>, <span class="Var">b</span>)
+<span class="Parenthesis">(</span><span class="HashQualifier">base.Bag.*</span><span class="Parenthesis">)</span><span class="BindingEquals"> =</span> <a class="Reference" href="lpo19ssu4iqpp5q2cn795j9903iuurttpcs0h0rd8vlc8ua6kvl74etep1qil22bncm247s2iirgjeo17i5kbtvobj6hl557o7sv928.html">base.Bag.convolve</a> <a class="Reference" href="ueqi8q5hkmfmjjeh3sbp3m5tumt875np6q3fit07gvf3ggn4fmncsjjanu0vp8kbj3oo3pia1p4roj484r507gq43h1kjcv4pig934o.html">base.Tuple.pair</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="ua91u6uc67tr19of8r9dbsoad35upuaun6frq61g1ml9do9mqqhrm0baem20ei2g3vfjfsp3gvr229frcuqjmd8qnp497lgfiet21f8" class="identifier">+</h2>
+                
+                <div><pre><code><span class="Parenthesis">(</span><span class="HashQualifier">base.Bag.+</span><span class="Parenthesis">)</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span>
+<span class="Parenthesis">(</span><span class="HashQualifier">base.Bag.+</span><span class="Parenthesis">)</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span>
+  <span class="Constructor">base.Bag.internal.MkBag</span> <span class="Var">b1</span> <span class="ControlKeyword">-&gt;</span>
+    <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Bag</span><span class="UsePrefix">.</span><span class="UsePrefix">internal</span> <span class="UseSuffix">MkBag</span>
+    <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Nat</span> <span class="UseSuffix">+</span>
+    <span class="ControlKeyword">cases</span> <span class="Constructor">MkBag</span> <span class="Var">b2</span> <span class="ControlKeyword">-&gt;</span> <span class="Constructor">MkBag</span> <span class="Parenthesis">(</span><a class="Reference" href="9qsotl22cf4ru07fn7l9pq63hh1id10b556ua3girdt8o83aolb6sqbethf4894j7fmnsjqosdm6usr10fjl6qp96mpndh49b52lom0.html">base.Map.unionWith</a> <span class="Parenthesis">(</span><a class="Reference" href="__builtin__Nat.html#__builtin__Nat.+">+</a><span class="Parenthesis">)</span> <span class="Var">b1</span> <span class="Var">b2</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="27lpp0vtqm7igf3e8mt65h7omqbvp7glcqd0e5mile2n37dk5osccekat27s15n12a8t1i66sedk4edm37ug6pt3dnibubd70ipodpo" class="identifier">==</h2>
+                
+                <div><pre><code><span class="Parenthesis">(</span><span class="HashQualifier">base.Bag.==</span><span class="Parenthesis">)</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+<span class="Var">b1</span> <span class="HashQualifier">base.Bag.==</span> <span class="Var">b2</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Bag</span> <span class="UseSuffix">counts</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Map</span> <span class="UseSuffix">==</span>
+  <a class="Reference" href="3fosfs3598idpagvu3vm46hovual6km5snd867nqd86ma4nl3rrespkg1m3i35siine92cv6hha5oetifci80n88ia5bcva44nvs71g.html">counts</a> <span class="Var">b1</span> <a class="Reference" href="kveco2oh1klk63shkmv97ohsslns4500r0so497kca83ihu7onnnac0i72s7j0b6omi0s3kte0m2198s37cilljorvqc7dd42m2gl0o.html">==</a> <a class="Reference" href="3fosfs3598idpagvu3vm46hovual6km5snd867nqd86ma4nl3rrespkg1m3i35siine92cv6hha5oetifci80n88ia5bcva44nvs71g.html">counts</a> <span class="Var">b2</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="pbmto3bqnc42nisa4jnj1or5jeee84osulk5cnbk0h62ipffpa7pfiu9q4c07vmjfbqa4ertt1dd4j4soihgn29db293qptdp545teg" class="identifier"><a class="" href="pbmto3bqnc42nisa4jnj1or5jeee84osulk5cnbk0h62ipffpa7pfiu9q4c07vmjfbqa4ertt1dd4j4soihgn29db293qptdp545teg.html">add</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="pbmto3bqnc42nisa4jnj1or5jeee84osulk5cnbk0h62ipffpa7pfiu9q4c07vmjfbqa4ertt1dd4j4soihgn29db293qptdp545teg.html#6ufum2l163cpjnehupg3d27o2r1hp8bnska54udh3es7ehl6dv28ru9t56dn5trg764ob56qnt5iio5q7fdn0ff1uv8fr5qvpjb4bl0">doc</a></div>
+<div><a class="sub-name" href="base.Bag.add.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.add</span><span class="TypeAscriptionColon"> :</span> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span>
+<span class="HashQualifier">base.Bag.add</span> <span class="Var">k</span> <span class="Var">b</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Bag</span> <span class="UseSuffix">+</span>
+  <span class="Var">b</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html#ua91u6uc67tr19of8r9dbsoad35upuaun6frq61g1ml9do9mqqhrm0baem20ei2g3vfjfsp3gvr229frcuqjmd8qnp497lgfiet21f8">+</a> <a class="Reference" href="0uurhb63d6es858f3l95cct4mm1phou2h11sa4hlf8jeghf4p0dt4t24kf6tdcqd199omigkjkm32ahmcluniufursid9l5c8d2hs3g.html">base.Bag.singleton</a> <span class="Var">k</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.Bag.addAll.html">addAll</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.Bag.addAll.html#l25jd1t1ufkfo38efa3bei253pt19p5kecaustia4drornbv15qrqkki3df9f6lqpr0deiur0mhr88j9uukpmsvl7n91d4p4pbt4dm8">doc</a></div>
+<div><a class="sub-name" href="base.Bag.addAll.tests.html">tests</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="jmt63g1tnkchop3jne9911nnvrlpjibe252jdfl9emjffoddmq3adhdohpcscbrlu10rpf96ie5m86jmuki753pv8i0vrpogm6ikuq0" class="identifier"><a class="" href="jmt63g1tnkchop3jne9911nnvrlpjibe252jdfl9emjffoddmq3adhdohpcscbrlu10rpf96ie5m86jmuki753pv8i0vrpogm6ikuq0.html">addN</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="jmt63g1tnkchop3jne9911nnvrlpjibe252jdfl9emjffoddmq3adhdohpcscbrlu10rpf96ie5m86jmuki753pv8i0vrpogm6ikuq0.html#epdo9i8ir9haji0n9gouesuafngidesbner18u6t4al0u4pq5ictb9cgfbbsrk7sb4ae7egl4kh6t74i1r8ooocoic2hivjj8flj3e8">doc</a></div>
+<div><a class="sub-name" href="jmt63g1tnkchop3jne9911nnvrlpjibe252jdfl9emjffoddmq3adhdohpcscbrlu10rpf96ie5m86jmuki753pv8i0vrpogm6ikuq0.html#32hi4a2k5tshv96iedd2tu9jtlgc47pkk27kktssrgs17alv3tn2cv2gvmco17noddnq78ep44ahmuqaeu7jsm6u2cn168e2tvbpq38">test</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.addN</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="TypeOperator">-&gt;</span> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span>
+<span class="HashQualifier">base.Bag.addN</span> <span class="Var">n</span> <span class="Var">k</span> <span class="Var">b</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Bag</span> <span class="UseSuffix">+</span>
+  <span class="Var">b</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html#ua91u6uc67tr19of8r9dbsoad35upuaun6frq61g1ml9do9mqqhrm0baem20ei2g3vfjfsp3gvr229frcuqjmd8qnp497lgfiet21f8">+</a> <a class="Reference" href="4lvprebeh2chuvcakj3riebgbujfmaomd37r8v3h670hrmct3tthh3jpglmuqgbfi4t535ectff8ef0sno9ekmva339nbu2reqdjg6o.html">base.Bag.scale</a> <span class="Var">n</span> <span class="Parenthesis">(</span><a class="Reference" href="0uurhb63d6es858f3l95cct4mm1phou2h11sa4hlf8jeghf4p0dt4t24kf6tdcqd199omigkjkm32ahmcluniufursid9l5c8d2hs3g.html">base.Bag.singleton</a> <span class="Var">k</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="5s0u8ng7kjn5rh3afnn992l21g43cres0rvq8bp13rl2e6rbtu6bosncdb6924d8j7k2c308mrmvrmp7kg24scnutfnsa96kg7pj43o" class="identifier"><a class="" href="5s0u8ng7kjn5rh3afnn992l21g43cres0rvq8bp13rl2e6rbtu6bosncdb6924d8j7k2c308mrmvrmp7kg24scnutfnsa96kg7pj43o.html">all</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="5s0u8ng7kjn5rh3afnn992l21g43cres0rvq8bp13rl2e6rbtu6bosncdb6924d8j7k2c308mrmvrmp7kg24scnutfnsa96kg7pj43o.html#ev7t16ml2s30je7mbtmo2gp5fjd69p4lpqv6pkm6b1aa5gta9vo9d8pu767rdti4dq65ari7o5dsmo1i0410b3udiauj3bbph46thdo">doc</a></div>
+<div><a class="sub-name" href="5s0u8ng7kjn5rh3afnn992l21g43cres0rvq8bp13rl2e6rbtu6bosncdb6924d8j7k2c308mrmvrmp7kg24scnutfnsa96kg7pj43o.html#n77oefvi1gpa3t4i8659m2hiurp5qjf48t0asr4ip4g04bs64daul79h0fp16t0bg0th95c6kv7oknodu13m961ur3b27c5ms8d3kf8">test</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.all</span><span class="TypeAscriptionColon"> :</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+<span class="HashQualifier">base.Bag.all</span> <span class="Var">p</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span> <span class="UseSuffix">.</span>
+  <a class="Reference" href="67pkgtd4qp43kbhavlu29fj5t8eoeqjac0fn46avgd07vcdufj6ul2u6gdpf2q3u4vmm4qrr4clcl51ggnpkr3r5f908qvlfvcu3ruo.html">base.Set.all</a> <span class="Var">p</span> <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <a class="Reference" href="qjaui0ik2up6ilvv1gpvsf74e0hvemgog1phns0vcj9ok28poj9jq5dpiue9qia2el0ca1lbef883toeeqjcms1r1nurduc92d853e0.html">base.Bag.toSet</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="566nnbpcj498slncqptnhstkuji0bgpn1qe3qv3tl3dfog9tummkna6b16sltvj63vmdlnfffj0ck6rgtl526d9ru2dh4eg7i2o37fg" class="identifier"><a class="" href="566nnbpcj498slncqptnhstkuji0bgpn1qe3qv3tl3dfog9tummkna6b16sltvj63vmdlnfffj0ck6rgtl526d9ru2dh4eg7i2o37fg.html">any</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="566nnbpcj498slncqptnhstkuji0bgpn1qe3qv3tl3dfog9tummkna6b16sltvj63vmdlnfffj0ck6rgtl526d9ru2dh4eg7i2o37fg.html#i46smlrdd3f9nq8quk478j29foqsjos6bhro1oj84kj47magcpcsbehpa1rvh1vbac4difvt53mj3r8tha90mn6dusjlnll7ioqtjs0">doc</a></div>
+<div><a class="sub-name" href="566nnbpcj498slncqptnhstkuji0bgpn1qe3qv3tl3dfog9tummkna6b16sltvj63vmdlnfffj0ck6rgtl526d9ru2dh4eg7i2o37fg.html#cigl2pd9396qnd6s2jl76jlsau56sbjuuodf781tp8u62t76bc4cpqha1k9daalcto4jenmsf1r6tmj3p3d24cf157v9s5uggg5tbo0">test</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.any</span><span class="TypeAscriptionColon"> :</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+<span class="HashQualifier">base.Bag.any</span> <span class="Var">p</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span> <span class="UseSuffix">.</span>
+  <a class="Reference" href="e6ldvdj4n4v02v48lgsi0b6l7nqf1var0a4b9ihi1ea8knq01g5al4fmras0n18jiil0p5l0rgcag5kb917j5217acdr123h2ipvb10.html">base.Set.any</a> <span class="Var">p</span> <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <a class="Reference" href="qjaui0ik2up6ilvv1gpvsf74e0hvemgog1phns0vcj9ok28poj9jq5dpiue9qia2el0ca1lbef883toeeqjcms1r1nurduc92d853e0.html">base.Bag.toSet</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="0dhgj39t6k5h34kgd4pj821ugu1goegkkd09sm3m3m5p3pintsi5a860lgg00g9d00qr70qnm0hnl5oqvk30bhujuplmfqlum44lobg" class="identifier"><a class="" href="0dhgj39t6k5h34kgd4pj821ugu1goegkkd09sm3m3m5p3pintsi5a860lgg00g9d00qr70qnm0hnl5oqvk30bhujuplmfqlum44lobg.html">contains</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="0dhgj39t6k5h34kgd4pj821ugu1goegkkd09sm3m3m5p3pintsi5a860lgg00g9d00qr70qnm0hnl5oqvk30bhujuplmfqlum44lobg.html#nr5l2r9cffr6r7pufdmp5k9cfpbnfqmnko47pskl6e6apj8hf6uomvl2hpvqminpl8jutn98vfq4tqssknn2uti892o7r0c9qiv0m2g">doc</a></div>
+<div><a class="sub-name" href="0dhgj39t6k5h34kgd4pj821ugu1goegkkd09sm3m3m5p3pintsi5a860lgg00g9d00qr70qnm0hnl5oqvk30bhujuplmfqlum44lobg.html#7qupa0vpcf9nvd72l625gm1q74gu5umialebqe4kcusjc74n27bh7487olc3ocebi9qomd47stk488sok6cmfaskuecjndjdg9r9svo">test</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.contains</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+<span class="HashQualifier">base.Bag.contains</span><span class="BindingEquals"> =</span> <a class="Reference" href="tn6l3salqvhfm7djc47clr3mg2ddog7ecmjbtmdr1fb2ro97o2alufsm8pr66tc5rrgaht89rec7293bup3m0ius81nar21m5sv0np0.html">base.Function.flip</a> <a class="Reference" href="h93fpipok8nmjpjf1tttn9hrq3jm4csi5c80b9pn6j77dec92qk8ifvnsgd7r43l501hofi16246o39pvk4o35105gs6efggllfivp8.html">base.Bag.elementOf</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="lpo19ssu4iqpp5q2cn795j9903iuurttpcs0h0rd8vlc8ua6kvl74etep1qil22bncm247s2iirgjeo17i5kbtvobj6hl557o7sv928" class="identifier"><a class="" href="lpo19ssu4iqpp5q2cn795j9903iuurttpcs0h0rd8vlc8ua6kvl74etep1qil22bncm247s2iirgjeo17i5kbtvobj6hl557o7sv928.html">convolve</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="lpo19ssu4iqpp5q2cn795j9903iuurttpcs0h0rd8vlc8ua6kvl74etep1qil22bncm247s2iirgjeo17i5kbtvobj6hl557o7sv928.html#k04mgboi7gauk0u539kms7ceaoa026ad385icrg165q2bp2l3aiutjnsje4sbl0ugp9d0sd4b1smd7bjpp3r1uqjm7nbi9dl6bu12do">doc</a></div>
+<div><a class="sub-name" href="base.Bag.convolve.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.convolve</span><span class="TypeAscriptionColon"> :</span>
+  (<span class="Var">i</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">t</span>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">i</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">t</span>
+<span class="HashQualifier">base.Bag.convolve</span> <span class="Var">f</span> <span class="Var">ba</span> <span class="Var">bb</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Bag</span> <span class="UseSuffix">flatMap</span>
+  <a class="Reference" href="n89rbqoes7skmk4n2ipii0j2g2t5u52okuiri486dgm28m12onequccpocq9g4o6ii81tqiavhrvbrbk1lcbmnomdjaj41a8am4fig8.html">flatMap</a> <span class="Parenthesis">(</span>a<span class="ControlKeyword"> -&gt;</span> <a class="Reference" href="n89rbqoes7skmk4n2ipii0j2g2t5u52okuiri486dgm28m12onequccpocq9g4o6ii81tqiavhrvbrbk1lcbmnomdjaj41a8am4fig8.html">flatMap</a> <span class="Parenthesis">(</span>b<span class="ControlKeyword"> -&gt;</span> <a class="Reference" href="0uurhb63d6es858f3l95cct4mm1phou2h11sa4hlf8jeghf4p0dt4t24kf6tdcqd199omigkjkm32ahmcluniufursid9l5c8d2hs3g.html">base.Bag.singleton</a> <span class="Parenthesis">(</span><span class="Var">f</span> <span class="Var">a</span> <span class="Var">b</span><span class="Parenthesis">)</span><span class="Parenthesis">)</span> <span class="Var">bb</span><span class="Parenthesis">)</span> <span class="Var">ba</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="ibks5e46p53ei4kda085469t8l4keo1ma2hvh5gln2d3r9mpdmbdnkjsr38vlhj8ko926hdjcbbe3r4d3naguisii44kk7tl7nba240" class="identifier"><a class="" href="ibks5e46p53ei4kda085469t8l4keo1ma2hvh5gln2d3r9mpdmbdnkjsr38vlhj8ko926hdjcbbe3r4d3naguisii44kk7tl7nba240.html">count</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="ibks5e46p53ei4kda085469t8l4keo1ma2hvh5gln2d3r9mpdmbdnkjsr38vlhj8ko926hdjcbbe3r4d3naguisii44kk7tl7nba240.html#s32ahhrr1k67lcafu1e3v6a625mgih438s6gkf08ivb7n142e6d6imfcvl995t8m7ke1vkkl5bvkg9adtlo5q4cje4flh0oqfenvmt0">doc</a></div>
+<div><a class="sub-name" href="base.Bag.count.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.count</span><span class="TypeAscriptionColon"> :</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a>
+<span class="HashQualifier">base.Bag.count</span> <span class="Var">a</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span>
+  <span class="Constructor">base.Bag.internal.MkBag</span> <span class="Var">counts</span> <span class="ControlKeyword">-&gt;</span>
+    <a class="Reference" href="5isltsdct9fhcrvud9gju8u0l9g0k9d3lelkksea3a8jdgs1uqrs5mm9p7bajj84gg8l9c9jgv9honakghmkb28fucoeb2p4v9ukmu8.html#g91mabg1db2e06q34kfu1r1oo43ns5as8nn8d42phphincd1d8fadlvj44knmmusnpmgf1bkbgnecr1sqnos8ieb60er5coqg6esl5g">base.Optional.orDefault</a> <span class="NumericLiteral">0</span> <span class="Parenthesis">(</span><a class="Reference" href="r7psm5rtophouq1u6pm19lfkvglnot5s9s59k5078a2pbufevelihi6d5v3sq1hmge67n4ctjsfg1p283udsmcm43duooln3a5q6kdo.html">base.Map.get</a> <span class="Var">a</span> <span class="Var">counts</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="3fosfs3598idpagvu3vm46hovual6km5snd867nqd86ma4nl3rrespkg1m3i35siine92cv6hha5oetifci80n88ia5bcva44nvs71g" class="identifier"><a class="" href="3fosfs3598idpagvu3vm46hovual6km5snd867nqd86ma4nl3rrespkg1m3i35siine92cv6hha5oetifci80n88ia5bcva44nvs71g.html">counts</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="3fosfs3598idpagvu3vm46hovual6km5snd867nqd86ma4nl3rrespkg1m3i35siine92cv6hha5oetifci80n88ia5bcva44nvs71g.html#o5jdnb8vpqksqe305dsmao890arkjvkubqi37bkj0ps7714oi486hpg2u70q36ubkdm2p0d1a2onuntha11nm95vaqhp809oa9il2pg">doc</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.counts</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="jk39javgi28eog9lmpblqeg6eb6dkv9f2eo1kauceki0h7g0t9tbg2oi3u4qioa5d0mioptr5548049odbuv9tg34s6foqs26hf1feg.html">base.Map</a> <span class="Var">a</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a>
+<span class="HashQualifier">base.Bag.counts</span> <span class="Var">b</span><span class="BindingEquals"> =</span>
+  <span class="Constructor">base.Bag.internal.MkBag</span> <span class="Var">m</span><span class="BindingEquals"> =</span> <a class="Reference" href="base.Bag.internal.html#eev66eenpnevlnajvgbg2emgkua3n3kg40lrv1l16lh33ibkrgllpofqcr4miceh5t043r342eh188q6n4f0qshummej9pujnchkc1g">base.Bag.internal.normalize</a> <span class="Var">b</span>
+  <span class="Var">m</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="ioup121p1kui1fh8l3kjkvcrbi8itkeqecfda4k50fqrk0ah1rvscsl5k2ce7qj87dfj07gnsfpf1gkjufv2uk4o36dsj6keb60u1vo" class="identifier"><a class="" href="ioup121p1kui1fh8l3kjkvcrbi8itkeqecfda4k50fqrk0ah1rvscsl5k2ce7qj87dfj07gnsfpf1gkjufv2uk4o36dsj6keb60u1vo.html">difference</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="ioup121p1kui1fh8l3kjkvcrbi8itkeqecfda4k50fqrk0ah1rvscsl5k2ce7qj87dfj07gnsfpf1gkjufv2uk4o36dsj6keb60u1vo.html#is5hgor5qqpd0hooufporvliqrrrmo87qcjvn4muo9op0lnak2274j16kt88cdoocgo4t3i75kh7bnaf2epah9quujk6ii1ll7mitfg">doc</a></div>
+<div><a class="sub-name" href="base.Bag.difference.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.difference</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span>
+<span class="HashQualifier">base.Bag.difference</span> <span class="Var">b1</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span>
+  <span class="Constructor">base.Bag.internal.MkBag</span> <span class="Var">b2</span> <span class="ControlKeyword">-&gt;</span>
+    <a class="Reference" href="0em1d2c88tm3q11tsg1bccv8n3eocltnlnue2nsaos7u6hrnvdg97hc9aj2f1l4guk4f6g8p30taqfksbv7frl5kt8gmdkvio7j1pfo.html">base.List.foldRight</a>
+      <span class="Parenthesis">(</span><span class="ControlKeyword">cases</span> (<span class="Var">a</span>, <span class="Var">n</span>) <span class="Var">b</span> <span class="ControlKeyword">-&gt;</span> <a class="Reference" href="qt440bcmjpg8m3boq0o4sqnit43crgfb65ulrk0qltdror640fmmqggp86rjevatfgs6kosrpnspog2hm7hvc9qp9e994c0nv9gd0po.html">base.Bag.removeN</a> <span class="Var">n</span> <span class="Var">a</span> <span class="Var">b</span><span class="Parenthesis">)</span> <span class="Var">b1</span> <span class="Parenthesis">(</span><a class="Reference" href="pjm7hfq1vtqcaaqa913gks0fcsa7e1nkuuoqmht7ea2r2quut23rsuhomlmi4ar09lgjjor8qfm6u3c0sj1n8eu3ebgrutcssqeb54g.html">base.Map.toList</a> <span class="Var">b2</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="c4mp0qgnv6910iojmjva72uj0isqett9u9uqlb68k7qj8o75uqqcbjee5ir8r87jlei79ccrlcar0f3a5soqte7nasiohu4luf2bsso" class="identifier">doc</h2>
+                
+                <div><div class='docs'><p><code><a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> t</code> is the type of <em>multisets</em> of elements of type <code>t</code>.</p>
+<p>A <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> is like a <a class="termLink" href="__builtin__Sequence.html">base.List</a> where elements occur in no particular order, or like a <a class="termLink" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html">base.Set</a> where elements can occur more than once.</p>
+<h2>Constructing bags</h2>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span></code></p>
+<p>The empty <code><a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a></code>.</p>
+<p><code><span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span></code></p>
+<p><code><a class="termLink" href="0uurhb63d6es858f3l95cct4mm1phou2h11sa4hlf8jeghf4p0dt4t24kf6tdcqd199omigkjkm32ahmcluniufursid9l5c8d2hs3g.html">base.Bag.singleton</a> k</code> constructs a <code><a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a></code> with a single element <code>k</code> occurring exactly
+once.</p>
+<p><code><span class="DelimiterChar">[</span><span class="Var">k</span><span class="DelimiterChar">]</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span></code></p>
+<p><code><a class="termLink" href="ig1828j5vrmrfl4qqlmbfgnmbih7l73flljs95ntrq9foal1ceh50savvi4sua3s0mumpoqeen5vsqdf1aclq3qrc5f753kstaqvhd8.html">base.Bag.fromList</a> ks</code> creates a new <code><a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a></code> from the <code><a class="termLink" href="__builtin__Sequence.html">base.List</a></code> <code>ks</code>. The resulting <code><a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a></code>
+contains exactly as many occurrences of each element as there are in the <code><a class="termLink" href="__builtin__Sequence.html">base.List</a></code> <code>ks</code>.</p>
+<p><code><span class="DelimiterChar">[</span>(<span class="Var">a</span>, <a class="Reference" href="__builtin__Nat.html">base.Nat</a>)<span class="DelimiterChar">]</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span></code></p>
+<p>Constructs a <code><a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a></code> from a <a class="termLink" href="__builtin__Sequence.html">base.List</a> of elements paired with the number of times
+they should occur in the <code><a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a></code>.</p>
+<p><code><a class="Reference" href="__builtin__Text.html">base.Text</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <a class="Reference" href="__builtin__Char.html">base.Char</a></code></p>
+<p><code><a class="termLink" href="oh6m8mckk47j4rq99k9e2etmrtovgdv24tobq2ssvoogs5rpurjt4kpuh8tlsccl5grthvf4sfstmlkl41k3o5siu4d4eg6rdq93vr0.html">base.Bag.fromText</a> t</code> is the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> of characters in the <a class="termLink" href="__builtin__Text.html">base.Text</a> <code>t</code>.</p>
+<h1>Adding and removing elements</h1>
+<p><code><span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span></code></p>
+<p><code><a class="termLink" href="pbmto3bqnc42nisa4jnj1or5jeee84osulk5cnbk0h62ipffpa7pfiu9q4c07vmjfbqa4ertt1dd4j4soihgn29db293qptdp545teg.html">base.Bag.add</a> k b</code> adds one occurrence of the element <code>k</code> to the <code><a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a></code> <code>b</code>. The rule
+is that if <code>k</code> occurs <code>n</code> times in the <code><a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a></code> <code>b</code> then it will occur <code>n + 1</code> times in <code><a class="termLink" href="pbmto3bqnc42nisa4jnj1or5jeee84osulk5cnbk0h62ipffpa7pfiu9q4c07vmjfbqa4ertt1dd4j4soihgn29db293qptdp545teg.html">base.Bag.add</a> k b</code>.</p>
+<p><code><a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="TypeOperator">-&gt;</span> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span></code></p>
+<p><code><a class="termLink" href="jmt63g1tnkchop3jne9911nnvrlpjibe252jdfl9emjffoddmq3adhdohpcscbrlu10rpf96ie5m86jmuki753pv8i0vrpogm6ikuq0.html">base.Bag.addN</a> n k b</code> adds <code>n</code> occurrences of the element <code>k</code> to the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code>.</p>
+<p><code><span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span></code></p>
+<p><code><a class="termLink" href="m953sk5c8b28ctntrqcm77bso1tgshjh511jibtmsea0fel9adr0tv3uvmk95ju3nuleka2ko92ltcbgvl8fbh6mm1q2vlgmfuopcp8.html">base.Bag.remove</a> k b</code> removes one occurrence of the element <code>k</code> from the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code> if
+<code>k</code> occurs in the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code>. Otherwise it does nothing.</p>
+<p><code><a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="TypeOperator">-&gt;</span> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span></code></p>
+<p><code><a class="termLink" href="qt440bcmjpg8m3boq0o4sqnit43crgfb65ulrk0qltdror640fmmqggp86rjevatfgs6kosrpnspog2hm7hvc9qp9e994c0nv9gd0po.html">base.Bag.removeN</a> n k b</code> removes <code>n</code> occurrences of the element <code>k</code> from the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code>
+if <code>k</code> occurs in it. If the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> has fewer occurrences of <code>k</code>, then <a class="termLink" href="qt440bcmjpg8m3boq0o4sqnit43crgfb65ulrk0qltdror640fmmqggp86rjevatfgs6kosrpnspog2hm7hvc9qp9e994c0nv9gd0po.html">base.Bag.removeN</a> removes them all. If <code>k</code> doesn't occur in the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a>, it does nothing.</p>
+<p><code><span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span></code></p>
+<p><code><a class="termLink" href="42pi80vuqnn3ip5m5osv4b4n1phfdh0p512pl7s1ievcgd271l00304k7qrpbsrvv7e73ha2i4s4gkvoufv0iq83l12o1ctd0e8hjh8.html">base.Bag.removeAll</a> k b</code> removes all occurrences of the element <code>k</code> from the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code>
+if <code>k</code> occurs in the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code>. Otherwise it does nothing.</p>
+<p><code>(<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span></code></p>
+<p><code><a class="termLink" href="h3e4s682lp7bjmia64o1jkkf30htdo5adf75fnqs1e5op7vmroi9ri7vk7pas6bb8knb398e14uln8kq2en6is8h7dksovuregarjt0.html">base.Bag.removeWhere</a> p b</code> removes the elements from the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code> for which the function
+<code>p</code> returns <code>true</code>.</p>
+<p><code>(<span class="Var">i</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">i</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">i</span></code></p>
+<p><code><a class="termLink" href="bvsm0mh6ctp6hl6243hmoul3s2jeaiq17d26k3ghhop1krnv4tabj63rkq4mumip017ib2of7v1lr93a3ctplpso2ga7bdobqfssup8.html">base.Bag.filter</a> p b</code> returns a new <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> with just the elements from <code>b</code> for which
+the function <code>p</code> returns <code>true</code>.</p>
+<h1>Querying and counting elements</h1>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a></code></p>
+<p><code><a class="termLink" href="0dhgj39t6k5h34kgd4pj821ugu1goegkkd09sm3m3m5p3pintsi5a860lgg00g9d00qr70qnm0hnl5oqvk30bhujuplmfqlum44lobg.html">base.Bag.contains</a> b k</code> is <code>true</code> if the value <code>k</code> is an element of the bag <code>b</code>, and
+<code>false</code> otherwise.</p>
+<p><code><span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a></code></p>
+<p><code><a class="termLink" href="ibks5e46p53ei4kda085469t8l4keo1ma2hvh5gln2d3r9mpdmbdnkjsr38vlhj8ko926hdjcbbe3r4d3naguisii44kk7tl7nba240.html">base.Bag.count</a> e b</code> returns the number of times the element <code>e</code> occurs in the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code>.</p>
+<p><code><span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a></code></p>
+<p><code><a class="termLink" href="h93fpipok8nmjpjf1tttn9hrq3jm4csi5c80b9pn6j77dec92qk8ifvnsgd7r43l501hofi16246o39pvk4o35105gs6efggllfivp8.html">base.Bag.elementOf</a> k b</code> is <code>true</code> if the value <code>k</code> is an element of the bag <code>b</code>, and
+<code>false</code> otherwise.</p>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a></code></p>
+<p><code><a class="termLink" href="p1c3ua96v1h26v2tmn0buh3pgpda38tg9qovhadembcb0ej08tsekino6hmjabv2q1a44ctkgl6n3omi29gsbg97b3icf2e3hqigu10.html">base.Bag.isEmpty</a> b</code> is <code>true</code> if the <code><a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a></code> <code>b</code> has no elements, and <code>false</code> otherwise.</p>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a></code></p>
+<p><code><a class="termLink" href="2k78v1d67m48u7du3cksblf2ps0btb8uugql3vr6nrlc7d49alifci9sk6beidmrso114ss70v86hmi7dpl3t2b5bh967pgs70ff768.html">base.Bag.size</a> b</code> is the number of elements in the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code>, including duplicate elements.</p>
+<p>For example, <code><a class="termLink" href="2k78v1d67m48u7du3cksblf2ps0btb8uugql3vr6nrlc7d49alifci9sk6beidmrso114ss70v86hmi7dpl3t2b5bh967pgs70ff768.html">base.Bag.size</a> (<a class="termLink" href="ig1828j5vrmrfl4qqlmbfgnmbih7l73flljs95ntrq9foal1ceh50savvi4sua3s0mumpoqeen5vsqdf1aclq3qrc5f753kstaqvhd8.html">base.Bag.fromList</a> [2,3,1,1]) == 4</code>.</p>
+<h1>Combining bags</h1>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span></code></p>
+<p><code>addAll b1 b2</code> (or equivalently <code>b1 + b2</code>) constructs a new <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> with elements from <code>b1</code> and <code>b2</code>. The number of times each element occurs in the new <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> is the sum of the number of times it occurs in <code>b1</code> and the number of times it occurs in <code>b2</code>.</p>
+<p>For example, if</p>
+<pre><code>a = Bag.fromList [2,3,1,1]
+b = Bag.fromList [1,3,3,1,1]
+</code></pre>
+<p>then</p>
+<pre><code>addAll a b = Bag.fromList [3,1,1]
+</code></pre>
+<p><code>(<span class="Var">i</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">t</span>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">i</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">t</span></code></p>
+<p><code><a class="termLink" href="lpo19ssu4iqpp5q2cn795j9903iuurttpcs0h0rd8vlc8ua6kvl74etep1qil22bncm247s2iirgjeo17i5kbtvobj6hl557o7sv928.html">base.Bag.convolve</a> f bx by</code> applies the function <code>f</code> to every pair of elements <code>(x,y)</code>
+where <code>x</code> comes from the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>bx</code> and <code>y</code> comes from the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>by</code>. This is called the <em>convolution</em> of <code>b1</code> and <code>b2</code> with the function <code>f</code>.</p>
+<p>For example, if</p>
+<pre><code>bx = <a class="termLink" href="oh6m8mckk47j4rq99k9e2etmrtovgdv24tobq2ssvoogs5rpurjt4kpuh8tlsccl5grthvf4sfstmlkl41k3o5siu4d4eg6rdq93vr0.html">base.Bag.fromText</a> &quot;foo&quot;
+by = <a class="termLink" href="oh6m8mckk47j4rq99k9e2etmrtovgdv24tobq2ssvoogs5rpurjt4kpuh8tlsccl5grthvf4sfstmlkl41k3o5siu4d4eg6rdq93vr0.html">base.Bag.fromText</a> &quot;off&quot;
+</code></pre>
+<p>then</p>
+<pre><code><a class="termLink" href="ort6oh2tfkj57pe1l2lkq47t4gc6gj6na30dnbpnp1fkkclgm8la5m0h1lljd2km9phle6i6uhh1ads3tuk3gqe9m7qiiftk3fptpbg.html">base.Bag.occurrenceList</a> (<a class="termLink" href="lpo19ssu4iqpp5q2cn795j9903iuurttpcs0h0rd8vlc8ua6kvl74etep1qil22bncm247s2iirgjeo17i5kbtvobj6hl557o7sv928.html">base.Bag.convolve</a> (x y -&gt; <a class="termLink" href="__builtin__Text.html#__builtin__Text.fromCharList">base.Text.fromCharList</a> [x, y]) bx by) =
+   [(&quot;ff&quot;, 2), (&quot;fo&quot;, 1), (&quot;of&quot;, 4), (&quot;oo&quot;, 2)]
+</code></pre>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span></code></p>
+<p><code><a class="termLink" href="ioup121p1kui1fh8l3kjkvcrbi8itkeqecfda4k50fqrk0ah1rvscsl5k2ce7qj87dfj07gnsfpf1gkjufv2uk4o36dsj6keb60u1vo.html">base.Bag.difference</a> b1 b2</code> removes elements from the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b1</code> to the extent that they
+exist in the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b2</code>. If an element occurs <code>n</code> times in <code>b1</code> and <code>m</code> times in <code>b2</code>, it will occur <code><a class="termLink" href="__builtin__Nat.html#__builtin__Nat.drop">base.Nat.drop</a> n m</code> times in the result.</p>
+<p>For example, if</p>
+<pre><code>b1 = <a class="termLink" href="ig1828j5vrmrfl4qqlmbfgnmbih7l73flljs95ntrq9foal1ceh50savvi4sua3s0mumpoqeen5vsqdf1aclq3qrc5f753kstaqvhd8.html">base.Bag.fromList</a> [2,3,1,1]
+b2 = <a class="termLink" href="ig1828j5vrmrfl4qqlmbfgnmbih7l73flljs95ntrq9foal1ceh50savvi4sua3s0mumpoqeen5vsqdf1aclq3qrc5f753kstaqvhd8.html">base.Bag.fromList</a> [1,3,3,4]
+</code></pre>
+<p>then</p>
+<pre><code><a class="termLink" href="ioup121p1kui1fh8l3kjkvcrbi8itkeqecfda4k50fqrk0ah1rvscsl5k2ce7qj87dfj07gnsfpf1gkjufv2uk4o36dsj6keb60u1vo.html">base.Bag.difference</a> b1 b2 = <a class="termLink" href="ig1828j5vrmrfl4qqlmbfgnmbih7l73flljs95ntrq9foal1ceh50savvi4sua3s0mumpoqeen5vsqdf1aclq3qrc5f753kstaqvhd8.html">base.Bag.fromList</a> [2,1]
+</code></pre>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span></code></p>
+<p><code><a class="termLink" href="0e0b3jvml4ei3qc1j2ke4ju5ea5oi9ncounea2olknclbm7tcmfin0910a3e7ucdj6hb17v4a39kbu2ttmvsfeafuiadcq7bdo8ohu8.html">base.Bag.intersect</a> b1 b2</code> constructs the intersection of <code>b1</code> and <code>b2</code>, which is
+the largest <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> that is a <a class="termLink" href="3ohnljtn2on77gbjacgs6u8qgl7g7afdcf2h2mei6v2s80ak38vfgp6pv5rg21lg56icgpchgl76a3lqpla7j8idvb7qpmqdl5rv458.html">base.Bag.subbag</a> of both <code>b1</code> and <code>b2</code>. This is a new <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> with elements from <code>b1</code> and <code>b2</code> where the number of times each element occurs in the new <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> is either the number of times it occurs in <code>b1</code> or the number of times it occurs in <code>b2</code>, whichever is less.</p>
+<p>For example, if</p>
+<pre><code>a = Bag.fromList [2,3,1,1]
+b = Bag.fromList [1,3,3,1,1]
+</code></pre>
+<p>then</p>
+<pre><code>intersect a b = Bag.fromList [3,1,1]
+</code></pre>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">b</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> (<span class="Var">a</span>, <span class="Var">b</span>)</code></p>
+<p>The expression <code>product bx by</code> (or equivalently <code>bx * by</code>) is the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> of
+all pairs of elements <code>(x,y)</code> where <code>x</code> comes from the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>bx</code> and <code>y</code>
+comes from the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>by</code>. The number of times <code>(x,y)</code> occurs in the result
+is <code>x * y</code>.</p>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span></code></p>
+<p><code><a class="termLink" href="r62jtr8bp4ld3cs3a70nj8g3rb8cpst6afk751ea986e74qk6lk5d5v00is75b2gs9qhq05ermu4uftlmkde9sgq6rtg6ao44r020uo.html">base.Bag.union</a> b1 b2</code> constructs the union of <code>b1</code> and <code>b2</code>, which is the smallest
+<a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> that is a <a class="termLink" href="be7jd39cemhbj9vpom05mbvonpcnijgle3qmb4vlkrnm0u0ugrgq6laov8m6vr4t94801lvpn2jq19m54490kc5pelbu7gmtrikkpj0.html">base.Bag.superbag</a> of both <code>b1</code> and <code>b2</code>. This is a new <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> with elements from <code>b1</code> and <code>b2</code> where the number of times each element occurs in the new <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> is either the number of times it occurs in <code>b1</code> or the number of times it occurs in <code>b2</code>, whichever is greater.</p>
+<p>For example, if</p>
+<pre><code>a = Bag.fromList [2,3,1,1]
+b = Bag.fromList [1,3,3,1,1]
+</code></pre>
+<p>then</p>
+<pre><code>union a b = Bag.fromList [2,3,3,1,1,1]
+</code></pre>
+<h1>Comparing bags</h1>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a></code></p>
+<p><code><a class="termLink" href="4me63vdg0t9a9t9gsvqf32dhbc9oneed9u3tkelj0mkpccnf44brdrk5128qntdsunlsd60bcpgeoj6k03iveksgeojkf5jleqb4t8o.html">base.Bag.from</a> b1 b2</code> returns <code>true</code> if every element in <code>b1</code> occurs at least once in
+<code>b2</code>.</p>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a></code></p>
+<p><code><a class="termLink" href="3ohnljtn2on77gbjacgs6u8qgl7g7afdcf2h2mei6v2s80ak38vfgp6pv5rg21lg56icgpchgl76a3lqpla7j8idvb7qpmqdl5rv458.html">base.Bag.subbag</a> b1 b2</code> returns <code>true</code> if no element occurs more times in the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b1</code>
+than in the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b2</code>.</p>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a></code></p>
+<p><code><a class="termLink" href="be7jd39cemhbj9vpom05mbvonpcnijgle3qmb4vlkrnm0u0ugrgq6laov8m6vr4t94801lvpn2jq19m54490kc5pelbu7gmtrikkpj0.html">base.Bag.superbag</a> b1 b2</code> returns <code>true</code> if no element occurs more times in the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b2</code>
+than in the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b1</code>.</p>
+<h1>Conversions to other structures</h1>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="jk39javgi28eog9lmpblqeg6eb6dkv9f2eo1kauceki0h7g0t9tbg2oi3u4qioa5d0mioptr5548049odbuv9tg34s6foqs26hf1feg.html">base.Map</a> <span class="Var">a</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a></code></p>
+<p><code><a class="termLink" href="3fosfs3598idpagvu3vm46hovual6km5snd867nqd86ma4nl3rrespkg1m3i35siine92cv6hha5oetifci80n88ia5bcva44nvs71g.html">base.Bag.counts</a> b</code> returns a <a class="termLink" href="jk39javgi28eog9lmpblqeg6eb6dkv9f2eo1kauceki0h7g0t9tbg2oi3u4qioa5d0mioptr5548049odbuv9tg34s6foqs26hf1feg.html">base.Map</a> where the keys are the elements of the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code>
+and the value under each key is the number of times that element occurs in <code>b</code>.</p>
+<p>For example, if</p>
+<pre><code>b = <a class="termLink" href="oh6m8mckk47j4rq99k9e2etmrtovgdv24tobq2ssvoogs5rpurjt4kpuh8tlsccl5grthvf4sfstmlkl41k3o5siu4d4eg6rdq93vr0.html">base.Bag.fromText</a> &quot;abracadabra&quot;
+</code></pre>
+<p>then</p>
+<pre><code><a class="termLink" href="3fosfs3598idpagvu3vm46hovual6km5snd867nqd86ma4nl3rrespkg1m3i35siine92cv6hha5oetifci80n88ia5bcva44nvs71g.html">base.Bag.counts</a> b = <a class="termLink" href="m0nm5scj0hlvi80qmt2o4jh82qjk5evhnsskjpqve8huvbordkeea2gvemncgddcunkcpkcueklpciibnmi7qju88ufem08cesjbqmo.html">base.Map.fromList</a> [(?a, 5), (?b, 2), (?c, 1), (?d, 1), (?r,
+</code></pre>
+<p>2)]</p>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="DelimiterChar">[</span>(<span class="Var">a</span>, <a class="Reference" href="__builtin__Nat.html">base.Nat</a>)<span class="DelimiterChar">]</span></code></p>
+<p><code><a class="termLink" href="ort6oh2tfkj57pe1l2lkq47t4gc6gj6na30dnbpnp1fkkclgm8la5m0h1lljd2km9phle6i6uhh1ads3tuk3gqe9m7qiiftk3fptpbg.html">base.Bag.occurrenceList</a> b</code> returns a list of all the elements of the <code><a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a></code> <code>b</code>, paired
+with the number of times that element occurs in <code>b</code>.</p>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="DelimiterChar">[</span><span class="Var">a</span><span class="DelimiterChar">]</span></code></p>
+<p><code><a class="termLink" href="1d3fctj6io3o3dij5a721r4rueutfqqb8s4ojgg21tjj1pbhknn8kgoi3bubjctcugcepfe8g5iql3kebcsrqb85fn2kh33dbbioee8.html">base.Bag.toList</a> b</code> returns the list of all the elements of the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code>, including
+duplicates.</p>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <a class="Reference" href="__builtin__Char.html">base.Char</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Text.html">base.Text</a></code></p>
+<p><code><a class="termLink" href="27oshlgju8ps560ighqpldohpbrd51vl2m0h0p49oqdbehro32crq198fm7pd7brp85dq7ijirni89uec9k3n4tbcbdh6nfpkrm90ng.html">base.Bag.toText</a> b</code> takes a <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> of characters and returns <a class="termLink" href="__builtin__Text.html">base.Text</a> with those characters
+in an unspecified order.</p>
+<p><code><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html">base.Set</a> <span class="Var">a</span></code></p>
+<p><code><a class="termLink" href="qjaui0ik2up6ilvv1gpvsf74e0hvemgog1phns0vcj9ok28poj9jq5dpiue9qia2el0ca1lbef883toeeqjcms1r1nurduc92d853e0.html">base.Bag.toSet</a> b</code> returns the <a class="termLink" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html">base.Set</a> of elements in the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code>.</p>
+<h2>Traversal and iteration</h2>
+<p><code>(<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">b</span>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">b</span></code></p>
+<p><code><a class="termLink" href="n89rbqoes7skmk4n2ipii0j2g2t5u52okuiri486dgm28m12onequccpocq9g4o6ii81tqiavhrvbrbk1lcbmnomdjaj41a8am4fig8.html">base.Bag.flatMap</a> f b</code> applies the function <code>f</code> to every element of the <code><a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a></code> <code>b</code>.
+The function <code>f</code> returns a whole <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> each time, and <a class="termLink" href="n89rbqoes7skmk4n2ipii0j2g2t5u52okuiri486dgm28m12onequccpocq9g4o6ii81tqiavhrvbrbk1lcbmnomdjaj41a8am4fig8.html">base.Bag.flatMap</a> collects all their elements into one <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a>.</p>
+<p>For example, if</p>
+<pre><code>bag = <a class="termLink" href="ig1828j5vrmrfl4qqlmbfgnmbih7l73flljs95ntrq9foal1ceh50savvi4sua3s0mumpoqeen5vsqdf1aclq3qrc5f753kstaqvhd8.html">base.Bag.fromList</a> [&quot;site&quot;, &quot;real&quot;, &quot;live&quot;]
+</code></pre>
+<p>then</p>
+<pre><code><a class="termLink" href="27oshlgju8ps560ighqpldohpbrd51vl2m0h0p49oqdbehro32crq198fm7pd7brp85dq7ijirni89uec9k3n4tbcbdh6nfpkrm90ng.html">base.Bag.toText</a> (<a class="termLink" href="n89rbqoes7skmk4n2ipii0j2g2t5u52okuiri486dgm28m12onequccpocq9g4o6ii81tqiavhrvbrbk1lcbmnomdjaj41a8am4fig8.html">base.Bag.flatMap</a> (n -&gt; <a class="termLink" href="oh6m8mckk47j4rq99k9e2etmrtovgdv24tobq2ssvoogs5rpurjt4kpuh8tlsccl5grthvf4sfstmlkl41k3o5siu4d4eg6rdq93vr0.html">base.Bag.fromText</a> n) bag) =
+  &quot;aeeeiillrstv&quot;
+</code></pre>
+<p><code>(<span class="Var">b</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">b</span>) <span class="TypeOperator">-&gt;</span> <span class="Var">b</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">b</span></code></p>
+<p><code><a class="termLink" href="gelkv6r25137n6uf0bqbls0kimodoj8mlu3pdm206kc7oqd7usojlanb7gidhfcqmclbdsb8ab1ludrc1emfm2jelhcrnrb15724a2o.html">base.Bag.foldLeft</a> f z b</code> iterates over the elements of the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code>, applying the binary
+operator <code>f</code> to each element and the result so far. The result starts as the value <code>z</code>, which is also returned in case the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> is empty.</p>
+<p><code>(<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">b</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">b</span>) <span class="TypeOperator">-&gt;</span> <span class="Var">b</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">b</span></code></p>
+<p><code><a class="termLink" href="cq53omca2ikf70glff05d9aveut9tlpbs7r199gi8lrhg6crqm3j7kgb58dibi4302uguf1i54u4ifdrg6sharn44eus6cbaggvsbd0.html">base.Bag.foldRight</a> f z b</code> iterates over the elements of the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code>, applying the
+binary operator <code>f</code> to each element and the result so far. The result starts as the value <code>z</code>, which is also returned in case the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> is empty.</p>
+<p><code>((<span class="Var">a</span>, <a class="Reference" href="__builtin__Nat.html">base.Nat</a>) <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> (<span class="Var">b</span>, <a class="Reference" href="__builtin__Nat.html">base.Nat</a>)) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">b</span></code></p>
+<p><code><a class="termLink" href="t2ad0icn8rj3orcjimvm139335bncgn46fguqgd465lufpuus26ki0i8tc4mojm3vfvm145ulrce57tf2nolgd71b7us00ufp8g7mc0.html">base.Bag.modify</a> f b</code> passes each unique element in the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code>, together with its
+count in <code>b</code>, to the function <code>f</code> which returns a modified element and a new count. Can be used to modify elements, their counts, or both.</p>
+<p><code>(<span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="Var">b</span>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">b</span></code></p>
+<p><code><a class="termLink" href="12dloovnrmim2kddr38s7sv93uj79aqgvde0cv1gf36tkj1dd4vcgklkgkpe4qtu7k3forl5qn0h0m8jeckghjud18egenlt1usr75g.html">base.Bag.map</a> f b</code> applies the function <code>f</code> to every element of the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code>, constructing
+a new <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> of the results. The function is not allowed to use abilities. For a version of this that allows abilities, see <a class="termLink" href="tjuhh14k7n820gn3r8dd5jo687v7148vli4ot8k2c51onp5d8bek2h6oohnjs87e0g5s905k7jj41qrvg457669bkgr42srot8189ko.html">base.Bag.traverse</a>.</p>
+<p>For example, if</p>
+<pre><code>b = <a class="termLink" href="ig1828j5vrmrfl4qqlmbfgnmbih7l73flljs95ntrq9foal1ceh50savvi4sua3s0mumpoqeen5vsqdf1aclq3qrc5f753kstaqvhd8.html">base.Bag.fromList</a> [2,3,1,1]
+</code></pre>
+<p>then</p>
+<pre><code><a class="termLink" href="12dloovnrmim2kddr38s7sv93uj79aqgvde0cv1gf36tkj1dd4vcgklkgkpe4qtu7k3forl5qn0h0m8jeckghjud18egenlt1usr75g.html">base.Bag.map</a> <a class="termLink" href="__builtin__Nat.html#__builtin__Nat.isEven">base.Nat.isEven</a> b = <a class="termLink" href="ig1828j5vrmrfl4qqlmbfgnmbih7l73flljs95ntrq9foal1ceh50savvi4sua3s0mumpoqeen5vsqdf1aclq3qrc5f753kstaqvhd8.html">base.Bag.fromList</a> [true, false, false, false]
+</code></pre>
+<p><code>(<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Var">b</span>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">b</span></code></p>
+<p><code><a class="termLink" href="tjuhh14k7n820gn3r8dd5jo687v7148vli4ot8k2c51onp5d8bek2h6oohnjs87e0g5s905k7jj41qrvg457669bkgr42srot8189ko.html">base.Bag.traverse</a> f b</code> iterates over the elements of the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code>, applying the function
+<code>f</code> to each element, collecting the results in a new <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a>.</p>
+<h2>Operations on element counts</h2>
+<p><code>((<span class="Var">a</span>, <a class="Reference" href="__builtin__Nat.html">base.Nat</a>) <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> (<span class="Var">b</span>, <a class="Reference" href="__builtin__Nat.html">base.Nat</a>)) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">b</span></code></p>
+<p><code><a class="termLink" href="t2ad0icn8rj3orcjimvm139335bncgn46fguqgd465lufpuus26ki0i8tc4mojm3vfvm145ulrce57tf2nolgd71b7us00ufp8g7mc0.html">base.Bag.modify</a> f b</code> passes each unique element in the <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <code>b</code>, together with its
+count in <code>b</code>, to the function <code>f</code> which returns a modified element and a new count. Can be used to modify elements, their counts, or both.</p>
+<p><code><a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span></code></p>
+<p><code><a class="termLink" href="4lvprebeh2chuvcakj3riebgbujfmaomd37r8v3h670hrmct3tthh3jpglmuqgbfi4t535ectff8ef0sno9ekmva339nbu2reqdjg6o.html">base.Bag.scale</a> k b</code> constructs a new <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> with the same elements as <code>b</code>, but where
+the number of times each element occurs is multiplied by <code>k</code>.</p>
+<p>For example, if</p>
+<pre><code> b = Bag.fromList [2,3,1,1]
+</code></pre>
+<p>then</p>
+<pre><code> scale 2 b = Bag.fromList [2,2,3,3,1,1,1,1]
+</code></pre>
+<p><code>(<a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span></code></p>
+<p><code><a class="termLink" href="c97c9a2t99gcmrcnqssnp9l4cko9pobnscgaoqq4ihbau6a04jkuuub07vv46qp5u513uv5buuh3ap6eqdnjn9dka01pm7g6avpa4ao.html">base.Bag.mapCounts</a> f b</code> constructs a new <a class="termLink" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> with the same elements as <code>b</code>, but with
+the number of times any given element occurs modified by the function <code>f</code>.</p>
+</div><details><summary>Source</summary><pre><code><span class="HashQualifier">base.Bag.doc</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="v00j3buk6m0588orsna0oeuukfdh7g3sandn22qmld0m2fr2jvm7hjd6bpm5jh6db6hom5ag14hqmg4emhlm4urdj9ibom7s2m5417o.html">base.Doc</a>
+<span class="HashQualifier">base.Bag.doc</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Bag</span> <span class="UseSuffix">modify.doc</span>
+  <span class="DocDelimiter">[: </span>`<span class="DocDelimiter">@</span><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> t` is the type of _multisets_ of elements of type `t`.
+  
+  A <span class="DocDelimiter">@</span><a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> is like a <span class="DocDelimiter">@</span><a class="Reference" href="__builtin__Sequence.html">base.List</a> where elements occur in no particular order,
+  or like a <span class="DocDelimiter">@</span><a class="Reference" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html">base.Set</a> where elements can occur more than once.
+  
+  ## Constructing bags
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.empty.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.singleton.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.fromList.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.fromOccurrenceList.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.fromText.doc</span>
+  
+  
+  # Adding and removing elements
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.add.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.addN.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.remove.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.removeN.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.removeAll.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.removeWhere.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.filter.doc</span>
+  
+  
+  # Querying and counting elements
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.contains.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.count.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.elementOf.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.isEmpty.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.size.doc</span>
+  
+  
+  # Combining bags
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.addAll.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.convolve.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.difference.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.intersect.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.product.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.union.doc</span>
+  
+  
+  # Comparing bags
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.from.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.subbag.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.superbag.doc</span>
+  
+  
+  # Conversions to other structures
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.counts.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.occurrenceList.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.toList.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.toText.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.toSet.doc</span>
+  
+  
+  ## Traversal and iteration
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.flatMap.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.foldLeft.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.foldRight.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">modify.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.map.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.traverse.doc</span>
+  
+  
+  ## Operations on element counts
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">modify.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.scale.doc</span>
+  <span class="DocDelimiter">@[</span><span class="DocKeyword">include</span><span class="DocDelimiter">] </span><span class="HashQualifier">base.Bag.mapCounts.doc</span>
+  
+  <span class="DocDelimiter">:]</span></code></pre></details></div>
+            </div>
+            
+
+            <div>
+                <h2 id="h93fpipok8nmjpjf1tttn9hrq3jm4csi5c80b9pn6j77dec92qk8ifvnsgd7r43l501hofi16246o39pvk4o35105gs6efggllfivp8" class="identifier"><a class="" href="h93fpipok8nmjpjf1tttn9hrq3jm4csi5c80b9pn6j77dec92qk8ifvnsgd7r43l501hofi16246o39pvk4o35105gs6efggllfivp8.html">elementOf</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="h93fpipok8nmjpjf1tttn9hrq3jm4csi5c80b9pn6j77dec92qk8ifvnsgd7r43l501hofi16246o39pvk4o35105gs6efggllfivp8.html#j1jtgml7mitpkvil8je12q195slqlm0852hutg9s96qaidvkishd37190igtund92p5jt1hg27ra89gulm2i3crukmf5a70kddio7f8">doc</a></div>
+<div><a class="sub-name" href="h93fpipok8nmjpjf1tttn9hrq3jm4csi5c80b9pn6j77dec92qk8ifvnsgd7r43l501hofi16246o39pvk4o35105gs6efggllfivp8.html#h5578ncfvc2fvbouaa5h1vq68jhn7be3qq2ea5rh9qdsptc386jgvnou3n2a0h8ratlce8dsctpdeff2pg0d1n8mv2e7r49c5p894c8">test</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.elementOf</span><span class="TypeAscriptionColon"> :</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+<span class="HashQualifier">base.Bag.elementOf</span> <span class="Var">a</span> <span class="Var">b</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Universal</span> <span class="UseSuffix">&gt;</span>
+  <a class="Reference" href="ibks5e46p53ei4kda085469t8l4keo1ma2hvh5gln2d3r9mpdmbdnkjsr38vlhj8ko926hdjcbbe3r4d3naguisii44kk7tl7nba240.html">base.Bag.count</a> <span class="Var">a</span> <span class="Var">b</span> <a class="Reference" href="base.Universal.html#__builtin__Universal.>">&gt;</a> <span class="NumericLiteral">0</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="02dmpekb8sbv88u1le9srppll5n7v3gdhh96n9e9rigjirm0r66r3a8450cg52ipeismke837l5f5kir9jps3dfimu0aqml49i63qvo" class="identifier"><a class="" href="02dmpekb8sbv88u1le9srppll5n7v3gdhh96n9e9rigjirm0r66r3a8450cg52ipeismke837l5f5kir9jps3dfimu0aqml49i63qvo.html">empty</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="02dmpekb8sbv88u1le9srppll5n7v3gdhh96n9e9rigjirm0r66r3a8450cg52ipeismke837l5f5kir9jps3dfimu0aqml49i63qvo.html#sbm7cov8sneg4u7pbj2e1f3i54jceg5uvq9usdngdbs3mins2j1mlb4vm2co0tcmppe02a7cetfij4uvte7e9cun3cf2kt9kcrqivpo">doc</a></div>
+<div><a class="sub-name" href="02dmpekb8sbv88u1le9srppll5n7v3gdhh96n9e9rigjirm0r66r3a8450cg52ipeismke837l5f5kir9jps3dfimu0aqml49i63qvo.html#l9q8h68v9nip8n1avi9rh9hoogc55c1u1d9ntd4ik5btjrgtqend6q5j99ih24k9cok433dp3s1ergs8sa993raboolhlkgs3pbvv1g">test</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.empty</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span>
+<span class="HashQualifier">base.Bag.empty</span><span class="BindingEquals"> =</span> <span class="Constructor">base.Bag.internal.MkBag</span> <a class="Reference" href="rlpq1dfh600jo3neoetcjfq09nj53l190erp44lt71c2cm83g93kjvot4jocn5srcv0bd4b8h0t1oet3q6edcpg296it8a3cja9svb0.html">base.Map.empty</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.Bag.equals.html">equals</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.Bag.equals.html#ed59lketcau53eu19k2u00946fmld81hhkidu4tsgf2mp3tuaq63b83apjinb2g9heedahiborqge8025m3h4ri1gp8r08dk7g28bq0">doc</a></div>
+<div><a class="sub-name" href="base.Bag.equals.tests.html">tests</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="bvsm0mh6ctp6hl6243hmoul3s2jeaiq17d26k3ghhop1krnv4tabj63rkq4mumip017ib2of7v1lr93a3ctplpso2ga7bdobqfssup8" class="identifier"><a class="" href="bvsm0mh6ctp6hl6243hmoul3s2jeaiq17d26k3ghhop1krnv4tabj63rkq4mumip017ib2of7v1lr93a3ctplpso2ga7bdobqfssup8.html">filter</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="bvsm0mh6ctp6hl6243hmoul3s2jeaiq17d26k3ghhop1krnv4tabj63rkq4mumip017ib2of7v1lr93a3ctplpso2ga7bdobqfssup8.html#ksib16jttn43q28pgrb1o4snbpon9cfv01lua3pep4rnt02th5j44lg85fhj7m71fp74v4a4831858rutv3kpibovqtp6obc46ejugo">doc</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.filter</span><span class="TypeAscriptionColon"> :</span> (<span class="Var">i</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">i</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">i</span>
+<span class="HashQualifier">base.Bag.filter</span> <span class="Var">p</span><span class="BindingEquals"> =</span>
+  <a class="Reference" href="t2ad0icn8rj3orcjimvm139335bncgn46fguqgd465lufpuus26ki0i8tc4mojm3vfvm145ulrce57tf2nolgd71b7us00ufp8g7mc0.html">base.Bag.modify</a> <span class="Parenthesis">(</span><span class="ControlKeyword">cases</span> (<span class="Var">a</span>, <span class="Var">n</span>) <span class="ControlKeyword">-&gt;</span> <span class="ControlKeyword">if</span> <span class="Var">p</span> <span class="Var">a</span><span class="ControlKeyword"> then</span> <span class="Parenthesis">(</span><span class="Var">a</span><span class="DelimiterChar">,</span> <span class="Var">n</span><span class="Parenthesis">)</span> <span class="ControlKeyword">else</span> <span class="Parenthesis">(</span><span class="Var">a</span><span class="DelimiterChar">,</span> <span class="NumericLiteral">0</span><span class="Parenthesis">)</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="n89rbqoes7skmk4n2ipii0j2g2t5u52okuiri486dgm28m12onequccpocq9g4o6ii81tqiavhrvbrbk1lcbmnomdjaj41a8am4fig8" class="identifier"><a class="" href="n89rbqoes7skmk4n2ipii0j2g2t5u52okuiri486dgm28m12onequccpocq9g4o6ii81tqiavhrvbrbk1lcbmnomdjaj41a8am4fig8.html">flatMap</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="n89rbqoes7skmk4n2ipii0j2g2t5u52okuiri486dgm28m12onequccpocq9g4o6ii81tqiavhrvbrbk1lcbmnomdjaj41a8am4fig8.html#j8f69iug9r4f7p9pmf264lcr6ob8iufc04mnk2dct397feq08olo2uko3n4u3u5qkc9h6kkfauqk4ediarnjb1fgdehe0lc3jehgcn0">doc</a></div>
+<div><a class="sub-name" href="base.Bag.flatMap.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.flatMap</span><span class="TypeAscriptionColon"> :</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">b</span>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">b</span>
+<span class="HashQualifier">base.Bag.flatMap</span> <span class="Var">f</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span> <span class="UseSuffix">.</span>
+  <span class="HashQualifier">k</span> <span class="Var">z</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span>
+    (<span class="Var">e</span>, <span class="Var">n</span>) <span class="ControlKeyword">-&gt;</span>
+      <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Bag</span> <span class="UseSuffix">+</span>
+      <span class="Var">z</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html#ua91u6uc67tr19of8r9dbsoad35upuaun6frq61g1ml9do9mqqhrm0baem20ei2g3vfjfsp3gvr229frcuqjmd8qnp497lgfiet21f8">+</a> <a class="Reference" href="4lvprebeh2chuvcakj3riebgbujfmaomd37r8v3h670hrmct3tthh3jpglmuqgbfi4t535ectff8ef0sno9ekmva339nbu2reqdjg6o.html">base.Bag.scale</a> <span class="Var">n</span> <span class="Parenthesis">(</span><span class="Var">f</span> <span class="Var">e</span><span class="Parenthesis">)</span>
+  <a class="Reference" href="__builtin__Sequence.html#cqe9aa74fsjcg589r4rkiif3rm6o4trk8n06bg5d9rbhsaf1eiehmeufotfcsde4h88ldg7d21gcdi822925qlub4cr3bip7ssihrt8">base.List.foldLeft</a> <span class="Var">k</span> <a class="Reference" href="02dmpekb8sbv88u1le9srppll5n7v3gdhh96n9e9rigjirm0r66r3a8450cg52ipeismke837l5f5kir9jps3dfimu0aqml49i63qvo.html">base.Bag.empty</a> <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <a class="Reference" href="ort6oh2tfkj57pe1l2lkq47t4gc6gj6na30dnbpnp1fkkclgm8la5m0h1lljd2km9phle6i6uhh1ads3tuk3gqe9m7qiiftk3fptpbg.html">base.Bag.occurrenceList</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="gelkv6r25137n6uf0bqbls0kimodoj8mlu3pdm206kc7oqd7usojlanb7gidhfcqmclbdsb8ab1ludrc1emfm2jelhcrnrb15724a2o" class="identifier"><a class="" href="gelkv6r25137n6uf0bqbls0kimodoj8mlu3pdm206kc7oqd7usojlanb7gidhfcqmclbdsb8ab1ludrc1emfm2jelhcrnrb15724a2o.html">foldLeft</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="gelkv6r25137n6uf0bqbls0kimodoj8mlu3pdm206kc7oqd7usojlanb7gidhfcqmclbdsb8ab1ludrc1emfm2jelhcrnrb15724a2o.html#m3i1ndplfa62oeatb74p4aurv5c31t4qfeb995sso5mn7un5leb6lerk32nqmsl9cb9sueitil0lmops6fucn2mhgdgf8h8o72urfgg">doc</a></div>
+<div><a class="sub-name" href="base.Bag.foldLeft.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.foldLeft</span><span class="TypeAscriptionColon"> :</span> (<span class="Var">b</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">b</span>) <span class="TypeOperator">-&gt;</span> <span class="Var">b</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">b</span>
+<span class="HashQualifier">base.Bag.foldLeft</span> <span class="Var">f</span> <span class="Var">z</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span> <span class="UseSuffix">.</span>
+  <a class="Reference" href="__builtin__Sequence.html#cqe9aa74fsjcg589r4rkiif3rm6o4trk8n06bg5d9rbhsaf1eiehmeufotfcsde4h88ldg7d21gcdi822925qlub4cr3bip7ssihrt8">base.List.foldLeft</a> <span class="Var">f</span> <span class="Var">z</span> <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <a class="Reference" href="1d3fctj6io3o3dij5a721r4rueutfqqb8s4ojgg21tjj1pbhknn8kgoi3bubjctcugcepfe8g5iql3kebcsrqb85fn2kh33dbbioee8.html">base.Bag.toList</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="cq53omca2ikf70glff05d9aveut9tlpbs7r199gi8lrhg6crqm3j7kgb58dibi4302uguf1i54u4ifdrg6sharn44eus6cbaggvsbd0" class="identifier"><a class="" href="cq53omca2ikf70glff05d9aveut9tlpbs7r199gi8lrhg6crqm3j7kgb58dibi4302uguf1i54u4ifdrg6sharn44eus6cbaggvsbd0.html">foldRight</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="cq53omca2ikf70glff05d9aveut9tlpbs7r199gi8lrhg6crqm3j7kgb58dibi4302uguf1i54u4ifdrg6sharn44eus6cbaggvsbd0.html#s59pjono448c69ftddpg2t7h8th8b93ejd30q9hrc4uufk10tcj6o2s5evbdfj6hrq581j97poogctfcp0q4db8e1v59k0h4hrtkdqg">doc</a></div>
+<div><a class="sub-name" href="base.Bag.foldRight.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.foldRight</span><span class="TypeAscriptionColon"> :</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">b</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">b</span>) <span class="TypeOperator">-&gt;</span> <span class="Var">b</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <span class="Var">b</span>
+<span class="HashQualifier">base.Bag.foldRight</span> <span class="Var">f</span> <span class="Var">z</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span> <span class="UseSuffix">.</span>
+  <a class="Reference" href="0em1d2c88tm3q11tsg1bccv8n3eocltnlnue2nsaos7u6hrnvdg97hc9aj2f1l4guk4f6g8p30taqfksbv7frl5kt8gmdkvio7j1pfo.html">base.List.foldRight</a> <span class="Var">f</span> <span class="Var">z</span> <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <a class="Reference" href="1d3fctj6io3o3dij5a721r4rueutfqqb8s4ojgg21tjj1pbhknn8kgoi3bubjctcugcepfe8g5iql3kebcsrqb85fn2kh33dbbioee8.html">base.Bag.toList</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="4me63vdg0t9a9t9gsvqf32dhbc9oneed9u3tkelj0mkpccnf44brdrk5128qntdsunlsd60bcpgeoj6k03iveksgeojkf5jleqb4t8o" class="identifier"><a class="" href="4me63vdg0t9a9t9gsvqf32dhbc9oneed9u3tkelj0mkpccnf44brdrk5128qntdsunlsd60bcpgeoj6k03iveksgeojkf5jleqb4t8o.html">from</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="4me63vdg0t9a9t9gsvqf32dhbc9oneed9u3tkelj0mkpccnf44brdrk5128qntdsunlsd60bcpgeoj6k03iveksgeojkf5jleqb4t8o.html#5mgvno0eqkveu95224gu6tsf0e2v76vm63eqnrvp3tbi25b6ucf06bi2bi2t2o73chhesoun1jdvce84dd63s9tscvosqprloe3j9hg">doc</a></div>
+<div><a class="sub-name" href="base.Bag.from.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.from</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+<span class="HashQualifier">base.Bag.from</span> <span class="Var">b1</span> <span class="Var">b2</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Bag</span> <span class="UseSuffix">toSet</span>
+  <a class="Reference" href="911h08etpqp3jg0368idg7bn1vkfghh51ertat69jdb1iu1d3egn3hm71jo38ac39vhqd1ova38i913d31pkafp32a8b6bp4h52a2qo.html">base.Set.subset</a> <span class="Parenthesis">(</span><a class="Reference" href="qjaui0ik2up6ilvv1gpvsf74e0hvemgog1phns0vcj9ok28poj9jq5dpiue9qia2el0ca1lbef883toeeqjcms1r1nurduc92d853e0.html">toSet</a> <span class="Var">b1</span><span class="Parenthesis">)</span> <span class="Parenthesis">(</span><a class="Reference" href="qjaui0ik2up6ilvv1gpvsf74e0hvemgog1phns0vcj9ok28poj9jq5dpiue9qia2el0ca1lbef883toeeqjcms1r1nurduc92d853e0.html">toSet</a> <span class="Var">b2</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="ig1828j5vrmrfl4qqlmbfgnmbih7l73flljs95ntrq9foal1ceh50savvi4sua3s0mumpoqeen5vsqdf1aclq3qrc5f753kstaqvhd8" class="identifier"><a class="" href="ig1828j5vrmrfl4qqlmbfgnmbih7l73flljs95ntrq9foal1ceh50savvi4sua3s0mumpoqeen5vsqdf1aclq3qrc5f753kstaqvhd8.html">fromList</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="ig1828j5vrmrfl4qqlmbfgnmbih7l73flljs95ntrq9foal1ceh50savvi4sua3s0mumpoqeen5vsqdf1aclq3qrc5f753kstaqvhd8.html#mj0snd9j65glh66tpv99o8v32osrj7navtb3fvbmavj3p0bnnuupg4bochuchqrts7hegrj3csh8lnbddn8oco0np50hn5ku8bik080">doc</a></div>
+<div><a class="sub-name" href="base.Bag.fromList.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.fromList</span><span class="TypeAscriptionColon"> :</span> <span class="DelimiterChar">[</span><span class="Var">k</span><span class="DelimiterChar">]</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span>
+<span class="HashQualifier">base.Bag.fromList</span><span class="BindingEquals"> =</span> <a class="Reference" href="0em1d2c88tm3q11tsg1bccv8n3eocltnlnue2nsaos7u6hrnvdg97hc9aj2f1l4guk4f6g8p30taqfksbv7frl5kt8gmdkvio7j1pfo.html">base.List.foldRight</a> <a class="Reference" href="pbmto3bqnc42nisa4jnj1or5jeee84osulk5cnbk0h62ipffpa7pfiu9q4c07vmjfbqa4ertt1dd4j4soihgn29db293qptdp545teg.html">base.Bag.add</a> <a class="Reference" href="02dmpekb8sbv88u1le9srppll5n7v3gdhh96n9e9rigjirm0r66r3a8450cg52ipeismke837l5f5kir9jps3dfimu0aqml49i63qvo.html">base.Bag.empty</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="ko9da32qa66tjq43v71dr3ej48eoc73fv7m0un17lq4b79hddd0tkhc0bci74bbsvi5po5l1cvim30rairqboua412mn4e7ia9bnp18" class="identifier"><a class="" href="ko9da32qa66tjq43v71dr3ej48eoc73fv7m0un17lq4b79hddd0tkhc0bci74bbsvi5po5l1cvim30rairqboua412mn4e7ia9bnp18.html">fromMap</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="ko9da32qa66tjq43v71dr3ej48eoc73fv7m0un17lq4b79hddd0tkhc0bci74bbsvi5po5l1cvim30rairqboua412mn4e7ia9bnp18.html#98cclliq9hge7k80n43ncqnqfhfruj5sp0uok9phrrot897m5crl2l70k92sloi1krth5ftbd4k2f7dp05ajpuiqn4n22956mqe0m8o">doc</a></div>
+<div><a class="sub-name" href="base.Bag.fromMap.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.fromMap</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="jk39javgi28eog9lmpblqeg6eb6dkv9f2eo1kauceki0h7g0t9tbg2oi3u4qioa5d0mioptr5548049odbuv9tg34s6foqs26hf1feg.html">base.Map</a> <span class="Var">k</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span>
+<span class="HashQualifier">base.Bag.fromMap</span> <span class="Var">m</span><span class="BindingEquals"> =</span> <span class="Constructor">base.Bag.internal.MkBag</span> <span class="Var">m</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="03vm6sd9r2v4r6vht2ufai12mimn5o124md71oa4fkp5gd9svvghh5p2mcdauehlf1tuasvvntv3jfas1pg4ekov7evptcm42k2r9d0" class="identifier"><a class="" href="03vm6sd9r2v4r6vht2ufai12mimn5o124md71oa4fkp5gd9svvghh5p2mcdauehlf1tuasvvntv3jfas1pg4ekov7evptcm42k2r9d0.html">fromOccurrenceList</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="03vm6sd9r2v4r6vht2ufai12mimn5o124md71oa4fkp5gd9svvghh5p2mcdauehlf1tuasvvntv3jfas1pg4ekov7evptcm42k2r9d0.html#6lbmu7brg40gc4go0g450k0m050n35c212jdnj64pmnlidegsik66mtal230ehpog9586dd97b16q992hfvh70i5uu1kn0soqogs2cg">doc</a></div>
+<div><a class="sub-name" href="base.Bag.fromOccurrenceList.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.fromOccurrenceList</span><span class="TypeAscriptionColon"> :</span> <span class="DelimiterChar">[</span>(<span class="Var">a</span>, <a class="Reference" href="__builtin__Nat.html">base.Nat</a>)<span class="DelimiterChar">]</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span>
+<span class="HashQualifier">base.Bag.fromOccurrenceList</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span> <span class="UseSuffix">.</span>
+  <span class="Constructor">base.Bag.internal.MkBag</span> <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <a class="Reference" href="m0nm5scj0hlvi80qmt2o4jh82qjk5evhnsskjpqve8huvbordkeea2gvemncgddcunkcpkcueklpciibnmi7qju88ufem08cesjbqmo.html">base.Map.fromList</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="oh6m8mckk47j4rq99k9e2etmrtovgdv24tobq2ssvoogs5rpurjt4kpuh8tlsccl5grthvf4sfstmlkl41k3o5siu4d4eg6rdq93vr0" class="identifier"><a class="" href="oh6m8mckk47j4rq99k9e2etmrtovgdv24tobq2ssvoogs5rpurjt4kpuh8tlsccl5grthvf4sfstmlkl41k3o5siu4d4eg6rdq93vr0.html">fromText</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="oh6m8mckk47j4rq99k9e2etmrtovgdv24tobq2ssvoogs5rpurjt4kpuh8tlsccl5grthvf4sfstmlkl41k3o5siu4d4eg6rdq93vr0.html#2o6rvoun283rqlunei88g8rlfrjoe5han8rd22bhqtj7h0jrv0f256r4ejhgf1ffsed8ai2vauuelrp13s64e7ddpcsogahgo7275lg">doc</a></div>
+<div><a class="sub-name" href="base.Bag.fromText.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.fromText</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="__builtin__Text.html">base.Text</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <a class="Reference" href="__builtin__Char.html">base.Char</a>
+<span class="HashQualifier">base.Bag.fromText</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span> <span class="UseSuffix">.</span>
+  <a class="Reference" href="ig1828j5vrmrfl4qqlmbfgnmbih7l73flljs95ntrq9foal1ceh50savvi4sua3s0mumpoqeen5vsqdf1aclq3qrc5f753kstaqvhd8.html">base.Bag.fromList</a> <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <a class="Reference" href="__builtin__Text.html#__builtin__Text.toCharList">base.Text.toCharList</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.Bag.internal.html">internal</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="oeu30vnok3krnumj15m2tfs6i81aav6c2g4tmpvfpnugoqm2tgjr2ca40nfc8pse592juos140q1u2te7q1gfdj3lnqmllqeef04rm0.html">compare</a></div>
+<div><a class="sub-name" href="base.Bag.internal.html#eev66eenpnevlnajvgbg2emgkua3n3kg40lrv1l16lh33ibkrgllpofqcr4miceh5t043r342eh188q6n4f0qshummej9pujnchkc1g">normalize</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="0e0b3jvml4ei3qc1j2ke4ju5ea5oi9ncounea2olknclbm7tcmfin0910a3e7ucdj6hb17v4a39kbu2ttmvsfeafuiadcq7bdo8ohu8" class="identifier"><a class="" href="0e0b3jvml4ei3qc1j2ke4ju5ea5oi9ncounea2olknclbm7tcmfin0910a3e7ucdj6hb17v4a39kbu2ttmvsfeafuiadcq7bdo8ohu8.html">intersect</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="0e0b3jvml4ei3qc1j2ke4ju5ea5oi9ncounea2olknclbm7tcmfin0910a3e7ucdj6hb17v4a39kbu2ttmvsfeafuiadcq7bdo8ohu8.html#4u026e6cupa3qk24kagp091fel8cqihmtg6a9d346e85i2a5i56elq9q3c4dmmaqku7ql7hdh202mku48qpr7cdkp2u39igm7g73doo">doc</a></div>
+<div><a class="sub-name" href="base.Bag.intersect.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.intersect</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span>
+<span class="HashQualifier">base.Bag.intersect</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span>
+  <span class="Constructor">base.Bag.internal.MkBag</span> <span class="Var">b1</span> <span class="ControlKeyword">-&gt;</span>
+    <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Bag</span><span class="UsePrefix">.</span><span class="UsePrefix">internal</span> <span class="UseSuffix">MkBag</span>
+    <span class="ControlKeyword">cases</span> <span class="Constructor">MkBag</span> <span class="Var">b2</span> <span class="ControlKeyword">-&gt;</span> <span class="Constructor">MkBag</span> <span class="Parenthesis">(</span><a class="Reference" href="p7od7v602dbg5lanfgfcqktol4sms6mtac1kljea108eoil4pppb4o4qkhhkfpjklfsghac33dmjn3va5vb08ddpg70ueictf9h46dg.html">base.Map.intersectWith</a> <a class="Reference" href="lqf41uq6l8kejfaqvrbf9cnn6jshqptbm0iph32fvtm30oe17biptc5p16de25naopfgct2kg4olm27i7filo1s2u3sbvk25e6hquf8.html">base.Universal.min</a> <span class="Var">b1</span> <span class="Var">b2</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="p1c3ua96v1h26v2tmn0buh3pgpda38tg9qovhadembcb0ej08tsekino6hmjabv2q1a44ctkgl6n3omi29gsbg97b3icf2e3hqigu10" class="identifier"><a class="" href="p1c3ua96v1h26v2tmn0buh3pgpda38tg9qovhadembcb0ej08tsekino6hmjabv2q1a44ctkgl6n3omi29gsbg97b3icf2e3hqigu10.html">isEmpty</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="p1c3ua96v1h26v2tmn0buh3pgpda38tg9qovhadembcb0ej08tsekino6hmjabv2q1a44ctkgl6n3omi29gsbg97b3icf2e3hqigu10.html#4iortutjsep34uhgdn1834hgboig4723jfo1km95n02j45f859sns6ol0qo8dlf043lnrj3t7676j14qo8misk6ccrnpimgrnj948rg">doc</a></div>
+<div><a class="sub-name" href="p1c3ua96v1h26v2tmn0buh3pgpda38tg9qovhadembcb0ej08tsekino6hmjabv2q1a44ctkgl6n3omi29gsbg97b3icf2e3hqigu10.html#uihopnuqmstdqld1vde9qkfq2dbt532rjmhn5u4njn7sc04oeqlpam2f3edb8mad7r83001d4mgs5rmm89t4p5qu7n911cgbqo4g9ko">test</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.isEmpty</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+<span class="HashQualifier">base.Bag.isEmpty</span> <span class="Var">b</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Universal</span> <span class="UseSuffix">==</span>
+  <a class="Reference" href="9n3hu1tn1bjvv1timi0943b6j5bk0t6uqentcjggmb5jfebgr22800lh7q9ac8igfbdovba203l0bt1jcs2c1lhlbtpha0c1rfb193g.html">base.List.all</a> <span class="Parenthesis">(</span><span class="ControlKeyword">cases</span> (<span class="DelimiterChar">_</span>, <span class="Var">n</span>) <span class="ControlKeyword">-&gt;</span> <span class="Var">n</span> <a class="Reference" href="base.Universal.html#__builtin__Universal.==">==</a> <span class="NumericLiteral">0</span><span class="Parenthesis">)</span> <span class="Parenthesis">(</span><a class="Reference" href="ort6oh2tfkj57pe1l2lkq47t4gc6gj6na30dnbpnp1fkkclgm8la5m0h1lljd2km9phle6i6uhh1ads3tuk3gqe9m7qiiftk3fptpbg.html">base.Bag.occurrenceList</a> <span class="Var">b</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="12dloovnrmim2kddr38s7sv93uj79aqgvde0cv1gf36tkj1dd4vcgklkgkpe4qtu7k3forl5qn0h0m8jeckghjud18egenlt1usr75g" class="identifier"><a class="" href="12dloovnrmim2kddr38s7sv93uj79aqgvde0cv1gf36tkj1dd4vcgklkgkpe4qtu7k3forl5qn0h0m8jeckghjud18egenlt1usr75g.html">map</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="12dloovnrmim2kddr38s7sv93uj79aqgvde0cv1gf36tkj1dd4vcgklkgkpe4qtu7k3forl5qn0h0m8jeckghjud18egenlt1usr75g.html#5o1q6hse8n97ofe40vhl73tugg7vgci17laql5d24feqtou9lgjcb1otnru89q51857ti8rm1vhnn8nj74pc2g3keffo3d8led10iko">doc</a></div>
+<div><a class="sub-name" href="base.Bag.map.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.map</span><span class="TypeAscriptionColon"> :</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="Var">b</span>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">b</span>
+<span class="HashQualifier">base.Bag.map</span> <span class="Var">f</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span>
+  <span class="Constructor">base.Bag.internal.MkBag</span> <span class="Var">b</span> <span class="ControlKeyword">-&gt;</span> <span class="Constructor">base.Bag.internal.MkBag</span> <span class="Parenthesis">(</span><a class="Reference" href="6i7f9jar0am5p4vh794q7bvmol6dar0jh4a1kah8b8dr5fcrrvss9esj4hjof9c0mu99qcjloa9nu7im0qhh33uvr0mpkre11rm8rbg.html">base.Map.mapKeys</a> <span class="Var">f</span> <span class="Var">b</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="c97c9a2t99gcmrcnqssnp9l4cko9pobnscgaoqq4ihbau6a04jkuuub07vv46qp5u513uv5buuh3ap6eqdnjn9dka01pm7g6avpa4ao" class="identifier"><a class="" href="c97c9a2t99gcmrcnqssnp9l4cko9pobnscgaoqq4ihbau6a04jkuuub07vv46qp5u513uv5buuh3ap6eqdnjn9dka01pm7g6avpa4ao.html">mapCounts</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="c97c9a2t99gcmrcnqssnp9l4cko9pobnscgaoqq4ihbau6a04jkuuub07vv46qp5u513uv5buuh3ap6eqdnjn9dka01pm7g6avpa4ao.html#ijqn5q4p5tc5ifsfcmck9pn6t3u84mnl6r3udruclv540rpk3nb1ekf6a4i6d870505iradk0o2j2pdbss400nke6fof45mpki6fap0">doc</a></div>
+<div><a class="sub-name" href="base.Bag.mapCounts.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.mapCounts</span><span class="TypeAscriptionColon"> :</span> (<a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span>
+<span class="HashQualifier">base.Bag.mapCounts</span> <span class="Var">f</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span>
+  <span class="Constructor">base.Bag.internal.MkBag</span> <span class="Var">b</span> <span class="ControlKeyword">-&gt;</span> <span class="Constructor">base.Bag.internal.MkBag</span> <span class="Parenthesis">(</span><a class="Reference" href="q91kr7n493c9tmf2qba02e3gdos39j5fjpkcvunf4b6g43d1tdri3pgjgd61rh035lkemds5rug89086laro3mvfdq7lh8tthdsl8eg.html">base.Map.map</a> <span class="Var">f</span> <span class="Var">b</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="t2ad0icn8rj3orcjimvm139335bncgn46fguqgd465lufpuus26ki0i8tc4mojm3vfvm145ulrce57tf2nolgd71b7us00ufp8g7mc0" class="identifier"><a class="" href="t2ad0icn8rj3orcjimvm139335bncgn46fguqgd465lufpuus26ki0i8tc4mojm3vfvm145ulrce57tf2nolgd71b7us00ufp8g7mc0.html">modify</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="t2ad0icn8rj3orcjimvm139335bncgn46fguqgd465lufpuus26ki0i8tc4mojm3vfvm145ulrce57tf2nolgd71b7us00ufp8g7mc0.html#qsdukgnutauoacj213h4l79vm2dmmddinthavq02prsl48i5gdogcp9inlgn9toueaoskf788f8ovkrhp9uvgpfpe5pi9ltc3lrpg5g">doc</a></div>
+<div><a class="sub-name" href="base.Bag.modify.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.modify</span><span class="TypeAscriptionColon"> :</span>
+  ((<span class="Var">a</span>, <a class="Reference" href="__builtin__Nat.html">base.Nat</a>) <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> (<span class="Var">b</span>, <a class="Reference" href="__builtin__Nat.html">base.Nat</a>)) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">b</span>
+<span class="HashQualifier">base.Bag.modify</span> <span class="Var">f</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span> <span class="UseSuffix">.</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Universal</span> <span class="UseSuffix">&lt;</span>
+    <a class="Reference" href="03vm6sd9r2v4r6vht2ufai12mimn5o124md71oa4fkp5gd9svvghh5p2mcdauehlf1tuasvvntv3jfas1pg4ekov7evptcm42k2r9d0.html">base.Bag.fromOccurrenceList</a>
+  <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <a class="Reference" href="plhhvj2creihkbhs8kra2jke23ftu9ftvsoo05b4d4j9lbi49vk9n9qnchc101e6ne6f8jq1venepfh6144490hu5bh3oe6tlcbts90.html">base.List.flatMap</a>
+      <span class="Parenthesis">(</span>p<span class="ControlKeyword"> -&gt;</span> <span class="Parenthesis">(</span><span class="ControlKeyword">match </span><span class="Var">f</span> <span class="Var">p</span><span class="ControlKeyword"> with</span> <span class="Var">q</span><span class="DelimiterChar">@</span>(<span class="Var">b</span>, <span class="Var">n</span>) <span class="ControlKeyword">-&gt;</span> <span class="ControlKeyword">if</span> <span class="Var">n</span> <a class="Reference" href="base.Universal.html#__builtin__Universal.<">&lt;</a> <span class="NumericLiteral">1</span><span class="ControlKeyword"> then</span> <span class="DelimiterChar">[</span><span class="DelimiterChar">]</span> <span class="ControlKeyword">else</span> <span class="DelimiterChar">[</span><span class="Var">q</span><span class="DelimiterChar">]</span><span class="Parenthesis">)</span><span class="Parenthesis">)</span>
+  <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <a class="Reference" href="ort6oh2tfkj57pe1l2lkq47t4gc6gj6na30dnbpnp1fkkclgm8la5m0h1lljd2km9phle6i6uhh1ads3tuk3gqe9m7qiiftk3fptpbg.html">base.Bag.occurrenceList</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="06qvev1vnvs9f0q8m1482d9pto4celggtoc120m1bqtgnn1o9iqod26nvg827k0ma9d286p7v93n85lrvpvbtf2qeo79eoik24d0amg" class="identifier"><a class="" href="06qvev1vnvs9f0q8m1482d9pto4celggtoc120m1bqtgnn1o9iqod26nvg827k0ma9d286p7v93n85lrvpvbtf2qeo79eoik24d0amg.html">none</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="06qvev1vnvs9f0q8m1482d9pto4celggtoc120m1bqtgnn1o9iqod26nvg827k0ma9d286p7v93n85lrvpvbtf2qeo79eoik24d0amg.html#goaj6f9n592mn95d82e6p8kce71ujgvqfc0v4v1tsad2rnrvgu91ctn5am3jrd0n5af2oeau5ei9m75777dasji3fp5iv9a2gm127pg">doc</a></div>
+<div><a class="sub-name" href="06qvev1vnvs9f0q8m1482d9pto4celggtoc120m1bqtgnn1o9iqod26nvg827k0ma9d286p7v93n85lrvpvbtf2qeo79eoik24d0amg.html#kmke7us3ckg30u417fio8ohg6tvsaap4cqpkpocsr9lfkrdrft3itnccvl2fif10f7hig68t2l2t9n2nh2j7q2cni4qd0dvpp4pja1g">test</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.none</span><span class="TypeAscriptionColon"> :</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">g</span><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+<span class="HashQualifier">base.Bag.none</span> <span class="Var">p</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span> <span class="UseSuffix">.</span>
+  <a class="Reference" href="__builtin__Boolean.html#__builtin__Boolean.not">base.Boolean.not</a> <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <a class="Reference" href="566nnbpcj498slncqptnhstkuji0bgpn1qe3qv3tl3dfog9tummkna6b16sltvj63vmdlnfffj0ck6rgtl526d9ru2dh4eg7i2o37fg.html">base.Bag.any</a> <span class="Var">p</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="ort6oh2tfkj57pe1l2lkq47t4gc6gj6na30dnbpnp1fkkclgm8la5m0h1lljd2km9phle6i6uhh1ads3tuk3gqe9m7qiiftk3fptpbg" class="identifier"><a class="" href="ort6oh2tfkj57pe1l2lkq47t4gc6gj6na30dnbpnp1fkkclgm8la5m0h1lljd2km9phle6i6uhh1ads3tuk3gqe9m7qiiftk3fptpbg.html">occurrenceList</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="ort6oh2tfkj57pe1l2lkq47t4gc6gj6na30dnbpnp1fkkclgm8la5m0h1lljd2km9phle6i6uhh1ads3tuk3gqe9m7qiiftk3fptpbg.html#at7csclcc1am4og5emsttvhohp6uc5el2qpfg10pop5mhhpn37nmnr0bdo0pcrikdf7mk520ejf14vm2tops4l4e5fqb5kr1n793lg0">doc</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.occurrenceList</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="DelimiterChar">[</span>(<span class="Var">a</span>, <a class="Reference" href="__builtin__Nat.html">base.Nat</a>)<span class="DelimiterChar">]</span>
+<span class="HashQualifier">base.Bag.occurrenceList</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span> <span class="UseSuffix">.</span>
+  <a class="Reference" href="pjm7hfq1vtqcaaqa913gks0fcsa7e1nkuuoqmht7ea2r2quut23rsuhomlmi4ar09lgjjor8qfm6u3c0sj1n8eu3ebgrutcssqeb54g.html">base.Map.toList</a> <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <a class="Reference" href="3fosfs3598idpagvu3vm46hovual6km5snd867nqd86ma4nl3rrespkg1m3i35siine92cv6hha5oetifci80n88ia5bcva44nvs71g.html">base.Bag.counts</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.Bag.product.html">product</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="base.Bag.product.html#vu8jsp1pdvrue4j6gd2hk37lo3sflndmt1eejoeka078p9hhpcps9mps9nunsg1jljsqllq2njc10rggd1p9f3jl5i3eemd5klj2cg0">doc</a></div>
+<div><a class="sub-name" href="base.Bag.product.tests.html">tests</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="m953sk5c8b28ctntrqcm77bso1tgshjh511jibtmsea0fel9adr0tv3uvmk95ju3nuleka2ko92ltcbgvl8fbh6mm1q2vlgmfuopcp8" class="identifier"><a class="" href="m953sk5c8b28ctntrqcm77bso1tgshjh511jibtmsea0fel9adr0tv3uvmk95ju3nuleka2ko92ltcbgvl8fbh6mm1q2vlgmfuopcp8.html">remove</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="m953sk5c8b28ctntrqcm77bso1tgshjh511jibtmsea0fel9adr0tv3uvmk95ju3nuleka2ko92ltcbgvl8fbh6mm1q2vlgmfuopcp8.html#3c8bkohsmgcsfdfmn2od8etels1hcfr4odlfvtbrk4tcr6oo1u4r700b5f3h1elbbl008a23bb2njbo3os83n2mtt6621dc5fnnd2oo">doc</a></div>
+<div><a class="sub-name" href="base.Bag.remove.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.remove</span><span class="TypeAscriptionColon"> :</span> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span>
+<span class="HashQualifier">base.Bag.remove</span> <span class="Var">k</span> <span class="Var">b</span><span class="BindingEquals"> =</span> <a class="Reference" href="qt440bcmjpg8m3boq0o4sqnit43crgfb65ulrk0qltdror640fmmqggp86rjevatfgs6kosrpnspog2hm7hvc9qp9e994c0nv9gd0po.html">base.Bag.removeN</a> <span class="NumericLiteral">1</span> <span class="Var">k</span> <span class="Var">b</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="42pi80vuqnn3ip5m5osv4b4n1phfdh0p512pl7s1ievcgd271l00304k7qrpbsrvv7e73ha2i4s4gkvoufv0iq83l12o1ctd0e8hjh8" class="identifier"><a class="" href="42pi80vuqnn3ip5m5osv4b4n1phfdh0p512pl7s1ievcgd271l00304k7qrpbsrvv7e73ha2i4s4gkvoufv0iq83l12o1ctd0e8hjh8.html">removeAll</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="42pi80vuqnn3ip5m5osv4b4n1phfdh0p512pl7s1ievcgd271l00304k7qrpbsrvv7e73ha2i4s4gkvoufv0iq83l12o1ctd0e8hjh8.html#qaqfaud4ug988l1o244ol9hddiabkm1locpuh7rcgekne2ohg89vulta51u49o692dis7jdflh8muuoivqkmhiefnb7vagfuilkv5oo">doc</a></div>
+<div><a class="sub-name" href="base.Bag.removeAll.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.removeAll</span><span class="TypeAscriptionColon"> :</span> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span>
+<span class="HashQualifier">base.Bag.removeAll</span> <span class="Var">k</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span>
+  <span class="Constructor">base.Bag.internal.MkBag</span> <span class="Var">b</span> <span class="ControlKeyword">-&gt;</span> <span class="Constructor">base.Bag.internal.MkBag</span> <span class="Parenthesis">(</span><a class="Reference" href="qlnei2d5s6v6ikdntrrnn40c7boajrmslbf4tu9sjdnfbttes2cr90drib4b00eofvh3u6flg1rcsh7m42mmg8u9tpc7hgcibdq7gj8.html">base.Map.delete</a> <span class="Var">k</span> <span class="Var">b</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="qt440bcmjpg8m3boq0o4sqnit43crgfb65ulrk0qltdror640fmmqggp86rjevatfgs6kosrpnspog2hm7hvc9qp9e994c0nv9gd0po" class="identifier"><a class="" href="qt440bcmjpg8m3boq0o4sqnit43crgfb65ulrk0qltdror640fmmqggp86rjevatfgs6kosrpnspog2hm7hvc9qp9e994c0nv9gd0po.html">removeN</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="qt440bcmjpg8m3boq0o4sqnit43crgfb65ulrk0qltdror640fmmqggp86rjevatfgs6kosrpnspog2hm7hvc9qp9e994c0nv9gd0po.html#4q0am7mfad71nu2cit3hv92lcuvf69vs91s4v7ha011pbpi5dpmjm6o88i5codtsutkb962a6jdslkcaj716rfsgeuphjk88uuk2nb8">doc</a></div>
+<div><a class="sub-name" href="base.Bag.removeN.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.removeN</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="TypeOperator">-&gt;</span> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span>
+<span class="HashQualifier">base.Bag.removeN</span> <span class="Var">n</span> <span class="Var">k</span> <span class="Var">b</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Bag</span><span class="UsePrefix">.</span><span class="UsePrefix">internal</span> <span class="UseSuffix">MkBag</span>
+  <span class="HashQualifier">c</span><span class="BindingEquals"> =</span> <a class="Reference" href="ibks5e46p53ei4kda085469t8l4keo1ma2hvh5gln2d3r9mpdmbdnkjsr38vlhj8ko926hdjcbbe3r4d3naguisii44kk7tl7nba240.html">base.Bag.count</a> <span class="Var">k</span> <span class="Var">b</span>
+  <span class="Constructor">MkBag</span>
+    <span class="Parenthesis">(</span><span class="ControlKeyword">match </span><span class="Var">b</span><span class="ControlKeyword"> with</span>
+      <span class="Constructor">MkBag</span> <span class="Var">b</span> <span class="ControlKeyword">-&gt;</span>
+        <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Universal</span> <span class="UseSuffix">&lt;=</span>
+        <span class="ControlKeyword">if</span> <span class="Var">c</span> <a class="Reference" href="base.Universal.html#__builtin__Universal.<=">&lt;=</a> <span class="Var">n</span><span class="ControlKeyword"> then</span> <a class="Reference" href="qlnei2d5s6v6ikdntrrnn40c7boajrmslbf4tu9sjdnfbttes2cr90drib4b00eofvh3u6flg1rcsh7m42mmg8u9tpc7hgcibdq7gj8.html">base.Map.delete</a> <span class="Var">k</span> <span class="Var">b</span>
+        <span class="ControlKeyword">else</span> <a class="Reference" href="jk39javgi28eog9lmpblqeg6eb6dkv9f2eo1kauceki0h7g0t9tbg2oi3u4qioa5d0mioptr5548049odbuv9tg34s6foqs26hf1feg.html#jiurmran5gvp930ld1a5pkaqhrdh807c8a58pph48um0qvs3e2cs7jakqoqhf6ju5r12fb0b5hk6a21iquptt0het42kfao78q2817g">base.Map.insert</a> <span class="Var">k</span> <span class="Parenthesis">(</span><a class="Reference" href="__builtin__Nat.html#__builtin__Nat.drop">base.Nat.drop</a> <span class="Var">c</span> <span class="Var">n</span><span class="Parenthesis">)</span> <span class="Var">b</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="h3e4s682lp7bjmia64o1jkkf30htdo5adf75fnqs1e5op7vmroi9ri7vk7pas6bb8knb398e14uln8kq2en6is8h7dksovuregarjt0" class="identifier"><a class="" href="h3e4s682lp7bjmia64o1jkkf30htdo5adf75fnqs1e5op7vmroi9ri7vk7pas6bb8knb398e14uln8kq2en6is8h7dksovuregarjt0.html">removeWhere</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="h3e4s682lp7bjmia64o1jkkf30htdo5adf75fnqs1e5op7vmroi9ri7vk7pas6bb8knb398e14uln8kq2en6is8h7dksovuregarjt0.html#3o3s4i3s0uor7var1dp8s705ujmr08odqrfcdbo3qj7vpd2tkhuqg4o7120kbalvp6rha8gdrlpea0uerl6oc8hpqcf09o8l4e06o9o">doc</a></div>
+<div><a class="sub-name" href="base.Bag.removeWhere.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.removeWhere</span><span class="TypeAscriptionColon"> :</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span>
+<span class="HashQualifier">base.Bag.removeWhere</span> <span class="Var">p</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span> <span class="UseSuffix">.</span>
+  <a class="Reference" href="bvsm0mh6ctp6hl6243hmoul3s2jeaiq17d26k3ghhop1krnv4tabj63rkq4mumip017ib2of7v1lr93a3ctplpso2ga7bdobqfssup8.html">base.Bag.filter</a> <span class="Parenthesis">(</span><a class="Reference" href="__builtin__Boolean.html#__builtin__Boolean.not">base.Boolean.not</a> <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <span class="Var">p</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="4lvprebeh2chuvcakj3riebgbujfmaomd37r8v3h670hrmct3tthh3jpglmuqgbfi4t535ectff8ef0sno9ekmva339nbu2reqdjg6o" class="identifier"><a class="" href="4lvprebeh2chuvcakj3riebgbujfmaomd37r8v3h670hrmct3tthh3jpglmuqgbfi4t535ectff8ef0sno9ekmva339nbu2reqdjg6o.html">scale</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="4lvprebeh2chuvcakj3riebgbujfmaomd37r8v3h670hrmct3tthh3jpglmuqgbfi4t535ectff8ef0sno9ekmva339nbu2reqdjg6o.html#gfoojvg0h2mkgflmh0iqsi832po0lr69uojrfl4r62ghejelkjiru6i1qbqljt2l30vknmq5ef42vrffo3vv19utijn0r9mgvdo7lv0">doc</a></div>
+<div><a class="sub-name" href="base.Bag.scale.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.scale</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span>
+<span class="HashQualifier">base.Bag.scale</span> <span class="Var">n</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Nat</span> <span class="UseSuffix">*</span>
+  <a class="Reference" href="c97c9a2t99gcmrcnqssnp9l4cko9pobnscgaoqq4ihbau6a04jkuuub07vv46qp5u513uv5buuh3ap6eqdnjn9dka01pm7g6avpa4ao.html">base.Bag.mapCounts</a> <span class="Parenthesis">(</span>x<span class="ControlKeyword"> -&gt;</span> <span class="Var">x</span> <a class="Reference" href="__builtin__Nat.html#__builtin__Nat.*">*</a> <span class="Var">n</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="0uurhb63d6es858f3l95cct4mm1phou2h11sa4hlf8jeghf4p0dt4t24kf6tdcqd199omigkjkm32ahmcluniufursid9l5c8d2hs3g" class="identifier"><a class="" href="0uurhb63d6es858f3l95cct4mm1phou2h11sa4hlf8jeghf4p0dt4t24kf6tdcqd199omigkjkm32ahmcluniufursid9l5c8d2hs3g.html">singleton</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="0uurhb63d6es858f3l95cct4mm1phou2h11sa4hlf8jeghf4p0dt4t24kf6tdcqd199omigkjkm32ahmcluniufursid9l5c8d2hs3g.html#8r089fq572as28bjl38boilbtccsg6bdj74f26qr7ib2h95t4rn58trr8p76nlm1287lqe0deua9er6dr9rksmm5kn7jtcoh7sfnjo8">doc</a></div>
+<div><a class="sub-name" href="base.Bag.singleton.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.singleton</span><span class="TypeAscriptionColon"> :</span> <span class="Var">k</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">k</span>
+<span class="HashQualifier">base.Bag.singleton</span> <span class="Var">k</span><span class="BindingEquals"> =</span> <span class="Constructor">base.Bag.internal.MkBag</span> <span class="Parenthesis">(</span><a class="Reference" href="c7p7j0f3m0r8a29isa6l1ba1d83hof7p91lavq7r5r1c1o5n2m6uikk6slpimumqdbh1t2iaup6o03me43ii82su214f7fu9gbh39l0.html">base.Map.singleton</a> <span class="Var">k</span> <span class="NumericLiteral">1</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="2k78v1d67m48u7du3cksblf2ps0btb8uugql3vr6nrlc7d49alifci9sk6beidmrso114ss70v86hmi7dpl3t2b5bh967pgs70ff768" class="identifier"><a class="" href="2k78v1d67m48u7du3cksblf2ps0btb8uugql3vr6nrlc7d49alifci9sk6beidmrso114ss70v86hmi7dpl3t2b5bh967pgs70ff768.html">size</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="2k78v1d67m48u7du3cksblf2ps0btb8uugql3vr6nrlc7d49alifci9sk6beidmrso114ss70v86hmi7dpl3t2b5bh967pgs70ff768.html#de9r64ncosqsttpbudnmaoc2lb7i4a40o123rh6174nvpfhcvoecjhnn0tln01tp5fii3uejg0kidt1e5u0jodldjf2o585oqe89fro">doc</a></div>
+<div><a class="sub-name" href="2k78v1d67m48u7du3cksblf2ps0btb8uugql3vr6nrlc7d49alifci9sk6beidmrso114ss70v86hmi7dpl3t2b5bh967pgs70ff768.html#shjtr7mofel2lh2ksie9c9mmvf2tgrorad9d3ttbc9tmjta6lmt53tfg4s8svo4gv02l4cbmsgbr44gk7jhovknmml4g89gh4s4mnr0">test</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.size</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Nat.html">base.Nat</a>
+<span class="HashQualifier">base.Bag.size</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span>
+  <span class="Constructor">base.Bag.internal.MkBag</span> <span class="Var">b</span> <span class="ControlKeyword">-&gt;</span>
+    <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Nat</span> <span class="UseSuffix">+</span>
+    <a class="Reference" href="__builtin__Sequence.html#cqe9aa74fsjcg589r4rkiif3rm6o4trk8n06bg5d9rbhsaf1eiehmeufotfcsde4h88ldg7d21gcdi822925qlub4cr3bip7ssihrt8">base.List.foldLeft</a> <span class="Parenthesis">(</span><a class="Reference" href="__builtin__Nat.html#__builtin__Nat.+">+</a><span class="Parenthesis">)</span> <span class="NumericLiteral">0</span> <span class="Parenthesis">(</span><a class="Reference" href="a700rrbap7r6ohor9mm0ttbu59abn0teqsachc19vv48cbcc81cq0ff43jd0a53bstbo8bd6hp8noquuj5srn3huroqqafffmkeikq0.html">base.Map.values</a> <span class="Var">b</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="3ohnljtn2on77gbjacgs6u8qgl7g7afdcf2h2mei6v2s80ak38vfgp6pv5rg21lg56icgpchgl76a3lqpla7j8idvb7qpmqdl5rv458" class="identifier"><a class="" href="3ohnljtn2on77gbjacgs6u8qgl7g7afdcf2h2mei6v2s80ak38vfgp6pv5rg21lg56icgpchgl76a3lqpla7j8idvb7qpmqdl5rv458.html">subbag</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="3ohnljtn2on77gbjacgs6u8qgl7g7afdcf2h2mei6v2s80ak38vfgp6pv5rg21lg56icgpchgl76a3lqpla7j8idvb7qpmqdl5rv458.html#lhtrjnoskcomahapb6b67svqjm0udrd1hsif3ec8covjtfbaktua2bfv1go62j2pda4u5516ohbg9s1ba63944kh928ffhdh5egb4qo">doc</a></div>
+<div><a class="sub-name" href="base.Bag.subbag.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.subbag</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+<span class="HashQualifier">base.Bag.subbag</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Universal</span> <span class="UseSuffix">&lt;=</span>
+  <a class="Reference" href="oeu30vnok3krnumj15m2tfs6i81aav6c2g4tmpvfpnugoqm2tgjr2ca40nfc8pse592juos140q1u2te7q1gfdj3lnqmllqeef04rm0.html">base.Bag.internal.compare</a> <span class="Parenthesis">(</span><a class="Reference" href="base.Universal.html#__builtin__Universal.<=">&lt;=</a><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="be7jd39cemhbj9vpom05mbvonpcnijgle3qmb4vlkrnm0u0ugrgq6laov8m6vr4t94801lvpn2jq19m54490kc5pelbu7gmtrikkpj0" class="identifier"><a class="" href="be7jd39cemhbj9vpom05mbvonpcnijgle3qmb4vlkrnm0u0ugrgq6laov8m6vr4t94801lvpn2jq19m54490kc5pelbu7gmtrikkpj0.html">superbag</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="be7jd39cemhbj9vpom05mbvonpcnijgle3qmb4vlkrnm0u0ugrgq6laov8m6vr4t94801lvpn2jq19m54490kc5pelbu7gmtrikkpj0.html#crrgsif60fn4kf9a3em6hdqehsnf2kugn97onmrvpuu4lgl966k46h7fpck597969f74ejjndhaabmgift4rsikj9ovkeq39rml2kt8">doc</a></div>
+<div><a class="sub-name" href="base.Bag.superbag.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.superbag</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Boolean.html">base.Boolean</a>
+<span class="HashQualifier">base.Bag.superbag</span><span class="BindingEquals"> =</span> <a class="Reference" href="tn6l3salqvhfm7djc47clr3mg2ddog7ecmjbtmdr1fb2ro97o2alufsm8pr66tc5rrgaht89rec7293bup3m0ius81nar21m5sv0np0.html">base.Function.flip</a> <a class="Reference" href="3ohnljtn2on77gbjacgs6u8qgl7g7afdcf2h2mei6v2s80ak38vfgp6pv5rg21lg56icgpchgl76a3lqpla7j8idvb7qpmqdl5rv458.html">base.Bag.subbag</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="" class="identifier"><a class="" href="base.Bag.tests.html">tests</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="cv9spo0ssobnsei14qqqck97pdv0ie029dgndf2b6tbl8ajlf87jmdf6de6dtif0esq99qpvegla37vs9idpgfne7acqdopepgaastg.html">bagOf</a></div></div>
+                
+            </div>
+            
+
+            <div>
+                <h2 id="1d3fctj6io3o3dij5a721r4rueutfqqb8s4ojgg21tjj1pbhknn8kgoi3bubjctcugcepfe8g5iql3kebcsrqb85fn2kh33dbbioee8" class="identifier"><a class="" href="1d3fctj6io3o3dij5a721r4rueutfqqb8s4ojgg21tjj1pbhknn8kgoi3bubjctcugcepfe8g5iql3kebcsrqb85fn2kh33dbbioee8.html">toList</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="1d3fctj6io3o3dij5a721r4rueutfqqb8s4ojgg21tjj1pbhknn8kgoi3bubjctcugcepfe8g5iql3kebcsrqb85fn2kh33dbbioee8.html#8h08b13ljtmlptglobtg3riku98ktnhq0bn460d1scrkh9ov2jh9jhn8vdlh3jutahooohtrngpm82a00o47j8aetfs4a518dpmgt70">doc</a></div>
+<div><a class="sub-name" href="base.Bag.toList.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.toList</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <span class="DelimiterChar">[</span><span class="Var">a</span><span class="DelimiterChar">]</span>
+<span class="HashQualifier">base.Bag.toList</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span> <span class="UseSuffix">.</span>
+  <span class="HashQualifier">k</span> <span class="Var">z</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span>
+    (<span class="Var">e</span>, <span class="Var">n</span>) <span class="ControlKeyword">-&gt;</span>
+      <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">List</span> <span class="UseSuffix">++</span>
+      <span class="Var">z</span> <a class="Reference" href="__builtin__Sequence.html#__builtin__List.++">++</a> <a class="Reference" href="apd2pd0ob7k20kqui8q43ns0840dbubc8p5tuh183n2q4d44qmqnfnhk3vpga0m6r8ci4e6jlhlu52vbpkj1p28tsgchm2m7tss620o.html">base.List.replicate</a> <span class="Var">n</span> <span class="DelayForceChar">'</span><span class="Var">e</span>
+  <a class="Reference" href="__builtin__Sequence.html#cqe9aa74fsjcg589r4rkiif3rm6o4trk8n06bg5d9rbhsaf1eiehmeufotfcsde4h88ldg7d21gcdi822925qlub4cr3bip7ssihrt8">base.List.foldLeft</a> <span class="Var">k</span> <span class="DelimiterChar">[</span><span class="DelimiterChar">]</span> <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <a class="Reference" href="ort6oh2tfkj57pe1l2lkq47t4gc6gj6na30dnbpnp1fkkclgm8la5m0h1lljd2km9phle6i6uhh1ads3tuk3gqe9m7qiiftk3fptpbg.html">base.Bag.occurrenceList</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="qjaui0ik2up6ilvv1gpvsf74e0hvemgog1phns0vcj9ok28poj9jq5dpiue9qia2el0ca1lbef883toeeqjcms1r1nurduc92d853e0" class="identifier"><a class="" href="qjaui0ik2up6ilvv1gpvsf74e0hvemgog1phns0vcj9ok28poj9jq5dpiue9qia2el0ca1lbef883toeeqjcms1r1nurduc92d853e0.html">toSet</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="qjaui0ik2up6ilvv1gpvsf74e0hvemgog1phns0vcj9ok28poj9jq5dpiue9qia2el0ca1lbef883toeeqjcms1r1nurduc92d853e0.html#jucmgpnpubb0qe5fldj3ee8rmppkohohjqnq1q8bshdr1ockgbcq7qkf92i8lmept4r39eneclpkgseb9efvcth848q412bj2lmamg0">doc</a></div>
+<div><a class="sub-name" href="base.Bag.toSet.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.toSet</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="bsl0jordvmh1mq34osmis8187cisa54lr2to2mid217e8ph78ug21lkmgf6qt9o9uh7i6g79tgppa1ds3p2ttth5eiqnibhadnqordg.html">base.Set</a> <span class="Var">a</span>
+<span class="HashQualifier">base.Bag.toSet</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span> <span class="UseSuffix">.</span>
+  <span class="Constructor">base.Set.Set</span> <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <a class="Reference" href="q91kr7n493c9tmf2qba02e3gdos39j5fjpkcvunf4b6g43d1tdri3pgjgd61rh035lkemds5rug89086laro3mvfdq7lh8tthdsl8eg.html">base.Map.map</a> <span class="DelayForceChar">!</span><a class="Reference" href="base.html#2gc2s853b44gtdv5mik5h0v4ribtv81bl272k5b7ql57fkfmisnq44fdih5q8pe8vmhq0a39ksknjvp16jt32daq99l0ca2sv0hq2q8">base.const</a> <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <a class="Reference" href="3fosfs3598idpagvu3vm46hovual6km5snd867nqd86ma4nl3rrespkg1m3i35siine92cv6hha5oetifci80n88ia5bcva44nvs71g.html">base.Bag.counts</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="27oshlgju8ps560ighqpldohpbrd51vl2m0h0p49oqdbehro32crq198fm7pd7brp85dq7ijirni89uec9k3n4tbcbdh6nfpkrm90ng" class="identifier"><a class="" href="27oshlgju8ps560ighqpldohpbrd51vl2m0h0p49oqdbehro32crq198fm7pd7brp85dq7ijirni89uec9k3n4tbcbdh6nfpkrm90ng.html">toText</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="27oshlgju8ps560ighqpldohpbrd51vl2m0h0p49oqdbehro32crq198fm7pd7brp85dq7ijirni89uec9k3n4tbcbdh6nfpkrm90ng.html#jgcolbpuimtb09t434ojvjt93579rkturq5p15v0dmls02kburk817ss2d0085319rpa6j7g4mk0e30i2js0e1tnemobpkco71u6tp0">doc</a></div>
+<div><a class="sub-name" href="base.Bag.toText.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.toText</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <a class="Reference" href="__builtin__Char.html">base.Char</a> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="__builtin__Text.html">base.Text</a>
+<span class="HashQualifier">base.Bag.toText</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span> <span class="UseSuffix">.</span>
+  <a class="Reference" href="__builtin__Text.html#__builtin__Text.fromCharList">base.Text.fromCharList</a> <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <a class="Reference" href="1d3fctj6io3o3dij5a721r4rueutfqqb8s4ojgg21tjj1pbhknn8kgoi3bubjctcugcepfe8g5iql3kebcsrqb85fn2kh33dbbioee8.html">base.Bag.toList</a></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="tjuhh14k7n820gn3r8dd5jo687v7148vli4ot8k2c51onp5d8bek2h6oohnjs87e0g5s905k7jj41qrvg457669bkgr42srot8189ko" class="identifier"><a class="" href="tjuhh14k7n820gn3r8dd5jo687v7148vli4ot8k2c51onp5d8bek2h6oohnjs87e0g5s905k7jj41qrvg457669bkgr42srot8189ko.html">traverse</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="tjuhh14k7n820gn3r8dd5jo687v7148vli4ot8k2c51onp5d8bek2h6oohnjs87e0g5s905k7jj41qrvg457669bkgr42srot8189ko.html#ojo9737km77gta9d989q2chui3v0g4080ebom3fjbtnqg59nila8jq5gm064eo3n0j5sb331aql8bjpamv2ahnlvb8e4lgif0ngkl48">doc</a></div>
+<div><a class="sub-name" href="base.Bag.traverse.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.traverse</span><span class="TypeAscriptionColon"> :</span> (<span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <span class="Var">b</span>) <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span><span class="AbilityBraces">{</span><span class="Var">e</span><span class="AbilityBraces">}</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">b</span>
+<span class="HashQualifier">base.Bag.traverse</span> <span class="Var">f</span><span class="BindingEquals"> =</span>
+  <span class="UseKeyword">use </span><span class="UsePrefix">base</span> <span class="UseSuffix">.</span>
+  <a class="Reference" href="n89rbqoes7skmk4n2ipii0j2g2t5u52okuiri486dgm28m12onequccpocq9g4o6ii81tqiavhrvbrbk1lcbmnomdjaj41a8am4fig8.html">base.Bag.flatMap</a> <span class="Parenthesis">(</span><a class="Reference" href="0uurhb63d6es858f3l95cct4mm1phou2h11sa4hlf8jeghf4p0dt4t24kf6tdcqd199omigkjkm32ahmcluniufursid9l5c8d2hs3g.html">base.Bag.singleton</a> <a class="Reference" href="base.html#0hoa6tis7604fo17o91lfjflsvd843uvm7sueu5rfqqn5nbneajoh9fldfbmmjnhh1h2690ktfflrbb96q9lksesuh3t5amcc1ph92g">.</a> <span class="Var">f</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+
+            <div>
+                <h2 id="r62jtr8bp4ld3cs3a70nj8g3rb8cpst6afk751ea986e74qk6lk5d5v00is75b2gs9qhq05ermu4uftlmkde9sgq6rtg6ao44r020uo" class="identifier"><a class="" href="r62jtr8bp4ld3cs3a70nj8g3rb8cpst6afk751ea986e74qk6lk5d5v00is75b2gs9qhq05ermu4uftlmkde9sgq6rtg6ao44r020uo.html">union</a> -></h2>
+                <div class='children'><div><a class="sub-name" href="r62jtr8bp4ld3cs3a70nj8g3rb8cpst6afk751ea986e74qk6lk5d5v00is75b2gs9qhq05ermu4uftlmkde9sgq6rtg6ao44r020uo.html#cet59batmilnm7f3j29kjhf52k44u6aa1efpbj2gsgsqsbg056od14uf9ilpmrpsnhibs17jqumer2ovd4q03g2vfra2uso0v8au6ko">doc</a></div>
+<div><a class="sub-name" href="base.Bag.union.tests.html">tests</a></div></div>
+                <div><pre><code><span class="HashQualifier">base.Bag.union</span><span class="TypeAscriptionColon"> :</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span> <span class="TypeOperator">-&gt;</span> <a class="Reference" href="0lah1jtavea0g6nfnmcokgji5mlg7pdvv97d5h7aug2suegbk929c54sj6on4gcm3m9qho7ig71nddcncrughhlatcl32oopoo9v53o.html">base.Bag</a> <span class="Var">a</span>
+<span class="HashQualifier">base.Bag.union</span><span class="BindingEquals"> =</span> <span class="ControlKeyword">cases</span>
+  <span class="Constructor">base.Bag.internal.MkBag</span> <span class="Var">b1</span> <span class="ControlKeyword">-&gt;</span>
+    <span class="UseKeyword">use </span><span class="UsePrefix">base</span><span class="UsePrefix">.</span><span class="UsePrefix">Bag</span><span class="UsePrefix">.</span><span class="UsePrefix">internal</span> <span class="UseSuffix">MkBag</span>
+    <span class="ControlKeyword">cases</span> <span class="Constructor">MkBag</span> <span class="Var">b2</span> <span class="ControlKeyword">-&gt;</span> <span class="Constructor">MkBag</span> <span class="Parenthesis">(</span><a class="Reference" href="9qsotl22cf4ru07fn7l9pq63hh1id10b556ua3girdt8o83aolb6sqbethf4894j7fmnsjqosdm6usr10fjl6qp96mpndh49b52lom0.html">base.Map.unionWith</a> <a class="Reference" href="4k4mvb0me75tnvn6n34d27ri3gmdtu8qbqp7bkuc7k221okcd5kvuo7i1buvvujngeo6bgu8jege29lpee790jrfm23k5e1qtq6brl0.html">base.Universal.max</a> <span class="Var">b1</span> <span class="Var">b2</span><span class="Parenthesis">)</span></code></pre></div>
+            </div>
+            
+    
+</body>
